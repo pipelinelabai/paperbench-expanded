@@ -1,0 +1,26 @@
+{
+  "af_max_uniform": 36.0,
+  "af_at_broadside_uniform": 36.0,
+  "af_max_initial": 26.712,
+  "af_at_broadside_initial": 0.0,
+  "af_max_optimal": 12.0,
+  "af_at_broadside_optimal": 0.0,
+  "contract": {
+    "evaluation_frequency_GHz": 5.8,
+    "theta_range_deg": [
+      0,
+      90
+    ],
+    "phi_range_deg": [
+      0,
+      360
+    ],
+    "grid_step_deg": 1.0,
+    "element_factor": "EF==1 (constant)",
+    "d_mm": 40,
+    "M": 6,
+    "N": 6,
+    "phase_map": "phi(m,n) in {0,180} deg; |AF| invariant under 0<->1 swap"
+  },
+  "paper_fig2b_note": "Fig.2b converged AF_max ~7.7-7.8 corresponds to an under-specified evaluation domain (principal-plane cuts give 8.0); NOT a graded target. Full-hemisphere max on this contract = 12.000 (attained at theta~66deg, phi=45deg grating point; frequency-insensitive for f>=5.31 GHz)."
+}

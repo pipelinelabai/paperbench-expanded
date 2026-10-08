@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "task_id": "11-horlbeck-2018-genetic-interactions",
+  "reference_mode": "Independent reconstruction from the bundled raw counts, not precomputed result tables",
+  "paper": {
+    "path": "/home/paper/paper.md",
+    "sha256": "04421503d3d128c4ac8c81b9f28b03ee6e7dd23e7773ac8a951cb70438031e5c",
+    "title": "Mapping the Genetic Landscape of Human Cells",
+    "year": 2018
+  },
+  "conventions_sha256": "fe4659fa1b0a92e1687547c218973ec3f04a0d3f837820de1dc9e5e0be6153de",
+  "input_manifest": "refs/inputs/data_manifest.json",
+  "method_anchors": [
+    {
+      "id": "count_phenotypes",
+      "paper_pages": [
+        20
+      ],
+      "paper_lines": [
+        936,
+        952
+      ],
+      "description": "Endpoint guide filtering, pseudocount, read-total normalization, negative-control centering and replicate-specific population doublings"
+    },
+    {
+      "id": "guide_gi",
+      "paper_pages": [
+        20
+      ],
+      "paper_lines": [
+        954,
+        973
+      ],
+      "description": "Separate replicate analyses where required; symmetric phenotypes, query-specific fixed-intercept quadratic and control-based GI scaling"
+    },
+    {
+      "id": "gene_gi",
+      "paper_pages": [
+        21
+      ],
+      "paper_lines": [
+        983,
+        987
+      ],
+      "description": "Average the eligible guide pairs for each gene pair"
+    }
+  ],
+  "figure_targets": {
+    "2D": {
+      "quantity": "Cross-replicate agreement of gene-level GI scores",
+      "analysis": "independent replicates"
+    },
+    "2E": {
+      "quantity": "Cross-replicate agreement of gene-profile correlation values",
+      "analysis": "independent replicates"
+    },
+    "2F": {
+      "quantity": "Distribution of gene-profile correlations",
+      "analysis": "replicate-averaged study"
+    },
+    "2G": {
+      "quantity": "Gene-level GI numeric matrix",
+      "analysis": "replicate-averaged study",
+      "author_annotation_labels_required": false
+    }
+  },
+  "figure_reference": {
+    "path": "/home/paper/paper_image/figure2.jpg",
+    "sha256": "c8c759fe802fbb6061b66245b49dab4251c90fc0c4e2b9ae357e5fda9bf7cf05",
+    "caption_lines": [
+      1437,
+      1460
+    ]
+  },
+  "benchmark_controls": {
+    "identity_matching_seed": 201806010,
+    "minimum_matching_permutations": 199,
+    "matching_null_statistic": "Median finite Pearson correlation of the focal-gene partner profiles under the recorded cross-replicate identity matching.",
+    "required_direction_of_result": null
+  },
+  "control_provenance": "Public addendum-defined validation extensions, not claims about the original Figure 2 procedure",
+  "numerical_policy": "config/numerical_policy.json",
+  "required_correlation_or_significance": null,
+  "excluded_scope": [
+    "Author complex/GO annotations",
+    "Author cluster labels",
+    "Jurkat",
+    "Later paper figures",
+    "Wet-lab validation"
+  ]
+}

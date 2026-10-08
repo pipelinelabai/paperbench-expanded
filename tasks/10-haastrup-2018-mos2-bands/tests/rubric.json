@@ -1,0 +1,582 @@
+{
+  "id": "10-abc-10-10-80",
+  "task_id": "10",
+  "requirements": "Dependencies are on relevant observations, not block scores. Split credit by independent component/variant/branch within a check. A failed electronic variant cannot erase valid elastic evidence; a literal-fit diagnosis cannot unlock absent headline masses.",
+  "weight_semantics": "Root dimension weights sum to 100; child weights sum to 100 within each dimension. Multiply each level once. Research blocks are a crosswalk, not additional weighted parents.",
+  "sub_tasks": [
+    {
+      "id": "A",
+      "title": "Structural Modeling",
+      "weight": 10,
+      "sub_tasks": [
+        {
+          "id": "10.1a",
+          "title": "Fixed physical model, valid relaxed geometry and native provenance / 10.1a",
+          "weight": 40.0,
+          "effective_points": 4,
+          "task_category": "Modeling",
+          "evidence_inputs": [
+            {
+              "path": "submission/src/",
+              "kind": "source_complete",
+              "role": "executed model and derivation"
+            },
+            {
+              "path": "submission/outputs/",
+              "kind": "data",
+              "recursive": true,
+              "role": "regenerated native evidence; logical observations bind through outputs/evidence_manifest.json"
+            }
+          ],
+          "requirements": "Frozen H-phase, c, XC/smearing/pseudopotentials, actual numerical settings and native identity, rather than copied parameter declarations.",
+          "evidence_gates": [
+            "fixed_model"
+          ],
+          "research_block_id": "10.1",
+          "sub_tasks": []
+        },
+        {
+          "id": "10.1b",
+          "title": "Fixed physical model, valid relaxed geometry and native provenance / 10.1b",
+          "weight": 60.0,
+          "effective_points": 6,
+          "task_category": "Modeling",
+          "evidence_inputs": [
+            {
+              "path": "submission/src/",
+              "kind": "source_complete",
+              "role": "executed model and derivation"
+            },
+            {
+              "path": "submission/outputs/",
+              "kind": "data",
+              "recursive": true,
+              "role": "regenerated native evidence; logical observations bind through outputs/evidence_manifest.json"
+            }
+          ],
+          "requirements": "Correct independently recomputed relaxed structure, force vectors/stress and vacuum separation with native convergence, shared across electronic variants.",
+          "evidence_gates": [
+            "relaxed_geometry"
+          ],
+          "research_block_id": "10.1",
+          "sub_tasks": []
+        }
+      ]
+    },
+    {
+      "id": "B",
+      "title": "Solver Config & Run Evidence Audit",
+      "weight": 10,
+      "sub_tasks": [
+        {
+          "id": "10.2c",
+          "title": "Independent relaxed-ion elastic tensor and zero-strain validation / 10.2c",
+          "weight": 30.0,
+          "effective_points": 3,
+          "task_category": "Execution",
+          "evidence_inputs": [
+            {
+              "path": "submission/src/",
+              "kind": "source_complete",
+              "role": "executed model and derivation"
+            },
+            {
+              "path": "submission/outputs/",
+              "kind": "data",
+              "recursive": true,
+              "role": "regenerated native evidence; logical observations bind through outputs/evidence_manifest.json"
+            }
+          ],
+          "requirements": "Verify actual fixed-cell ionic-relaxation calculations at every required strain with native input/output and convergence records; a clamped-ion single point is not an executed relaxation.",
+          "evidence_gates": [
+            "strain_runs"
+          ],
+          "research_block_id": "10.2",
+          "sub_tasks": []
+        },
+        {
+          "id": "10.3c",
+          "title": "Native bands, two-dimensional edges and branch identity / 10.3c",
+          "weight": 30.0,
+          "effective_points": 3,
+          "task_category": "Execution",
+          "evidence_inputs": [
+            {
+              "path": "submission/src/",
+              "kind": "source_complete",
+              "role": "executed model and derivation"
+            },
+            {
+              "path": "submission/outputs/",
+              "kind": "data",
+              "recursive": true,
+              "role": "regenerated native evidence; logical observations bind through outputs/evidence_manifest.json"
+            }
+          ],
+          "requirements": "Verify genuine S/F1 SCF and native path calculations with matched fixed geometry, appropriate scalar/spinor settings and discoverable native logs/arrays; an emitted band plot alone is insufficient.",
+          "evidence_gates": [
+            "bands_S_F1"
+          ],
+          "research_block_id": "10.3",
+          "sub_tasks": []
+        },
+        {
+          "id": "10.4c",
+          "title": "Matched-dataset SOC attribution / 10.4c",
+          "weight": 10.0,
+          "effective_points": 1,
+          "task_category": "Execution",
+          "evidence_inputs": [
+            {
+              "path": "submission/src/",
+              "kind": "source_complete",
+              "role": "executed model and derivation"
+            },
+            {
+              "path": "submission/outputs/",
+              "kind": "data",
+              "recursive": true,
+              "role": "regenerated native evidence; logical observations bind through outputs/evidence_manifest.json"
+            }
+          ],
+          "requirements": "Verify genuine native N0 and N1 executions with the same fixed fully-relativistic NC datasets and opposite SOC settings, with native records distinct from the PAW S/F1 calculations. Reusing or relabelling a PAW result does not establish this auxiliary controlled experiment.",
+          "evidence_gates": [
+            "paired_N0_N1"
+          ],
+          "research_block_id": "10.4",
+          "sub_tasks": []
+        },
+        {
+          "id": "10.5c",
+          "title": "Vacuum-referenced edges and finite-vacuum checks / 10.5c",
+          "weight": 10.0,
+          "effective_points": 1,
+          "task_category": "Execution",
+          "evidence_inputs": [
+            {
+              "path": "submission/src/",
+              "kind": "source_complete",
+              "role": "executed model and derivation"
+            },
+            {
+              "path": "submission/outputs/",
+              "kind": "data",
+              "recursive": true,
+              "role": "regenerated native evidence; logical observations bind through outputs/evidence_manifest.json"
+            }
+          ],
+          "requirements": "Verify genuine native electrostatic-potential generation and planar averaging with retained settings, source calculation identity and raw z/potential records.",
+          "evidence_gates": [
+            "vacuum_runs"
+          ],
+          "research_block_id": "10.5",
+          "sub_tasks": []
+        },
+        {
+          "id": "10.7c",
+          "title": "Complete, validated mass tensors/branch set / 10.7c",
+          "weight": 20.0,
+          "effective_points": 2,
+          "task_category": "Execution",
+          "evidence_inputs": [
+            {
+              "path": "submission/src/",
+              "kind": "source_complete",
+              "role": "executed model and derivation"
+            },
+            {
+              "path": "submission/outputs/",
+              "kind": "data",
+              "recursive": true,
+              "role": "regenerated native evidence; logical observations bind through outputs/evidence_manifest.json"
+            }
+          ],
+          "requirements": "Verify fresh native electronic calculations supporting every required headline mass-sampling set with source, branch/case IDs and k-coordinate records; fitted or interpolated eigenvalues cannot replace native samples.",
+          "evidence_gates": [
+            "mass_samples"
+          ],
+          "research_block_id": "10.7",
+          "sub_tasks": []
+        }
+      ]
+    },
+    {
+      "id": "C",
+      "title": "Result Analysis",
+      "weight": 80,
+      "sub_tasks": [
+        {
+          "id": "10.2a",
+          "title": "Independent relaxed-ion elastic tensor and zero-strain validation / 10.2a",
+          "weight": 8.75,
+          "effective_points": 7,
+          "task_category": "Validation",
+          "evidence_inputs": [
+            {
+              "path": "submission/src/",
+              "kind": "source_complete",
+              "role": "executed model and derivation"
+            },
+            {
+              "path": "submission/outputs/",
+              "kind": "data",
+              "recursive": true,
+              "role": "regenerated native evidence; logical observations bind through outputs/evidence_manifest.json"
+            }
+          ],
+          "requirements": "Correct stress/strain and force data for both normal-strain families at all required signs/magnitudes; independently recompute sign, units and all four relaxed-ion tensor components.",
+          "evidence_gates": [
+            "strain_runs"
+          ],
+          "research_block_id": "10.2",
+          "sub_tasks": []
+        },
+        {
+          "id": "10.2b",
+          "title": "Independent relaxed-ion elastic tensor and zero-strain validation / 10.2b",
+          "weight": 10.0,
+          "effective_points": 8,
+          "task_category": "Validation",
+          "evidence_inputs": [
+            {
+              "path": "submission/src/",
+              "kind": "source_complete",
+              "role": "executed model and derivation"
+            },
+            {
+              "path": "submission/outputs/",
+              "kind": "data",
+              "recursive": true,
+              "role": "regenerated native evidence; logical observations bind through outputs/evidence_manifest.json"
+            }
+          ],
+          "requirements": "Smaller-strain/precision sensitivity supports zero-strain response; residuals and symmetry checked without imposing equality or treating R-squared as an error bound.",
+          "evidence_gates": [
+            "strain_runs",
+            "numerical_controls"
+          ],
+          "research_block_id": "10.2",
+          "sub_tasks": []
+        },
+        {
+          "id": "10.3a",
+          "title": "Native bands, two-dimensional edges and branch identity / 10.3a",
+          "weight": 6.25,
+          "effective_points": 5,
+          "task_category": "Validation",
+          "evidence_inputs": [
+            {
+              "path": "submission/src/",
+              "kind": "source_complete",
+              "role": "executed model and derivation"
+            },
+            {
+              "path": "submission/outputs/",
+              "kind": "data",
+              "recursive": true,
+              "role": "regenerated native evidence; logical observations bind through outputs/evidence_manifest.json"
+            }
+          ],
+          "requirements": "Correct S/F1 native eigenvalues/occupations and spin evidence on >=400 distinct native path points, using the correct reciprocal axis; endpoint duplicates and interpolated points do not count.",
+          "evidence_gates": [
+            "bands_S_F1"
+          ],
+          "research_block_id": "10.3",
+          "sub_tasks": []
+        },
+        {
+          "id": "10.3b",
+          "title": "Native bands, two-dimensional edges and branch identity / 10.3b",
+          "weight": 10.0,
+          "effective_points": 8,
+          "task_category": "Validation",
+          "evidence_inputs": [
+            {
+              "path": "submission/src/",
+              "kind": "source_complete",
+              "role": "executed model and derivation"
+            },
+            {
+              "path": "submission/outputs/",
+              "kind": "data",
+              "recursive": true,
+              "role": "regenerated native evidence; logical observations bind through outputs/evidence_manifest.json"
+            }
+          ],
+          "requirements": "Native-supported two-dimensional edge search/refinement and correct direct/fundamental gaps with valid band/degeneracy handling.",
+          "evidence_gates": [
+            "bands_S_F1",
+            "numerical_controls"
+          ],
+          "research_block_id": "10.3",
+          "sub_tasks": []
+        },
+        {
+          "id": "10.4a",
+          "title": "Matched-dataset SOC attribution / 10.4a",
+          "weight": 6.25,
+          "effective_points": 5,
+          "task_category": "Validation",
+          "evidence_inputs": [
+            {
+              "path": "submission/src/",
+              "kind": "source_complete",
+              "role": "executed model and derivation"
+            },
+            {
+              "path": "submission/outputs/",
+              "kind": "data",
+              "recursive": true,
+              "role": "regenerated native evidence; logical observations bind through outputs/evidence_manifest.json"
+            }
+          ],
+          "requirements": "Validate native N0/N1 direct-K gaps and valence/conduction spin splittings in the publicly fixed auxiliary NC model, at identical common geometry, UPF hashes, functional, smearing and matched numerical resolution, with independent refinement of both members. Distinguish implicit scalar spin degeneracy from adjacent orbital bands. These auxiliary results do not replace the PAW S/F1 study.",
+          "evidence_gates": [
+            "paired_N0_N1"
+          ],
+          "research_block_id": "10.4",
+          "sub_tasks": []
+        },
+        {
+          "id": "10.4b",
+          "title": "Matched-dataset SOC attribution / 10.4b",
+          "weight": 5.0,
+          "effective_points": 4,
+          "task_category": "Validation",
+          "evidence_inputs": [
+            {
+              "path": "submission/src/",
+              "kind": "source_complete",
+              "role": "executed model and derivation"
+            },
+            {
+              "path": "submission/outputs/",
+              "kind": "data",
+              "recursive": true,
+              "role": "regenerated native evidence; logical observations bind through outputs/evidence_manifest.json"
+            }
+          ],
+          "requirements": "Recompute the three-term direct-K gap identity from native S,F1,N0,N1 values and assess its numerical sensitivities. Identify N1-N0 as an NC-model SOC contrast only, distinguish both cross-model terms from numerical error, and do not claim an isolated PAW SOC effect, an NC fundamental gap from K-only data, or a universal pseudopotential error.",
+          "evidence_gates": [
+            "bands_S_F1",
+            "paired_N0_N1"
+          ],
+          "research_block_id": "10.4",
+          "sub_tasks": []
+        },
+        {
+          "id": "10.5a",
+          "title": "Vacuum-referenced edges and finite-vacuum checks / 10.5a",
+          "weight": 5.0,
+          "effective_points": 4,
+          "task_category": "Validation",
+          "evidence_inputs": [
+            {
+              "path": "submission/src/",
+              "kind": "source_complete",
+              "role": "executed model and derivation"
+            },
+            {
+              "path": "submission/outputs/",
+              "kind": "data",
+              "recursive": true,
+              "role": "regenerated native evidence; logical observations bind through outputs/evidence_manifest.json"
+            }
+          ],
+          "requirements": "Correctly identify both native far-vacuum plateaus and recompute the mean, slope and referenced edges, without substituting an interior potential minimum.",
+          "evidence_gates": [
+            "bands_S_F1",
+            "vacuum_runs"
+          ],
+          "research_block_id": "10.5",
+          "sub_tasks": []
+        },
+        {
+          "id": "10.5b",
+          "title": "Vacuum-referenced edges and finite-vacuum checks / 10.5b",
+          "weight": 3.75,
+          "effective_points": 3,
+          "task_category": "Validation",
+          "evidence_inputs": [
+            {
+              "path": "submission/src/",
+              "kind": "source_complete",
+              "role": "executed model and derivation"
+            },
+            {
+              "path": "submission/outputs/",
+              "kind": "data",
+              "recursive": true,
+              "role": "regenerated native evidence; logical observations bind through outputs/evidence_manifest.json"
+            }
+          ],
+          "requirements": "Plateau-selection and larger-vacuum sensitivity recorded while preserving the fixed-c primary target.",
+          "evidence_gates": [
+            "vacuum_runs",
+            "numerical_controls"
+          ],
+          "research_block_id": "10.5",
+          "sub_tasks": []
+        },
+        {
+          "id": "10.6a",
+          "title": "Literal mass-protocol identifiability diagnosis / 10.6a",
+          "weight": 5.0,
+          "effective_points": 4,
+          "task_category": "Validation",
+          "evidence_inputs": [
+            {
+              "path": "submission/src/",
+              "kind": "source_complete",
+              "role": "executed model and derivation"
+            },
+            {
+              "path": "submission/outputs/",
+              "kind": "data",
+              "recursive": true,
+              "role": "regenerated native evidence; logical observations bind through outputs/evidence_manifest.json"
+            }
+          ],
+          "requirements": "Correct literal radius/density/declared grid realization, point count and cubic rank/singular-value evidence.",
+          "evidence_gates": [
+            "literal_sampling"
+          ],
+          "research_block_id": "10.6",
+          "sub_tasks": []
+        },
+        {
+          "id": "10.6b",
+          "title": "Literal mass-protocol identifiability diagnosis / 10.6b",
+          "weight": 7.5,
+          "effective_points": 6,
+          "task_category": "Validation",
+          "evidence_inputs": [
+            {
+              "path": "submission/src/",
+              "kind": "source_complete",
+              "role": "executed model and derivation"
+            },
+            {
+              "path": "submission/outputs/",
+              "kind": "data",
+              "recursive": true,
+              "role": "regenerated native evidence; logical observations bind through outputs/evidence_manifest.json"
+            }
+          ],
+          "requirements": "Measured native energy precision and distinction among rank, quantization and curvature identifiability; quantitatively justified alternate sampling without tuning to targets.",
+          "evidence_gates": [
+            "literal_sampling",
+            "mass_samples"
+          ],
+          "research_block_id": "10.6",
+          "sub_tasks": []
+        },
+        {
+          "id": "10.7a",
+          "title": "Complete, validated mass tensors/branch set / 10.7a",
+          "weight": 10.0,
+          "effective_points": 8,
+          "task_category": "Validation",
+          "evidence_inputs": [
+            {
+              "path": "submission/src/",
+              "kind": "source_complete",
+              "role": "executed model and derivation"
+            },
+            {
+              "path": "submission/outputs/",
+              "kind": "data",
+              "recursive": true,
+              "role": "regenerated native evidence; logical observations bind through outputs/evidence_manifest.json"
+            }
+          ],
+          "requirements": "All required S/F1 branches have consistent raw 2D eigenvalues/offsets, correct Hessians/principal masses and center gradients, with >=20 native points and rank-10 fits where smooth.",
+          "evidence_gates": [
+            "mass_samples"
+          ],
+          "research_block_id": "10.7",
+          "sub_tasks": []
+        },
+        {
+          "id": "10.7b",
+          "title": "Complete, validated mass tensors/branch set / 10.7b",
+          "weight": 10.0,
+          "effective_points": 8,
+          "task_category": "Validation",
+          "evidence_inputs": [
+            {
+              "path": "submission/src/",
+              "kind": "source_complete",
+              "role": "executed model and derivation"
+            },
+            {
+              "path": "submission/outputs/",
+              "kind": "data",
+              "recursive": true,
+              "role": "regenerated native evidence; logical observations bind through outputs/evidence_manifest.json"
+            }
+          ],
+          "requirements": "Independent control of every headline mass, branch tracking and invariant degeneracy handling; no convenient omission or false smooth Hessian.",
+          "evidence_gates": [
+            "mass_samples",
+            "numerical_controls"
+          ],
+          "research_block_id": "10.7",
+          "sub_tasks": []
+        },
+        {
+          "id": "10.8a",
+          "title": "Quantitative error ledger and paper-faithful synthesis / 10.8a",
+          "weight": 7.5,
+          "effective_points": 6,
+          "task_category": "Validation",
+          "evidence_inputs": [
+            {
+              "path": "submission/src/",
+              "kind": "source_complete",
+              "role": "executed model and derivation"
+            },
+            {
+              "path": "submission/outputs/",
+              "kind": "data",
+              "recursive": true,
+              "role": "regenerated native evidence; logical observations bind through outputs/evidence_manifest.json"
+            }
+          ],
+          "requirements": "Observable-specific numerical sensitivities, native control IDs, signed literature discrepancies and justified resolution claims without counting correlated errors independently.",
+          "evidence_gates": [
+            "numerical_controls"
+          ],
+          "research_block_id": "10.8",
+          "sub_tasks": []
+        },
+        {
+          "id": "10.8b",
+          "title": "Quantitative error ledger and paper-faithful synthesis / 10.8b",
+          "weight": 5.0,
+          "effective_points": 4,
+          "task_category": "Validation",
+          "evidence_inputs": [
+            {
+              "path": "submission/src/",
+              "kind": "source_complete",
+              "role": "executed model and derivation"
+            },
+            {
+              "path": "submission/outputs/",
+              "kind": "data",
+              "recursive": true,
+              "role": "regenerated native evidence; logical observations bind through outputs/evidence_manifest.json"
+            }
+          ],
+          "requirements": "Correct paper provenance, GPAW/QE/model distinctions and full-study limitations tied to actually computed results; no points merely for known band count, named files or matching broad windows.",
+          "evidence_gates": [
+            "fixed_model"
+          ],
+          "research_block_id": "10.8",
+          "sub_tasks": []
+        }
+      ]
+    }
+  ]
+}

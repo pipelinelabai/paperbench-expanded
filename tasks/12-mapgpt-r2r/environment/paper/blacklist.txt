@@ -1,0 +1,16 @@
+# Prohibited URLs for this task, one per line.
+# Do not access these URLs or their redirected subpages while solving the task.
+# Skip them even if they appear in search-engine results.
+
+# Official MapGPT repository: complete implementation, prompt templates, and
+# predictions. Copying them would defeat independent reproduction.
+https://github.com/chen-judge/MapGPT
+http://github.com/chen-judge/MapGPT
+
+# Author-hosted implementation/result mirrors or personal pages.
+# No author homepage, Hugging Face, or OneDrive prediction mirror is used or
+# consulted for this task. Do not access any such mirror even if discovered.
+
+# Other public MapGPT reproductions or forks.
+# Do not copy prompt templates, trajectories, or predictions from any third-party
+# reproduction, fork, or derivative repository.

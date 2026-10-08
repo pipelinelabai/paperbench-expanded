@@ -1,0 +1,38 @@
+schema_version = "1.1"
+
+[task]
+name = "paperbench-expanded/12-mapgpt-r2r"
+
+[metadata]
+author_name = "pipelinelab"
+difficulty = "hard"
+category = "embodied-vln"
+tags = ["vln", "embodied", "matterport3d", "replication"]
+
+[verifier]
+user = "root"
+timeout_sec = 25200.0
+
+[verifier.env]
+ANTHROPIC_API_KEY = "${JUDGE_API_KEY}"
+ANTHROPIC_BASE_URL = "${JUDGE_BASE_URL}"
+JUDGE_MODEL = "${JUDGE_MODEL}"
+NAV_LLM_MODEL = "Qwen2.5-VL-7B-Instruct"
+NAV_LLM_BASE_URL = ""
+NAV_LLM_API_KEY = "local"
+
+[agent]
+user = "pbsolver"
+timeout_sec = 64800.0
+
+[agent.env]
+NAV_LLM_MODEL = "Qwen2.5-VL-7B-Instruct"
+NAV_LLM_BASE_URL = ""
+NAV_LLM_API_KEY = "local"
+
+[environment]
+build_timeout_sec = 1800.0
+cpus = 8
+memory_mb = 32768
+storage_mb = 102400
+gpus = 1

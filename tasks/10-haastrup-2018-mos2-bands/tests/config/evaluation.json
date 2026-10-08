@@ -1,0 +1,320 @@
+{
+  "scoring_contract": {
+    "schema_version": 1,
+    "task_id": "10",
+    "total_points": 100,
+    "dependency_semantics": "Dependencies are on relevant observations, not block scores. Split credit by independent component/variant/branch within a check. A failed electronic variant cannot erase valid elastic evidence; a literal-fit diagnosis cannot unlock absent headline masses.",
+    "evidence_groups": {
+      "fixed_model": [],
+      "relaxed_geometry": [
+        "fixed_model"
+      ],
+      "strain_runs": [
+        "relaxed_geometry"
+      ],
+      "bands_S_F1": [
+        "relaxed_geometry"
+      ],
+      "paired_N0_N1": [
+        "relaxed_geometry"
+      ],
+      "vacuum_runs": [
+        "relaxed_geometry"
+      ],
+      "literal_sampling": [
+        "fixed_model"
+      ],
+      "mass_samples": [
+        "bands_S_F1"
+      ],
+      "numerical_controls": [
+        "fixed_model"
+      ]
+    },
+    "blocks": [
+      {
+        "id": "10.1",
+        "title": "Fixed physical model, valid relaxed geometry and native provenance",
+        "points": 10,
+        "checks": [
+          {
+            "id": "10.1a",
+            "points": 4,
+            "requires": [
+              "fixed_model"
+            ],
+            "criterion": "Frozen H-phase, c, XC/smearing/pseudopotentials, actual numerical settings and native identity, rather than copied parameter declarations.",
+            "dimension": "A"
+          },
+          {
+            "id": "10.1b",
+            "points": 6,
+            "requires": [
+              "relaxed_geometry"
+            ],
+            "criterion": "Correct independently recomputed relaxed structure, force vectors/stress and vacuum separation with native convergence, shared across electronic variants.",
+            "dimension": "A"
+          }
+        ]
+      },
+      {
+        "id": "10.2",
+        "title": "Independent relaxed-ion elastic tensor and zero-strain validation",
+        "points": 18,
+        "checks": [
+          {
+            "id": "10.2a",
+            "points": 7,
+            "requires": [
+              "strain_runs"
+            ],
+            "criterion": "Correct stress/strain and force data for both normal-strain families at all required signs/magnitudes; independently recompute sign, units and all four relaxed-ion tensor components.",
+            "dimension": "C"
+          },
+          {
+            "id": "10.2b",
+            "points": 8,
+            "requires": [
+              "strain_runs",
+              "numerical_controls"
+            ],
+            "criterion": "Smaller-strain/precision sensitivity supports zero-strain response; residuals and symmetry checked without imposing equality or treating R-squared as an error bound.",
+            "dimension": "C"
+          },
+          {
+            "id": "10.2c",
+            "points": 3,
+            "dimension": "B",
+            "requires": [
+              "strain_runs"
+            ],
+            "criterion": "Verify actual fixed-cell ionic-relaxation calculations at every required strain with native input/output and convergence records; a clamped-ion single point is not an executed relaxation."
+          }
+        ]
+      },
+      {
+        "id": "10.3",
+        "title": "Native bands, two-dimensional edges and branch identity",
+        "points": 16,
+        "checks": [
+          {
+            "id": "10.3a",
+            "points": 5,
+            "requires": [
+              "bands_S_F1"
+            ],
+            "criterion": "Correct S/F1 native eigenvalues/occupations and spin evidence on >=400 distinct native path points, using the correct reciprocal axis; endpoint duplicates and interpolated points do not count.",
+            "dimension": "C"
+          },
+          {
+            "id": "10.3b",
+            "points": 8,
+            "requires": [
+              "bands_S_F1",
+              "numerical_controls"
+            ],
+            "criterion": "Native-supported two-dimensional edge search/refinement and correct direct/fundamental gaps with valid band/degeneracy handling.",
+            "dimension": "C"
+          },
+          {
+            "id": "10.3c",
+            "points": 3,
+            "dimension": "B",
+            "requires": [
+              "bands_S_F1"
+            ],
+            "criterion": "Verify genuine S/F1 SCF and native path calculations with matched fixed geometry, appropriate scalar/spinor settings and discoverable native logs/arrays; an emitted band plot alone is insufficient."
+          }
+        ]
+      },
+      {
+        "id": "10.4",
+        "title": "Matched-dataset SOC attribution",
+        "points": 10,
+        "checks": [
+          {
+            "id": "10.4a",
+            "points": 5,
+            "requires": [
+              "paired_N0_N1"
+            ],
+            "criterion": "Validate native N0/N1 direct-K gaps and valence/conduction spin splittings in the publicly fixed auxiliary NC model, at identical common geometry, UPF hashes, functional, smearing and matched numerical resolution, with independent refinement of both members. Distinguish implicit scalar spin degeneracy from adjacent orbital bands. These auxiliary results do not replace the PAW S/F1 study.",
+            "dimension": "C"
+          },
+          {
+            "id": "10.4b",
+            "points": 4,
+            "requires": [
+              "bands_S_F1",
+              "paired_N0_N1"
+            ],
+            "criterion": "Recompute the three-term direct-K gap identity from native S,F1,N0,N1 values and assess its numerical sensitivities. Identify N1-N0 as an NC-model SOC contrast only, distinguish both cross-model terms from numerical error, and do not claim an isolated PAW SOC effect, an NC fundamental gap from K-only data, or a universal pseudopotential error.",
+            "dimension": "C"
+          },
+          {
+            "id": "10.4c",
+            "points": 1,
+            "dimension": "B",
+            "requires": [
+              "paired_N0_N1"
+            ],
+            "criterion": "Verify genuine native N0 and N1 executions with the same fixed fully-relativistic NC datasets and opposite SOC settings, with native records distinct from the PAW S/F1 calculations. Reusing or relabelling a PAW result does not establish this auxiliary controlled experiment."
+          }
+        ]
+      },
+      {
+        "id": "10.5",
+        "title": "Vacuum-referenced edges and finite-vacuum checks",
+        "points": 8,
+        "checks": [
+          {
+            "id": "10.5a",
+            "points": 4,
+            "requires": [
+              "bands_S_F1",
+              "vacuum_runs"
+            ],
+            "criterion": "Correctly identify both native far-vacuum plateaus and recompute the mean, slope and referenced edges, without substituting an interior potential minimum.",
+            "dimension": "C"
+          },
+          {
+            "id": "10.5b",
+            "points": 3,
+            "requires": [
+              "vacuum_runs",
+              "numerical_controls"
+            ],
+            "criterion": "Plateau-selection and larger-vacuum sensitivity recorded while preserving the fixed-c primary target.",
+            "dimension": "C"
+          },
+          {
+            "id": "10.5c",
+            "points": 1,
+            "dimension": "B",
+            "requires": [
+              "vacuum_runs"
+            ],
+            "criterion": "Verify genuine native electrostatic-potential generation and planar averaging with retained settings, source calculation identity and raw z/potential records."
+          }
+        ]
+      },
+      {
+        "id": "10.6",
+        "title": "Literal mass-protocol identifiability diagnosis",
+        "points": 10,
+        "checks": [
+          {
+            "id": "10.6a",
+            "points": 4,
+            "requires": [
+              "literal_sampling"
+            ],
+            "criterion": "Correct literal radius/density/declared grid realization, point count and cubic rank/singular-value evidence.",
+            "dimension": "C"
+          },
+          {
+            "id": "10.6b",
+            "points": 6,
+            "requires": [
+              "literal_sampling",
+              "mass_samples"
+            ],
+            "criterion": "Measured native energy precision and distinction among rank, quantization and curvature identifiability; quantitatively justified alternate sampling without tuning to targets.",
+            "dimension": "C"
+          }
+        ]
+      },
+      {
+        "id": "10.7",
+        "title": "Complete, validated mass tensors/branch set",
+        "points": 18,
+        "checks": [
+          {
+            "id": "10.7a",
+            "points": 8,
+            "requires": [
+              "mass_samples"
+            ],
+            "criterion": "All required S/F1 branches have consistent raw 2D eigenvalues/offsets, correct Hessians/principal masses and center gradients, with >=20 native points and rank-10 fits where smooth.",
+            "dimension": "C"
+          },
+          {
+            "id": "10.7b",
+            "points": 8,
+            "requires": [
+              "mass_samples",
+              "numerical_controls"
+            ],
+            "criterion": "Independent control of every headline mass, branch tracking and invariant degeneracy handling; no convenient omission or false smooth Hessian.",
+            "dimension": "C"
+          },
+          {
+            "id": "10.7c",
+            "points": 2,
+            "dimension": "B",
+            "requires": [
+              "mass_samples"
+            ],
+            "criterion": "Verify fresh native electronic calculations supporting every required headline mass-sampling set with source, branch/case IDs and k-coordinate records; fitted or interpolated eigenvalues cannot replace native samples."
+          }
+        ]
+      },
+      {
+        "id": "10.8",
+        "title": "Quantitative error ledger and paper-faithful synthesis",
+        "points": 10,
+        "checks": [
+          {
+            "id": "10.8a",
+            "points": 6,
+            "requires": [
+              "numerical_controls"
+            ],
+            "criterion": "Observable-specific numerical sensitivities, native control IDs, signed literature discrepancies and justified resolution claims without counting correlated errors independently.",
+            "dimension": "C"
+          },
+          {
+            "id": "10.8b",
+            "points": 4,
+            "requires": [
+              "fixed_model"
+            ],
+            "criterion": "Correct paper provenance, GPAW/QE/model distinctions and full-study limitations tied to actually computed results; no points merely for known band count, named files or matching broad windows.",
+            "dimension": "C"
+          }
+        ]
+      }
+    ],
+    "scoring_dimensions": [
+      {
+        "id": "A",
+        "title": "Structural Modeling",
+        "points": 10
+      },
+      {
+        "id": "B",
+        "title": "Solver Config & Run Evidence Audit",
+        "points": 10
+      },
+      {
+        "id": "C",
+        "title": "Result Analysis",
+        "points": 80
+      }
+    ],
+    "scoring_semantics": "A=Structural Modeling 10%; B=Solver Config & Run Evidence Audit 10%; C=Result Analysis 80%. Research blocks are a reporting crosswalk, not an extra weighting level. Judging method is a separate axis.",
+    "scheme": "abc-10-10-80"
+  },
+  "runtime": {
+    "task_id": "10",
+    "harbor_scoring_enabled": true,
+    "scoring_dimensions": {
+      "A": 10,
+      "B": 10,
+      "C": 80
+    },
+    "native_timeout_sec": 21600,
+    "host_replay": "public_native_verifier",
+    "verifier_backend": "host_native_replay"
+  }
+}

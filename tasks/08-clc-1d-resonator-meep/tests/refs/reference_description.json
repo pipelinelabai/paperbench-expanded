@@ -1,0 +1,19 @@
+{
+  "file": "independent_reference.npz",
+  "units": {
+    "wavelength": "um",
+    "transmission_*/reflection_*": "1 complex"
+  },
+  "axes": "wavelength, output[plus,minus], input[plus,minus]",
+  "mechanism": "constant rotating-frame Maxwell generator, stable scattering cascade",
+  "status": "independent_mathematical_reference_not_FDTD",
+  "sha256": "ca7d511833841839134fc6144b947f94e37b1121d2632df2cc88ed7bd5380d71",
+  "sampling_scope": "The 271-point table samples the continuous-Maxwell reference; it does not establish narrow-feature convergence or native execution. Evaluate the reference at actual submitted wavelengths rather than interpolating the coarse table for newly resolved peaks.",
+  "actual_point_reference_operation": "clc_reference_compare",
+  "required_pitches": [
+    5,
+    10,
+    20,
+    40
+  ]
+}

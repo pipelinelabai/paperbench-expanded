@@ -1,0 +1,169 @@
+{
+  "_windows_authority": "Grading windows are defined by rubric.json, including leaf descriptions and check blocks. This file records only graph readings, exact values from the paper's text, and extraction uncertainties; it does not define grading windows.",
+  "design_center_frequencies_GHz": {
+    "p1": 8.45,
+    "p2": 12.76,
+    "source": "abstract / Sec.3.3 (exact)"
+  },
+  "table2_insertion_loss_dB": {
+    "note": "Table 2 (exact paper values), format TE/TM at passband center frequencies",
+    "deg0": {
+      "p1_TE": 0.36,
+      "p1_TM": 0.24,
+      "p2_TE": 0.98,
+      "p2_TM": 0.98
+    },
+    "deg30": {
+      "p1_TE": 0.12,
+      "p1_TM": 0.23,
+      "p2_TE": 0.84,
+      "p2_TM": 0.59
+    },
+    "deg60": {
+      "p1_TE": 0.71,
+      "p1_TM": 0.08,
+      "p2_TE": 0.3,
+      "p2_TM": 0.1
+    },
+    "deg86_TE_deg83_TM": {
+      "p1_TE": 0.76,
+      "p1_TM": 0.52,
+      "p2_TE": 0.7,
+      "p2_TM": 0.99
+    }
+  },
+  "text_3dB_bandwidths_GHz": {
+    "te_00": {
+      "band1": [
+        6.77,
+        9.04
+      ],
+      "band2": [
+        12.17,
+        16.02
+      ],
+      "rel_bw_pct": [
+        28.6,
+        27.3
+      ],
+      "source": "Sec.3.2 (exact)"
+    },
+    "tm_00": {
+      "band1": [
+        6.85,
+        9.11
+      ],
+      "band2": [
+        12.18,
+        16.05
+      ],
+      "rel_bw_pct": [
+        28.3,
+        27.4
+      ],
+      "source": "Sec.3.2 (exact)"
+    },
+    "tm_83": {
+      "band1": [
+        3.01,
+        9.96
+      ],
+      "band2": [
+        11.11,
+        13.5
+      ],
+      "source": "Sec.3.2 (exact); graph-read band2 hi ~13.65 (see extraction_log)"
+    }
+  },
+  "transmission_zero_graph_read": {
+    "te_00": {
+      "f_GHz": 10.42,
+      "S21_dB": -57
+    },
+    "tm_00": {
+      "f_GHz": 10.44,
+      "S21_dB": -53
+    },
+    "te_60": {
+      "f_GHz": 10.28,
+      "S21_dB": -46
+    },
+    "te_86": {
+      "f_GHz": 10.36,
+      "S21_dB": -63
+    },
+    "tm_60": {
+      "f_GHz": 10.25,
+      "S21_dB": -32
+    },
+    "tm_83": {
+      "f_GHz": 10.3,
+      "S21_dB": -28
+    },
+    "te_86_second_zero": {
+      "f_GHz": 15.15,
+      "S21_dB": -58
+    },
+    "uncertainty": "±0.05-0.1 GHz; depths are plot-sampled lower bounds (one-sided use only)"
+  },
+  "S11_inband_minima_graph_read_deg0": {
+    "p1": {
+      "f_GHz": 8.2,
+      "S11_dB_TE": -27,
+      "S11_dB_TM": -30
+    },
+    "p2": {
+      "f_GHz": 13.6,
+      "S11_dB_TE": -26,
+      "S11_dB_TM": -27
+    },
+    "cross_check": "Fig.8 HFSS dashed: 8.1/-28 and 13.5/-21; windows in rubric widened accordingly"
+  },
+  "te86_band2_inset_read": {
+    "edges_3dB_GHz": [
+      12.7,
+      12.88
+    ],
+    "peak": {
+      "f_GHz": 12.78,
+      "S21_dB": -0.5
+    },
+    "source": "Fig.5(a) inset (graph read, ±0.05 GHz / ±0.15 dB)"
+  },
+  "band_edges_graph_read_GHz": {
+    "te_60": {
+      "band1": [
+        7.55,
+        8.9
+      ],
+      "band2": [
+        12.35,
+        13.5
+      ]
+    },
+    "te_86": {
+      "band1": null,
+      "status": "withdrawn_misread",
+      "source": "Fig.10 PDF: 8.05/8.80 GHz are not -3dB crossings",
+      "diagnostic_width_GHz": {
+        "approximate": 0.2,
+        "conservative_pixel_range": [
+          0.14,
+          0.28
+        ],
+        "scored_as_exact_target": false
+      }
+    },
+    "tm_60": {
+      "band1": [
+        6.4,
+        9.6
+      ],
+      "band2": [
+        11.7,
+        13.75
+      ]
+    },
+    "uncertainty": "±0.15-0.25 GHz"
+  }
+}

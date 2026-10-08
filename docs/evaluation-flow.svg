@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1020 300" role="img" aria-label="From a published claim to a graded reproduction: task inputs, agent submission, clean replay, rubric evaluation" font-family="Atkinson,'Helvetica Neue',Arial,sans-serif">
+<text x="28" y="30" font-family="SFMono-Regular,Consolas,monospace" font-size="10" fill="#5f6b65" text-anchor="start" letter-spacing="1" >ONE TASK, END TO END</text>
+<defs><marker id="ar" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 z" fill="rgba(19,35,31,.32)" /></marker></defs>
+<rect x="28" y="56" width="222" height="190" rx="10" fill="#fffefa" stroke="rgba(19,35,31,.32)" />
+<rect x="28" y="56" width="222" height="4" rx="2" fill="#2d6a9f" />
+<text x="44" y="86" font-family="SFMono-Regular,Consolas,monospace" font-size="10" fill="#5f6b65" text-anchor="start" letter-spacing="1" >01</text>
+<text x="44" y="112" font-size="15" fill="#13231f" text-anchor="start" font-weight="700">Task inputs</text>
+<text x="44" y="142" font-size="11.5" fill="#42514c" text-anchor="start" >the paper and its figures</text>
+<text x="44" y="166" font-size="11.5" fill="#42514c" text-anchor="start" >instruction.md and addendum.md</text>
+<text x="44" y="190" font-size="11.5" fill="#42514c" text-anchor="start" >a configured native environment</text>
+<text x="44" y="214" font-size="11.5" fill="#42514c" text-anchor="start" >a starter submission</text>
+<line x1="254" y1="151" x2="280" y2="151" stroke="rgba(19,35,31,.32)" stroke-width="1.5" marker-end="url(#ar)" />
+<rect x="286" y="56" width="222" height="190" rx="10" fill="#fffefa" stroke="rgba(19,35,31,.32)" />
+<rect x="286" y="56" width="222" height="4" rx="2" fill="#2d6a9f" />
+<text x="302" y="86" font-family="SFMono-Regular,Consolas,monospace" font-size="10" fill="#5f6b65" text-anchor="start" letter-spacing="1" >02</text>
+<text x="302" y="112" font-size="15" fill="#13231f" text-anchor="start" font-weight="700">Agent submission</text>
+<text x="302" y="142" font-size="11.5" fill="#42514c" text-anchor="start" >source, configuration, inputs</text>
+<text x="302" y="166" font-size="11.5" fill="#42514c" text-anchor="start" >a runnable reproduce.sh</text>
+<text x="302" y="190" font-size="11.5" fill="#42514c" text-anchor="start" >no saved outputs count</text>
+<line x1="512" y1="151" x2="538" y2="151" stroke="rgba(19,35,31,.32)" stroke-width="1.5" marker-end="url(#ar)" />
+<rect x="544" y="56" width="222" height="190" rx="10" fill="#fffefa" stroke="rgba(19,35,31,.32)" />
+<rect x="544" y="56" width="222" height="4" rx="2" fill="#246b54" />
+<text x="560" y="86" font-family="SFMono-Regular,Consolas,monospace" font-size="10" fill="#5f6b65" text-anchor="start" letter-spacing="1" >03</text>
+<text x="560" y="112" font-size="15" fill="#13231f" text-anchor="start" font-weight="700">Clean replay</text>
+<text x="560" y="142" font-size="11.5" fill="#42514c" text-anchor="start" >generated outputs removed</text>
+<text x="560" y="166" font-size="11.5" fill="#42514c" text-anchor="start" >network blocked, limits applied</text>
+<text x="560" y="190" font-size="11.5" fill="#42514c" text-anchor="start" >evidence frozen for grading</text>
+<line x1="770" y1="151" x2="796" y2="151" stroke="rgba(19,35,31,.32)" stroke-width="1.5" marker-end="url(#ar)" />
+<rect x="802" y="56" width="222" height="190" rx="10" fill="#fffefa" stroke="rgba(19,35,31,.32)" />
+<rect x="802" y="56" width="222" height="4" rx="2" fill="#246b54" />
+<text x="818" y="86" font-family="SFMono-Regular,Consolas,monospace" font-size="10" fill="#5f6b65" text-anchor="start" letter-spacing="1" >04</text>
+<text x="818" y="112" font-size="15" fill="#13231f" text-anchor="start" font-weight="700">Rubric evaluation</text>
+<text x="818" y="142" font-size="11.5" fill="#42514c" text-anchor="start" >deterministic checks where possible</text>
+<text x="818" y="166" font-size="11.5" fill="#42514c" text-anchor="start" >a shared LLM judge elsewhere</text>
+<text x="818" y="190" font-size="11.5" fill="#42514c" text-anchor="start" >weighted score R = Σ wᵢsᵢ</text>
+<text x="28" y="282" font-size="11.5" fill="#5f6b65" text-anchor="start" >A score needs all three stages: the right model of the experiment, a computation that actually ran, and regenerated evidence that supports the claim.</text>
+</svg>

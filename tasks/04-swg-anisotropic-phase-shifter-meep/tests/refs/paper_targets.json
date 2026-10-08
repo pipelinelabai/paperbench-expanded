@@ -1,0 +1,65 @@
+{
+  "publication": {
+    "journal": "Photonics Research",
+    "volume": 8,
+    "issue": 3,
+    "pages": "359-367",
+    "year": 2020,
+    "doi": "10.1364/PRJ.373223"
+  },
+  "benchmark": {
+    "contract_revision": "2026-09-22-paper-backed-periodic-110",
+    "dimensions": 3,
+    "axis_order": [
+      "propagation_x",
+      "width_y",
+      "thickness_z"
+    ],
+    "period_um": 0.2,
+    "duty_cycle": 0.5,
+    "widths_um": {
+      "narrow": 1.6,
+      "wide": 1.8
+    },
+    "width_difference_um": 0.2,
+    "slab_thickness_um": 0.22,
+    "periods_between_reference_planes": 110,
+    "length_um": 22.0,
+    "tapers": false,
+    "materials": {
+      "model": "lossless_constant_indices",
+      "silicon_index": 3.476,
+      "oxide_index": 1.444
+    },
+    "wavelength_band_um": [
+      1.35,
+      1.75
+    ],
+    "design_wavelength_um": 1.55,
+    "target_phase_deg": 90,
+    "initial_max_wavelength_spacing_um": 0.02,
+    "mode": "tracked fundamental guided quasi-TE, predominantly Ey",
+    "phasor_convention": "exp(-i omega t), propagation +x",
+    "phase_difference": "wide minus narrow",
+    "port_phase_gauge": "same basis at equivalent unit-cell positions within each arm",
+    "performance_success_required": false,
+    "target_phase_role": "Reporting reference only; no mandatory 90-degree success or nonzero bandwidth"
+  },
+  "paper_only": {
+    "full_device_periods": 84,
+    "taper_differential_phase_approx_deg": 20,
+    "simulated_band_um": [
+      1.35,
+      1.75
+    ],
+    "simulated_phase_error_deg": 1.7,
+    "measured_band_um": [
+      1.495,
+      1.64
+    ],
+    "measured_slope_deg_per_um": 16,
+    "measured_loss_dB": 0.2
+  },
+  "reference_solution_included": false,
+  "no_neff_gold": true
+}

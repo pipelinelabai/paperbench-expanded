@@ -1,0 +1,639 @@
+{
+  "id": "05-abc-10-10-80",
+  "task_id": "05",
+  "requirements": "Evidence dependencies apply per observation/case, never as all-or-nothing score-block unlocks. Split case credit equally within a check unless the public scoring contract specifies a finer allocation.",
+  "weight_semantics": "Root dimension weights sum to 100; child weights sum to 100 within each dimension. Multiply each level once. Research blocks are a crosswalk, not additional weighted parents.",
+  "sub_tasks": [
+    {
+      "id": "A",
+      "title": "Structural Modeling",
+      "weight": 10,
+      "sub_tasks": [
+        {
+          "id": "05.1a",
+          "title": "Model identity and causal material calibration / 05.1a",
+          "weight": 40.0,
+          "effective_points": 4,
+          "task_category": "Modeling",
+          "evidence_inputs": [
+            {
+              "path": "submission/src/",
+              "kind": "source_complete",
+              "role": "executed model and derivation"
+            },
+            {
+              "path": "submission/outputs/",
+              "kind": "data",
+              "recursive": true,
+              "role": "regenerated native evidence; logical observations bind through outputs/evidence_manifest.json"
+            }
+          ],
+          "requirements": "Correct fixed geometry, origin, parameter scaling and separation of P/C/D; verify native/static inputs, not declarations alone.",
+          "evidence_gates": [
+            "paper_model",
+            "causal_model"
+          ],
+          "research_block_id": "05.1",
+          "sub_tasks": []
+        },
+        {
+          "id": "05.1b",
+          "title": "Model identity and causal material calibration / 05.1b",
+          "weight": 60.0,
+          "effective_points": 6,
+          "task_category": "Modeling",
+          "evidence_inputs": [
+            {
+              "path": "submission/src/",
+              "kind": "source_complete",
+              "role": "executed model and derivation"
+            },
+            {
+              "path": "submission/outputs/",
+              "kind": "data",
+              "recursive": true,
+              "role": "regenerated native evidence; logical observations bind through outputs/evidence_manifest.json"
+            }
+          ],
+          "requirements": "Actually registered Meep epsilon across a period at all three frequencies, correct branch and calibrated errors.",
+          "evidence_gates": [
+            "causal_model"
+          ],
+          "research_block_id": "05.1",
+          "sub_tasks": []
+        }
+      ]
+    },
+    {
+      "id": "B",
+      "title": "Solver Config & Run Evidence Audit",
+      "weight": 10,
+      "sub_tasks": [
+        {
+          "id": "05.4c",
+          "title": "Native causal scattering and independent same-model reference / 05.4c",
+          "weight": 40.0,
+          "effective_points": 4,
+          "task_category": "Execution",
+          "evidence_inputs": [
+            {
+              "path": "submission/src/",
+              "kind": "source_complete",
+              "role": "executed model and derivation"
+            },
+            {
+              "path": "submission/outputs/",
+              "kind": "data",
+              "recursive": true,
+              "role": "regenerated native evidence; logical observations bind through outputs/evidence_manifest.json"
+            }
+          ],
+          "requirements": "Verify actual Meep solver setup and fresh left/right/background execution with correctly identified sources, monitors, native logs and raw amplitude records. Existence of files or an exit code alone is insufficient.",
+          "evidence_gates": [
+            "causal_fields"
+          ],
+          "research_block_id": "05.4",
+          "sub_tasks": []
+        },
+        {
+          "id": "05.4d",
+          "title": "Native causal scattering and independent same-model reference / 05.4d",
+          "weight": 20.0,
+          "effective_points": 2,
+          "task_category": "Execution",
+          "evidence_inputs": [
+            {
+              "path": "submission/src/",
+              "kind": "source_complete",
+              "role": "executed model and derivation"
+            },
+            {
+              "path": "submission/outputs/",
+              "kind": "data",
+              "recursive": true,
+              "role": "regenerated native evidence; logical observations bind through outputs/evidence_manifest.json"
+            }
+          ],
+          "requirements": "Verify that the same-model reference actually ran from source using a numerical method distinct from Meep; retained settings/logs establish independence rather than a relabelled cached array.",
+          "evidence_gates": [
+            "causal_fields",
+            "independent_reference"
+          ],
+          "research_block_id": "05.4",
+          "sub_tasks": []
+        },
+        {
+          "id": "05.6d",
+          "title": "Numerical/time controls and physical reversal / 05.6d",
+          "weight": 20.0,
+          "effective_points": 2,
+          "task_category": "Execution",
+          "evidence_inputs": [
+            {
+              "path": "submission/src/",
+              "kind": "source_complete",
+              "role": "executed model and derivation"
+            },
+            {
+              "path": "submission/outputs/",
+              "kind": "data",
+              "recursive": true,
+              "role": "regenerated native evidence; logical observations bind through outputs/evidence_manifest.json"
+            }
+          ],
+          "requirements": "Verify separately executed duration and spatial controls with the declared >=1.5x increases, unchanged physical model and their own native run records.",
+          "evidence_gates": [
+            "causal_fields",
+            "native_controls"
+          ],
+          "research_block_id": "05.6",
+          "sub_tasks": []
+        },
+        {
+          "id": "05.6e",
+          "title": "Numerical/time controls and physical reversal / 05.6e",
+          "weight": 10.0,
+          "effective_points": 1,
+          "task_category": "Execution",
+          "evidence_inputs": [
+            {
+              "path": "submission/src/",
+              "kind": "source_complete",
+              "role": "executed model and derivation"
+            },
+            {
+              "path": "submission/outputs/",
+              "kind": "data",
+              "recursive": true,
+              "role": "regenerated native evidence; logical observations bind through outputs/evidence_manifest.json"
+            }
+          ],
+          "requirements": "Verify a freshly executed material-reversal control using b -> -b with unchanged origin; renaming baseline arrays is not a control.",
+          "evidence_gates": [
+            "causal_fields",
+            "native_controls"
+          ],
+          "research_block_id": "05.6",
+          "sub_tasks": []
+        },
+        {
+          "id": "05.7d",
+          "title": "Complete bounded nonlinear branch set and invariants / 05.7d",
+          "weight": 10.0,
+          "effective_points": 1,
+          "task_category": "Execution",
+          "evidence_inputs": [
+            {
+              "path": "submission/src/",
+              "kind": "source_complete",
+              "role": "executed model and derivation"
+            },
+            {
+              "path": "submission/outputs/",
+              "kind": "data",
+              "recursive": true,
+              "role": "regenerated native evidence; logical observations bind through outputs/evidence_manifest.json"
+            }
+          ],
+          "requirements": "Verify actual execution of the nonlinear boundary-value study for all six cases with the specified boundary conditions, parameters and retained profile-generation records; this does not certify branch completeness.",
+          "evidence_gates": [
+            "nonlinear_profiles"
+          ],
+          "research_block_id": "05.7",
+          "sub_tasks": []
+        }
+      ]
+    },
+    {
+      "id": "C",
+      "title": "Result Analysis",
+      "weight": 80,
+      "sub_tasks": [
+        {
+          "id": "05.2a",
+          "title": "Nondispersive complex scattering and independent approximation comparison / 05.2a",
+          "weight": 11.25,
+          "effective_points": 9,
+          "task_category": "Validation",
+          "evidence_inputs": [
+            {
+              "path": "submission/src/",
+              "kind": "source_complete",
+              "role": "executed model and derivation"
+            },
+            {
+              "path": "submission/outputs/",
+              "kind": "data",
+              "recursive": true,
+              "role": "regenerated native evidence; logical observations bind through outputs/evidence_manifest.json"
+            }
+          ],
+          "requirements": "Native recomputed complex left/right amplitudes for both paper cases on the fixed detuning axis, with valid boundary normalization.",
+          "evidence_gates": [
+            "paper_fields"
+          ],
+          "research_block_id": "05.2",
+          "sub_tasks": []
+        },
+        {
+          "id": "05.2b",
+          "title": "Nondispersive complex scattering and independent approximation comparison / 05.2b",
+          "weight": 7.5,
+          "effective_points": 6,
+          "task_category": "Validation",
+          "evidence_inputs": [
+            {
+              "path": "submission/src/",
+              "kind": "source_complete",
+              "role": "executed model and derivation"
+            },
+            {
+              "path": "submission/outputs/",
+              "kind": "data",
+              "recursive": true,
+              "role": "regenerated native evidence; logical observations bind through outputs/evidence_manifest.json"
+            }
+          ],
+          "requirements": "Independent CMT evaluation, singular limits and quantified same-parameter approximation discrepancy.",
+          "evidence_gates": [
+            "paper_fields",
+            "coupled_mode"
+          ],
+          "research_block_id": "05.2",
+          "sub_tasks": []
+        },
+        {
+          "id": "05.3a",
+          "title": "Phase gauge, delay and derivative validation / 05.3a",
+          "weight": 5.0,
+          "effective_points": 4,
+          "task_category": "Validation",
+          "evidence_inputs": [
+            {
+              "path": "submission/src/",
+              "kind": "source_complete",
+              "role": "executed model and derivation"
+            },
+            {
+              "path": "submission/outputs/",
+              "kind": "data",
+              "recursive": true,
+              "role": "regenerated native evidence; logical observations bind through outputs/evidence_manifest.json"
+            }
+          ],
+          "requirements": "Recomputable reference-normalized phase with correct fixed anchor and singularity handling.",
+          "evidence_gates": [
+            "paper_fields"
+          ],
+          "research_block_id": "05.3",
+          "sub_tasks": []
+        },
+        {
+          "id": "05.3b",
+          "title": "Phase gauge, delay and derivative validation / 05.3b",
+          "weight": 7.5,
+          "effective_points": 6,
+          "task_category": "Validation",
+          "evidence_inputs": [
+            {
+              "path": "submission/src/",
+              "kind": "source_complete",
+              "role": "executed model and derivation"
+            },
+            {
+              "path": "submission/outputs/",
+              "kind": "data",
+              "recursive": true,
+              "role": "regenerated native evidence; logical observations bind through outputs/evidence_manifest.json"
+            }
+          ],
+          "requirements": "Correct derivative sign/units and independently refined delay, separating approximation from differentiation error.",
+          "evidence_gates": [
+            "paper_fields",
+            "coupled_mode"
+          ],
+          "research_block_id": "05.3",
+          "sub_tasks": []
+        },
+        {
+          "id": "05.4a",
+          "title": "Native causal scattering and independent same-model reference / 05.4a",
+          "weight": 6.25,
+          "effective_points": 5,
+          "task_category": "Validation",
+          "evidence_inputs": [
+            {
+              "path": "submission/src/",
+              "kind": "source_complete",
+              "role": "executed model and derivation"
+            },
+            {
+              "path": "submission/outputs/",
+              "kind": "data",
+              "recursive": true,
+              "role": "regenerated native evidence; logical observations bind through outputs/evidence_manifest.json"
+            }
+          ],
+          "requirements": "Correct independently recomputed complex/intensity amplitudes on the complete workband, with valid left/right/reference normalization and scientific consistency.",
+          "evidence_gates": [
+            "causal_fields"
+          ],
+          "research_block_id": "05.4",
+          "sub_tasks": []
+        },
+        {
+          "id": "05.4b",
+          "title": "Native causal scattering and independent same-model reference / 05.4b",
+          "weight": 5.0,
+          "effective_points": 4,
+          "task_category": "Validation",
+          "evidence_inputs": [
+            {
+              "path": "submission/src/",
+              "kind": "source_complete",
+              "role": "executed model and derivation"
+            },
+            {
+              "path": "submission/outputs/",
+              "kind": "data",
+              "recursive": true,
+              "role": "regenerated native evidence; logical observations bind through outputs/evidence_manifest.json"
+            }
+          ],
+          "requirements": "Quantitative same-Lorentz reference comparison and its independently retained numerical convergence, with correct uncertainty-aware interpretation.",
+          "evidence_gates": [
+            "causal_fields",
+            "independent_reference"
+          ],
+          "research_block_id": "05.4",
+          "sub_tasks": []
+        },
+        {
+          "id": "05.5a",
+          "title": "Unique band extraction and three-way error separation / 05.5a",
+          "weight": 5.0,
+          "effective_points": 4,
+          "task_category": "Validation",
+          "evidence_inputs": [
+            {
+              "path": "submission/src/",
+              "kind": "source_complete",
+              "role": "executed model and derivation"
+            },
+            {
+              "path": "submission/outputs/",
+              "kind": "data",
+              "recursive": true,
+              "role": "regenerated native evidence; logical observations bind through outputs/evidence_manifest.json"
+            }
+          ],
+          "requirements": "Correct fixed-axis intersection/component calculation, null-center and censored-endpoint semantics.",
+          "evidence_gates": [
+            "causal_fields"
+          ],
+          "research_block_id": "05.5",
+          "sub_tasks": []
+        },
+        {
+          "id": "05.5b",
+          "title": "Unique band extraction and three-way error separation / 05.5b",
+          "weight": 7.5,
+          "effective_points": 6,
+          "task_category": "Validation",
+          "evidence_inputs": [
+            {
+              "path": "submission/src/",
+              "kind": "source_complete",
+              "role": "executed model and derivation"
+            },
+            {
+              "path": "submission/outputs/",
+              "kind": "data",
+              "recursive": true,
+              "role": "regenerated native evidence; logical observations bind through outputs/evidence_manifest.json"
+            }
+          ],
+          "requirements": "Quantitative separation of approximation, dispersion and native discretization differences without double attribution.",
+          "evidence_gates": [
+            "paper_fields",
+            "coupled_mode",
+            "causal_fields",
+            "independent_reference"
+          ],
+          "research_block_id": "05.5",
+          "sub_tasks": []
+        },
+        {
+          "id": "05.6a",
+          "title": "Numerical/time controls and physical reversal / 05.6a",
+          "weight": 5.0,
+          "effective_points": 4,
+          "task_category": "Validation",
+          "evidence_inputs": [
+            {
+              "path": "submission/src/",
+              "kind": "source_complete",
+              "role": "executed model and derivation"
+            },
+            {
+              "path": "submission/outputs/",
+              "kind": "data",
+              "recursive": true,
+              "role": "regenerated native evidence; logical observations bind through outputs/evidence_manifest.json"
+            }
+          ],
+          "requirements": "Recompute duration/spatial changes and verify the specified convergence accuracy on retained native axes.",
+          "evidence_gates": [
+            "causal_fields",
+            "native_controls"
+          ],
+          "research_block_id": "05.6",
+          "sub_tasks": []
+        },
+        {
+          "id": "05.6b",
+          "title": "Numerical/time controls and physical reversal / 05.6b",
+          "weight": 6.25,
+          "effective_points": 5,
+          "task_category": "Validation",
+          "evidence_inputs": [
+            {
+              "path": "submission/src/",
+              "kind": "source_complete",
+              "role": "executed model and derivation"
+            },
+            {
+              "path": "submission/outputs/",
+              "kind": "data",
+              "recursive": true,
+              "role": "regenerated native evidence; logical observations bind through outputs/evidence_manifest.json"
+            }
+          ],
+          "requirements": "Complete time traces, defensible arrival/window, uncertainty/regrowth handling and qualified stationary-scattering claim.",
+          "evidence_gates": [
+            "native_controls"
+          ],
+          "research_block_id": "05.6",
+          "sub_tasks": []
+        },
+        {
+          "id": "05.6c",
+          "title": "Numerical/time controls and physical reversal / 05.6c",
+          "weight": 3.75,
+          "effective_points": 3,
+          "task_category": "Validation",
+          "evidence_inputs": [
+            {
+              "path": "submission/src/",
+              "kind": "source_complete",
+              "role": "executed model and derivation"
+            },
+            {
+              "path": "submission/outputs/",
+              "kind": "data",
+              "recursive": true,
+              "role": "regenerated native evidence; logical observations bind through outputs/evidence_manifest.json"
+            }
+          ],
+          "requirements": "Quantitatively evaluate the measured incidence-reversal relation against the actual baseline, with correct signs and reference conventions.",
+          "evidence_gates": [
+            "causal_fields",
+            "native_controls"
+          ],
+          "research_block_id": "05.6",
+          "sub_tasks": []
+        },
+        {
+          "id": "05.7a",
+          "title": "Complete bounded nonlinear branch set and invariants / 05.7a",
+          "weight": 11.25,
+          "effective_points": 9,
+          "task_category": "Validation",
+          "evidence_inputs": [
+            {
+              "path": "submission/src/",
+              "kind": "source_complete",
+              "role": "executed model and derivation"
+            },
+            {
+              "path": "submission/outputs/",
+              "kind": "data",
+              "recursive": true,
+              "role": "regenerated native evidence; logical observations bind through outputs/evidence_manifest.json"
+            }
+          ],
+          "requirements": "Complete physical root sets in the declared rectangle and at four fixed input sections for all six cases, with independently validated numerical coverage under public clarification r1.1. Inspect whole-domain interval accounting, validated analytic exclusions, stationary/tangency-sensitive searches, separate integration/branch refinements, independent root and connectivity agreement, and unresolved cells. A missing interval, actual mismatch or unresolved suspected fold/contact fails that case. A generic statement that finite numerical evidence is not a rigorous global theorem is not itself a failing observation; no global uniqueness theorem is required for this potentially multivalued problem.",
+          "evidence_gates": [
+            "nonlinear_profiles"
+          ],
+          "research_block_id": "05.7",
+          "sub_tasks": []
+        },
+        {
+          "id": "05.7b",
+          "title": "Complete bounded nonlinear branch set and invariants / 05.7b",
+          "weight": 7.5,
+          "effective_points": 6,
+          "task_category": "Validation",
+          "evidence_inputs": [
+            {
+              "path": "submission/src/",
+              "kind": "source_complete",
+              "role": "executed model and derivation"
+            },
+            {
+              "path": "submission/outputs/",
+              "kind": "data",
+              "recursive": true,
+              "role": "regenerated native evidence; logical observations bind through outputs/evidence_manifest.json"
+            }
+          ],
+          "requirements": "Refined turning-point/boundary brackets, branch connectivity and zero-input limit with no silently discarded branch.",
+          "evidence_gates": [
+            "nonlinear_profiles"
+          ],
+          "research_block_id": "05.7",
+          "sub_tasks": []
+        },
+        {
+          "id": "05.7c",
+          "title": "Complete bounded nonlinear branch set and invariants / 05.7c",
+          "weight": 5.0,
+          "effective_points": 4,
+          "task_category": "Validation",
+          "evidence_inputs": [
+            {
+              "path": "submission/src/",
+              "kind": "source_complete",
+              "role": "executed model and derivation"
+            },
+            {
+              "path": "submission/outputs/",
+              "kind": "data",
+              "recursive": true,
+              "role": "regenerated native evidence; logical observations bind through outputs/evidence_manifest.json"
+            }
+          ],
+          "requirements": "Recomputed Stokes identity/conserved quantities and separate integration/branch-resolution residuals.",
+          "evidence_gates": [
+            "nonlinear_profiles"
+          ],
+          "research_block_id": "05.7",
+          "sub_tasks": []
+        },
+        {
+          "id": "05.8a",
+          "title": "Paper-faithful synthesis and limits of phase/stability claims / 05.8a",
+          "weight": 2.5,
+          "effective_points": 2,
+          "task_category": "Validation",
+          "evidence_inputs": [
+            {
+              "path": "submission/src/",
+              "kind": "source_complete",
+              "role": "executed model and derivation"
+            },
+            {
+              "path": "submission/outputs/",
+              "kind": "data",
+              "recursive": true,
+              "role": "regenerated native evidence; logical observations bind through outputs/evidence_manifest.json"
+            }
+          ],
+          "requirements": "Correctly distinguishes diagnostic normalization and unidentifiable common phase from quantitatively recovered author Fig.4 data.",
+          "evidence_gates": [
+            "source"
+          ],
+          "research_block_id": "05.8",
+          "sub_tasks": []
+        },
+        {
+          "id": "05.8b",
+          "title": "Paper-faithful synthesis and limits of phase/stability claims / 05.8b",
+          "weight": 3.75,
+          "effective_points": 3,
+          "task_category": "Validation",
+          "evidence_inputs": [
+            {
+              "path": "submission/src/",
+              "kind": "source_complete",
+              "role": "executed model and derivation"
+            },
+            {
+              "path": "submission/outputs/",
+              "kind": "data",
+              "recursive": true,
+              "role": "regenerated native evidence; logical observations bind through outputs/evidence_manifest.json"
+            }
+          ],
+          "requirements": "Conclusions cite actual available measurements, distinguish reflectionlessness/invisibility and stationary multiplicity/dynamical stability, and identify missing evidence without fabricating completion.",
+          "evidence_gates": [
+            "source"
+          ],
+          "research_block_id": "05.8",
+          "sub_tasks": []
+        }
+      ]
+    }
+  ]
+}

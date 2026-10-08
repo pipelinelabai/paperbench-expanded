@@ -1,0 +1,15 @@
+{
+  "file": "independent_reference.npz",
+  "status": "independent_mathematical_reference_not_FDTD",
+  "units": {
+    "wavelength": "um",
+    "half_trace/bare_T/bare_R": "1"
+  },
+  "infinite_bilayer_edges_um": [
+    1.3475969157738399,
+    1.8382847112407756
+  ],
+  "finite_stack_minimum_T": 0.1921351940991488,
+  "sha256": "bff97dc5ed79ac97ab925fc3ed9860120380f4f58f56edfa2331fccdc8d6be9c",
+  "reference_scope": "Independent mathematical values for the infinite unetched bilayer and finite unetched film. This reference does not establish native execution, patterned resonance branches, pole fits or convergence."
+}

@@ -1,0 +1,21 @@
+{
+  "_purpose": "Private evaluation examples for the paper-audit leaf; never expose this file to the solver.",
+  "_scoring": "These are verifiable examples, not mandatory answers. Apply the public three-domain audit scope. At least two substantive checks require identifiable evidence, reasoning, conclusions, resolution and impact. Accept supported findings outside this list equally. Identify already disclosed clarifications as such. Disregard an erroneous entry individually without invalidating other sound checks. Never require invented contradictions.",
+  "pass_threshold": 0,
+  "disclosed_items": [
+    {
+      "source": "environment/paper/addendum.md",
+      "text": "The explicit conventions, missing-information statements and diagnostic requirements in this source are public and must not be presented as independently discovered findings."
+    }
+  ],
+  "_note_no_required": "There is no hidden contradiction quota. Assess A9 against the public scope and the actual evidence and resolution.",
+  "example_findings": [
+    {
+      "id": "fig1b_legend_swap",
+      "locus": "The x/y legend colors in Fig. 1(b), compared with the resonance assignments in Fig. 1(c).",
+      "contradiction": "A possible polarization-legend interchange needs evidence from the figures, geometry and physical polarization basis. An uncalibrated absolute-phase zero crossing alone cannot establish it.",
+      "expected_resolution": "Use Fig.1(a) geometry and a documented physical incident/reflected basis. A suspected Fig.1(b/c) legend inconsistency is not a mandatory finding or permission to swap labels/fit phase; report the evidence and remaining uncertainty."
+    }
+  ],
+  "required_findings": []
+}

@@ -1,0 +1,4 @@
+numpy==1.26.4
+scipy==1.11.4
+matplotlib==3.8.4
+ase==3.23.0

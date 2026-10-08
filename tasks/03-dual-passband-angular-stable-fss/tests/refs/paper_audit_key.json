@@ -1,0 +1,30 @@
+{
+  "_purpose": "Private judge checklist; never expose it to the solver. Used to grade the group-A PAPER_AUDIT leaf.",
+  "_scoring": "This checklist contains verifiable examples, not required answers. Apply the public three-domain review contract: at least two substantive checks with complete evidence and resolution can pass. Findings outside this list are equally acceptable. Attribute publicly disclosed clarifications. Disregard incorrect entries individually without invalidating other valid entries. Never require invented contradictions.",
+  "_revision": "paper-audit-v1",
+  "pass_threshold": 0,
+  "disclosed_items": [
+    {
+      "source": "environment/paper/addendum.md",
+      "text": "All explicit conventions, missing-information notices, and diagnostic items in this document are public. Do not present them as independently discovered findings when citing them."
+    }
+  ],
+  "_note_no_required": "There is no mandatory contradiction quota. Grade A9 on the public scope, actual evidence, and completeness of resolution.",
+  "example_findings": [
+    {
+      "id": "tm83_band2_upper_13p50_vs_13p65",
+      "locus": "The text's TM 83° second-passband −3 dB upper edge of 13.50 GHz versus the inset curve in Fig. 11",
+      "contradiction": "The TM83 second-passband upper edge is 13.50 GHz in the text but approximately 13.65 GHz in the figure. Report graph-reading uncertainty rather than assuming that the 0.15 GHz difference exceeds all reading error.",
+      "expected_resolution": "Report the reproduced band2 endpoints, identify the text value used for comparison, and record the discrepancy.",
+      "rubric_reference": "C3_2"
+    },
+    {
+      "id": "tm_band2_width_not_monotonic",
+      "locus": "Sec. 3.2 states that TM bandwidths consistently increase with angle, versus the second-passband widths in Fig. 11",
+      "contradiction": "Graph-read TM second-passband −3 dB widths at 0°→60°→83° are 3.87→~2.05→2.39 GHz, which is nonmonotonic, with truncation by grating-region dips at 14.5/13.8 GHz. The text's 'consistently increase' statement holds only for the first passband.",
+      "expected_resolution": "Report the connected intervals of main passbands 1/2 separately. Explain that the general statement in the text does not establish monotonicity for the second passband. A grating-lobe explanation requires modal/physical evidence; do not require causal guesses from the figure alone.",
+      "rubric_reference": "C3_4"
+    }
+  ],
+  "required_findings": []
+}

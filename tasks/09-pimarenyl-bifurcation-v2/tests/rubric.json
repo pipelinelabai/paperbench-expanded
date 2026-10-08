@@ -1,0 +1,581 @@
+{
+  "id": "09-abc-10-10-80",
+  "task_id": "09",
+  "requirements": "Requirements apply to individual cases and available observations, not full-score blocks. Primary-case credit is equal across eight; pair credit across two; halfstep credit across four. Missing-case accounting can be correct even when cases failed.",
+  "weight_semantics": "Root dimension weights sum to 100; child weights sum to 100 within each dimension. Multiply each level once. Research blocks are a crosswalk, not additional weighted parents.",
+  "sub_tasks": [
+    {
+      "id": "A",
+      "title": "Structural Modeling",
+      "weight": 10,
+      "sub_tasks": [
+        {
+          "id": "09.1a",
+          "title": "Fixed-state/native electronic-model identity / 09.1a",
+          "weight": 40.0,
+          "effective_points": 4,
+          "task_category": "Modeling",
+          "evidence_inputs": [
+            {
+              "path": "submission/src/",
+              "kind": "source_complete",
+              "role": "executed model and derivation"
+            },
+            {
+              "path": "submission/outputs/",
+              "kind": "data",
+              "recursive": true,
+              "role": "regenerated native evidence; logical observations bind through outputs/evidence_manifest.json"
+            }
+          ],
+          "requirements": "Numeric identity of supplied coordinates, velocities, units and masses, including correct reversed state; no RNG-string scoring.",
+          "evidence_gates": [
+            "fixed_state_model"
+          ],
+          "research_block_id": "09.1",
+          "sub_tasks": []
+        },
+        {
+          "id": "09.1b",
+          "title": "Fixed-state/native electronic-model identity / 09.1b",
+          "weight": 60.0,
+          "effective_points": 6,
+          "task_category": "Modeling",
+          "evidence_inputs": [
+            {
+              "path": "submission/src/",
+              "kind": "source_complete",
+              "role": "executed model and derivation"
+            },
+            {
+              "path": "submission/outputs/",
+              "kind": "data",
+              "recursive": true,
+              "role": "regenerated native evidence; logical observations bind through outputs/evidence_manifest.json"
+            }
+          ],
+          "requirements": "Native GPU4PySCF RKS/DFT/dispersion/integral settings and electronic-state evidence match the frozen model.",
+          "evidence_gates": [
+            "fixed_state_model"
+          ],
+          "research_block_id": "09.1",
+          "sub_tasks": []
+        }
+      ]
+    },
+    {
+      "id": "B",
+      "title": "Solver Config & Run Evidence Audit",
+      "weight": 10,
+      "sub_tasks": [
+        {
+          "id": "09.2c",
+          "title": "Eight complete, valid primary propagations / 09.2c",
+          "weight": 60.0,
+          "effective_points": 6,
+          "task_category": "Execution",
+          "evidence_inputs": [
+            {
+              "path": "submission/src/",
+              "kind": "source_complete",
+              "role": "executed model and derivation"
+            },
+            {
+              "path": "submission/outputs/",
+              "kind": "data",
+              "recursive": true,
+              "role": "regenerated native evidence; logical observations bind through outputs/evidence_manifest.json"
+            }
+          ],
+          "requirements": "Verify pinned GPU4PySCF/VV setup and actual fresh primary propagation through every required time, retaining native SCF/gradient records for each distinct geometry. Check completeness per trajectory; an asserted success is insufficient.",
+          "evidence_gates": [
+            "primary_frames"
+          ],
+          "research_block_id": "09.2",
+          "sub_tasks": []
+        },
+        {
+          "id": "09.5c",
+          "title": "Two paired momentum interventions and measured effects / 09.5c",
+          "weight": 20.0,
+          "effective_points": 2,
+          "task_category": "Execution",
+          "evidence_inputs": [
+            {
+              "path": "submission/src/",
+              "kind": "source_complete",
+              "role": "executed model and derivation"
+            },
+            {
+              "path": "submission/outputs/",
+              "kind": "data",
+              "recursive": true,
+              "role": "regenerated native evidence; logical observations bind through outputs/evidence_manifest.json"
+            }
+          ],
+          "requirements": "Verify actual GPU4PySCF propagation of both predeclared counterfactuals through 20 fs from the designated initial states, with correct solver settings and native per-geometry receipts; not renamed primary outputs.",
+          "evidence_gates": [
+            "reversed_frames"
+          ],
+          "research_block_id": "09.5",
+          "sub_tasks": []
+        },
+        {
+          "id": "09.6c",
+          "title": "Four timestep controls and numerical resolvability analysis / 09.6c",
+          "weight": 20.0,
+          "effective_points": 2,
+          "task_category": "Execution",
+          "evidence_inputs": [
+            {
+              "path": "submission/src/",
+              "kind": "source_complete",
+              "role": "executed model and derivation"
+            },
+            {
+              "path": "submission/outputs/",
+              "kind": "data",
+              "recursive": true,
+              "role": "regenerated native evidence; logical observations bind through outputs/evidence_manifest.json"
+            }
+          ],
+          "requirements": "Verify actual execution of all four distinct 0.5 fs controls through 20 fs, with their native solver configuration and receipts; shared identical initial-state evaluations must be explicitly identified.",
+          "evidence_gates": [
+            "halfstep_frames"
+          ],
+          "research_block_id": "09.6",
+          "sub_tasks": []
+        }
+      ]
+    },
+    {
+      "id": "C",
+      "title": "Result Analysis",
+      "weight": 80,
+      "sub_tasks": [
+        {
+          "id": "09.2a",
+          "title": "Eight complete, valid primary propagations / 09.2a",
+          "weight": 7.5,
+          "effective_points": 6,
+          "task_category": "Validation",
+          "evidence_inputs": [
+            {
+              "path": "submission/src/",
+              "kind": "source_complete",
+              "role": "executed model and derivation"
+            },
+            {
+              "path": "submission/outputs/",
+              "kind": "data",
+              "recursive": true,
+              "role": "regenerated native evidence; logical observations bind through outputs/evidence_manifest.json"
+            }
+          ],
+          "requirements": "All required primary energies, analytic-gradient arrays and raw states are numerically consistent with native records and the frozen model, independently verified per trajectory.",
+          "evidence_gates": [
+            "primary_frames"
+          ],
+          "research_block_id": "09.2",
+          "sub_tasks": []
+        },
+        {
+          "id": "09.2b",
+          "title": "Eight complete, valid primary propagations / 09.2b",
+          "weight": 10.0,
+          "effective_points": 8,
+          "task_category": "Validation",
+          "evidence_inputs": [
+            {
+              "path": "submission/src/",
+              "kind": "source_complete",
+              "role": "executed model and derivation"
+            },
+            {
+              "path": "submission/outputs/",
+              "kind": "data",
+              "recursive": true,
+              "role": "regenerated native evidence; logical observations bind through outputs/evidence_manifest.json"
+            }
+          ],
+          "requirements": "Independent VV, time, gradient-norm and full-step-velocity recomputation passes; model/initial-state identity is preserved.",
+          "evidence_gates": [
+            "primary_frames"
+          ],
+          "research_block_id": "09.2",
+          "sub_tasks": []
+        },
+        {
+          "id": "09.3a",
+          "title": "Coordinate-derived primary labels and boundary margins / 09.3a",
+          "weight": 6.25,
+          "effective_points": 5,
+          "task_category": "Validation",
+          "evidence_inputs": [
+            {
+              "path": "submission/src/",
+              "kind": "source_complete",
+              "role": "executed model and derivation"
+            },
+            {
+              "path": "submission/outputs/",
+              "kind": "data",
+              "recursive": true,
+              "role": "regenerated native evidence; logical observations bind through outputs/evidence_manifest.json"
+            }
+          ],
+          "requirements": "Final distances and ordered classifier are recomputed correctly from complete native-backed primary states.",
+          "evidence_gates": [
+            "available_primary_labels"
+          ],
+          "research_block_id": "09.3",
+          "sub_tasks": []
+        },
+        {
+          "id": "09.3b",
+          "title": "Coordinate-derived primary labels and boundary margins / 09.3b",
+          "weight": 3.75,
+          "effective_points": 3,
+          "task_category": "Validation",
+          "evidence_inputs": [
+            {
+              "path": "submission/src/",
+              "kind": "source_complete",
+              "role": "executed model and derivation"
+            },
+            {
+              "path": "submission/outputs/",
+              "kind": "data",
+              "recursive": true,
+              "role": "regenerated native evidence; logical observations bind through outputs/evidence_manifest.json"
+            }
+          ],
+          "requirements": "Active-boundary margins and numerical ambiguity are explicitly evaluated without changing the prescribed inequalities.",
+          "evidence_gates": [
+            "available_primary_labels"
+          ],
+          "research_block_id": "09.3",
+          "sub_tasks": []
+        },
+        {
+          "id": "09.4a",
+          "title": "Initial geometry versus subsequent-motion decomposition / 09.4a",
+          "weight": 10.0,
+          "effective_points": 8,
+          "task_category": "Validation",
+          "evidence_inputs": [
+            {
+              "path": "submission/src/",
+              "kind": "source_complete",
+              "role": "executed model and derivation"
+            },
+            {
+              "path": "submission/outputs/",
+              "kind": "data",
+              "recursive": true,
+              "role": "regenerated native evidence; logical observations bind through outputs/evidence_manifest.json"
+            }
+          ],
+          "requirements": "Correct two-component q, per-trajectory changes and condition means at every fixed time, retaining all three product directions.",
+          "evidence_gates": [
+            "primary_frames"
+          ],
+          "research_block_id": "09.4",
+          "sub_tasks": []
+        },
+        {
+          "id": "09.4b",
+          "title": "Initial geometry versus subsequent-motion decomposition / 09.4b",
+          "weight": 5.0,
+          "effective_points": 4,
+          "task_category": "Validation",
+          "evidence_inputs": [
+            {
+              "path": "submission/src/",
+              "kind": "source_complete",
+              "role": "executed model and derivation"
+            },
+            {
+              "path": "submission/outputs/",
+              "kind": "data",
+              "recursive": true,
+              "role": "regenerated native evidence; logical observations bind through outputs/evidence_manifest.json"
+            }
+          ],
+          "requirements": "Absolute TSre/TSsi contrast is quantitatively decomposed into initial geometry and subsequent motion with correct signs/units.",
+          "evidence_gates": [
+            "primary_frames"
+          ],
+          "research_block_id": "09.4",
+          "sub_tasks": []
+        },
+        {
+          "id": "09.5a",
+          "title": "Two paired momentum interventions and measured effects / 09.5a",
+          "weight": 7.5,
+          "effective_points": 6,
+          "task_category": "Validation",
+          "evidence_inputs": [
+            {
+              "path": "submission/src/",
+              "kind": "source_complete",
+              "role": "executed model and derivation"
+            },
+            {
+              "path": "submission/outputs/",
+              "kind": "data",
+              "recursive": true,
+              "role": "regenerated native evidence; logical observations bind through outputs/evidence_manifest.json"
+            }
+          ],
+          "requirements": "Recompute the two complete counterfactuals and verify native state/energy/gradient consistency, identical starting geometry and kinetic energy, unchanged reactive kick and only reversed thermal momentum.",
+          "evidence_gates": [
+            "reversed_frames"
+          ],
+          "research_block_id": "09.5",
+          "sub_tasks": []
+        },
+        {
+          "id": "09.5b",
+          "title": "Two paired momentum interventions and measured effects / 09.5b",
+          "weight": 7.5,
+          "effective_points": 6,
+          "task_category": "Validation",
+          "evidence_inputs": [
+            {
+              "path": "submission/src/",
+              "kind": "source_complete",
+              "role": "executed model and derivation"
+            },
+            {
+              "path": "submission/outputs/",
+              "kind": "data",
+              "recursive": true,
+              "role": "regenerated native evidence; logical observations bind through outputs/evidence_manifest.json"
+            }
+          ],
+          "requirements": "Correct matched pair q differences at 10/20 fs, no favorable endpoint/seed selection and no claim of ensemble product statistics.",
+          "evidence_gates": [
+            "primary_frames",
+            "reversed_frames"
+          ],
+          "research_block_id": "09.5",
+          "sub_tasks": []
+        },
+        {
+          "id": "09.6a",
+          "title": "Four timestep controls and numerical resolvability analysis / 09.6a",
+          "weight": 7.5,
+          "effective_points": 6,
+          "task_category": "Validation",
+          "evidence_inputs": [
+            {
+              "path": "submission/src/",
+              "kind": "source_complete",
+              "role": "executed model and derivation"
+            },
+            {
+              "path": "submission/outputs/",
+              "kind": "data",
+              "recursive": true,
+              "role": "regenerated native evidence; logical observations bind through outputs/evidence_manifest.json"
+            }
+          ],
+          "requirements": "All four halfstep trajectories have numerically consistent native-backed energies/gradients and correct VV full-step states through 20 fs at the same fixed initial conditions.",
+          "evidence_gates": [
+            "halfstep_frames"
+          ],
+          "research_block_id": "09.6",
+          "sub_tasks": []
+        },
+        {
+          "id": "09.6b",
+          "title": "Four timestep controls and numerical resolvability analysis / 09.6b",
+          "weight": 5.0,
+          "effective_points": 4,
+          "task_category": "Validation",
+          "evidence_inputs": [
+            {
+              "path": "submission/src/",
+              "kind": "source_complete",
+              "role": "executed model and derivation"
+            },
+            {
+              "path": "submission/outputs/",
+              "kind": "data",
+              "recursive": true,
+              "role": "regenerated native evidence; logical observations bind through outputs/evidence_manifest.json"
+            }
+          ],
+          "requirements": "Quantified two-sided pair sensitivity, certified-envelope comparison and justified resolved/unresolved effect semantics, without extending control coverage to 40/500 fs.",
+          "evidence_gates": [
+            "primary_frames",
+            "reversed_frames",
+            "halfstep_frames"
+          ],
+          "research_block_id": "09.6",
+          "sub_tasks": []
+        },
+        {
+          "id": "09.7a",
+          "title": "NVE/SCF diagnostics from consistent frames / 09.7a",
+          "weight": 6.25,
+          "effective_points": 5,
+          "task_category": "Validation",
+          "evidence_inputs": [
+            {
+              "path": "submission/src/",
+              "kind": "source_complete",
+              "role": "executed model and derivation"
+            },
+            {
+              "path": "submission/outputs/",
+              "kind": "data",
+              "recursive": true,
+              "role": "regenerated native evidence; logical observations bind through outputs/evidence_manifest.json"
+            }
+          ],
+          "requirements": "Correct kinetic/total energy and drift from matched full-step frames and native electronic energies, not potential-energy-only conservation.",
+          "evidence_gates": [
+            "primary_frames"
+          ],
+          "research_block_id": "09.7",
+          "sub_tasks": []
+        },
+        {
+          "id": "09.7b",
+          "title": "NVE/SCF diagnostics from consistent frames / 09.7b",
+          "weight": 3.75,
+          "effective_points": 3,
+          "task_category": "Validation",
+          "evidence_inputs": [
+            {
+              "path": "submission/src/",
+              "kind": "source_complete",
+              "role": "executed model and derivation"
+            },
+            {
+              "path": "submission/outputs/",
+              "kind": "data",
+              "recursive": true,
+              "role": "regenerated native evidence; logical observations bind through outputs/evidence_manifest.json"
+            }
+          ],
+          "requirements": "Control energy/SCF evidence distinguishes timestep sensitivity from electronic failures and discloses unresolved drift.",
+          "evidence_gates": [
+            "reversed_frames",
+            "halfstep_frames"
+          ],
+          "research_block_id": "09.7",
+          "sub_tasks": []
+        },
+        {
+          "id": "09.8a",
+          "title": "Complete denominators, intervals and missing-case bounds / 09.8a",
+          "weight": 6.25,
+          "effective_points": 5,
+          "task_category": "Validation",
+          "evidence_inputs": [
+            {
+              "path": "submission/src/",
+              "kind": "source_complete",
+              "role": "executed model and derivation"
+            },
+            {
+              "path": "submission/outputs/",
+              "kind": "data",
+              "recursive": true,
+              "role": "regenerated native evidence; logical observations bind through outputs/evidence_manifest.json"
+            }
+          ],
+          "requirements": "Correct all-six-label counts, completed-only fractions and Wilson intervals including zero counts, excluding controls.",
+          "evidence_gates": [
+            "available_primary_labels"
+          ],
+          "research_block_id": "09.8",
+          "sub_tasks": []
+        },
+        {
+          "id": "09.8b",
+          "title": "Complete denominators, intervals and missing-case bounds / 09.8b",
+          "weight": 3.75,
+          "effective_points": 3,
+          "task_category": "Validation",
+          "evidence_inputs": [
+            {
+              "path": "submission/src/",
+              "kind": "source_complete",
+              "role": "executed model and derivation"
+            },
+            {
+              "path": "submission/outputs/",
+              "kind": "data",
+              "recursive": true,
+              "role": "regenerated native evidence; logical observations bind through outputs/evidence_manifest.json"
+            }
+          ],
+          "requirements": "Truthful completed/failed accounting and full-four missing-case bounds; no missing values converted into favorable outcomes.",
+          "evidence_gates": [
+            "plan"
+          ],
+          "research_block_id": "09.8",
+          "sub_tasks": []
+        },
+        {
+          "id": "09.9a",
+          "title": "Paper-faithful conclusions tied to the computed experiment / 09.9a",
+          "weight": 5.0,
+          "effective_points": 4,
+          "task_category": "Validation",
+          "evidence_inputs": [
+            {
+              "path": "submission/src/",
+              "kind": "source_complete",
+              "role": "executed model and derivation"
+            },
+            {
+              "path": "submission/outputs/",
+              "kind": "data",
+              "recursive": true,
+              "role": "regenerated native evidence; logical observations bind through outputs/evidence_manifest.json"
+            }
+          ],
+          "requirements": "Mechanistic interpretation follows measured paired effects and controls rather than assuming the article's expected labels.",
+          "evidence_gates": [
+            "primary_frames",
+            "reversed_frames",
+            "halfstep_frames"
+          ],
+          "research_block_id": "09.9",
+          "sub_tasks": []
+        },
+        {
+          "id": "09.9b",
+          "title": "Paper-faithful conclusions tied to the computed experiment / 09.9b",
+          "weight": 5.0,
+          "effective_points": 4,
+          "task_category": "Validation",
+          "evidence_inputs": [
+            {
+              "path": "submission/src/",
+              "kind": "source_complete",
+              "role": "executed model and derivation"
+            },
+            {
+              "path": "submission/outputs/",
+              "kind": "data",
+              "recursive": true,
+              "role": "regenerated native evidence; logical observations bind through outputs/evidence_manifest.json"
+            }
+          ],
+          "requirements": "Distinguishes finite deterministic intervention, geometry diagnostics, original QCT preparation, orbital mechanisms and terminal population claims, with explicit remaining limitations.",
+          "evidence_gates": [
+            "plan"
+          ],
+          "research_block_id": "09.9",
+          "sub_tasks": []
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,4331 @@
+{
+  "id": "root",
+  "title": "anisotropic-coding-diffusion-metasurface",
+  "description": "PaperBench scoring tree for Zhao et al., Sci. Rep. 6:23896 (2016): Broadband diffusion metasurface based on a single anisotropic element and optimized by the Simulated Annealing algorithm.",
+  "task_category": null,
+  "weight": 100,
+  "sub_tasks": [
+    {
+      "id": "A",
+      "title": "Structural Modeling",
+      "task_category": null,
+      "weight": 10,
+      "sub_tasks": [
+        {
+          "id": "A1",
+          "title": "Model units, coordinate system and element orientation convention",
+          "description": "Use mm units, with cell/array in x-y and normal +z. one_means, source and structure agree on the bit-to-patch orientation mapping and interpret x/y through Fig. 4. Global 0/1 relabeling requires the corresponding decoding change and unchanged physical patch layout. Flipping all physical patches while retaining the original x/y labels is not equivalent.",
+          "task_category": "Modeling",
+          "weight": 10,
+          "critical": true,
+          "evidence_inputs": [
+            {
+              "path": "submission/results/unit_normal/structure.json",
+              "kind": "json"
+            },
+            {
+              "path": "submission/results/unit_tm15/structure.json",
+              "kind": "json"
+            },
+            {
+              "path": "submission/results/unit_tm30/structure.json",
+              "kind": "json"
+            },
+            {
+              "path": "submission/results/unit_tm45/structure.json",
+              "kind": "json"
+            },
+            {
+              "path": "submission/results/array_ms/structure.json",
+              "kind": "json"
+            },
+            {
+              "path": "submission/results/array_pec/structure.json",
+              "kind": "json"
+            },
+            {
+              "path": "submission/results/af_patterns/coding_matrices.json",
+              "kind": "json"
+            },
+            {
+              "path": "submission/src/",
+              "kind": "source"
+            }
+          ]
+        },
+        {
+          "id": "A2",
+          "title": "Unit-cell geometry per Fig. 1a",
+          "description": "Use the paper unit geometry: square period a=10 mm, a centered rectangular patch px=9.5 mm along x by py=7.4 mm along y, substrate h=3 mm and a fully metallic ground (Fig. 1(a) caption and opening Results paragraph). unit_normal and unit_tm15/30/45 use the same element geometry, consistently recorded in structure.json.",
+          "task_category": "Modeling",
+          "weight": 13,
+          "evidence_inputs": [
+            {
+              "path": "submission/results/unit_normal/structure.json",
+              "kind": "json"
+            },
+            {
+              "path": "submission/results/unit_tm15/structure.json",
+              "kind": "json"
+            },
+            {
+              "path": "submission/results/unit_tm30/structure.json",
+              "kind": "json"
+            },
+            {
+              "path": "submission/results/unit_tm45/structure.json",
+              "kind": "json"
+            },
+            {
+              "path": "submission/src/",
+              "kind": "source"
+            }
+          ]
+        },
+        {
+          "id": "A3",
+          "title": "Materials and metal treatment",
+          "description": "The F4B substrate has relative permittivity 2.65, loss tangent 0.001 and thickness 3 mm. Model the reported 0.036-mm copper patch and ground layers or explain an appropriate equivalent sheet-impedance, finite-conductivity or finite-thickness treatment in README/meta.json. array_pec is a bare metal plate without dielectric (Clarification 2). Explain any lossless PEC approximation while retaining the paper substrate loss.",
+          "task_category": "Modeling",
+          "weight": 11,
+          "evidence_inputs": [
+            {
+              "path": "submission/results/unit_normal/structure.json",
+              "kind": "json"
+            },
+            {
+              "path": "submission/results/unit_tm15/structure.json",
+              "kind": "json"
+            },
+            {
+              "path": "submission/results/unit_tm30/structure.json",
+              "kind": "json"
+            },
+            {
+              "path": "submission/results/unit_tm45/structure.json",
+              "kind": "json"
+            },
+            {
+              "path": "submission/results/array_ms/structure.json",
+              "kind": "json"
+            },
+            {
+              "path": "submission/results/array_pec/structure.json",
+              "kind": "json"
+            },
+            {
+              "path": "submission/README.md",
+              "kind": "text"
+            },
+            {
+              "path": "submission/src/",
+              "kind": "source"
+            }
+          ]
+        },
+        {
+          "id": "A4",
+          "title": "Coding matrix fidelity and array construction",
+          "description": "coding_matrices.json optimal, with rows along +x and columns along +y, equals [[1,1,1,0,0,0],[1,0,0,1,1,0],[0,0,1,0,0,0],[1,0,1,1,0,1],[1,0,1,0,1,0],[0,1,0,1,1,1]], consistent with Fig. 3(c) printed digits and Fig. 4. A global bit relabeling must reverse the decoding map and preserve physical orientations; flipping patches alone is not equivalent. initial has three all-one rows then three all-zero rows, balanced 18/18. array_ms has 6 x 6 lattices, each containing 4 x 4 equally oriented elements, d=40 mm and board 240 x 240 x 3 mm. A 0 patch is a 90-degree z-rotation of a 1 patch. structure.json reconstructs every lattice orientation and agrees with coding_matrices.json.",
+          "task_category": "Modeling",
+          "weight": 14,
+          "critical": true,
+          "evidence_inputs": [
+            {
+              "path": "submission/results/af_patterns/coding_matrices.json",
+              "kind": "json"
+            },
+            {
+              "path": "submission/results/unit_normal/structure.json",
+              "kind": "json"
+            },
+            {
+              "path": "submission/results/unit_tm15/structure.json",
+              "kind": "json"
+            },
+            {
+              "path": "submission/results/unit_tm30/structure.json",
+              "kind": "json"
+            },
+            {
+              "path": "submission/results/unit_tm45/structure.json",
+              "kind": "json"
+            },
+            {
+              "path": "submission/results/array_ms/structure.json",
+              "kind": "json"
+            },
+            {
+              "path": "submission/results/array_pec/structure.json",
+              "kind": "json"
+            },
+            {
+              "path": "submission/src/",
+              "kind": "source"
+            }
+          ]
+        },
+        {
+          "id": "A5",
+          "title": "structure.json freeze quality",
+          "description": "structure.json satisfies the public schema with model_units, parameters, materials, named_objects, boundaries, excitations, setups and ports. named_objects permits reconstruction of element dimensions, substrate stack, every lattice orientation in the 24 x 24 patch array and PEC plate dimensions; compact representation is allowed. Cover every HFSS variant.",
+          "task_category": "Modeling",
+          "weight": 10,
+          "evidence_inputs": [
+            {
+              "path": "submission/results/unit_normal/structure.json",
+              "kind": "json"
+            },
+            {
+              "path": "submission/results/unit_tm15/structure.json",
+              "kind": "json"
+            },
+            {
+              "path": "submission/results/unit_tm30/structure.json",
+              "kind": "json"
+            },
+            {
+              "path": "submission/results/unit_tm45/structure.json",
+              "kind": "json"
+            },
+            {
+              "path": "submission/results/array_ms/structure.json",
+              "kind": "json"
+            },
+            {
+              "path": "submission/results/array_pec/structure.json",
+              "kind": "json"
+            },
+            {
+              "path": "submission/src/",
+              "kind": "source"
+            }
+          ]
+        },
+        {
+          "id": "A6",
+          "title": "Unit-cell structural visual audit",
+          "description": "submission/views/unit_cell/top.png shows a centered rectangular patch in a square period, with its long side along x. Total periodic gaps are 0.5 mm in x and 2.6 mm in y; corresponding centered one-sided clearances are 0.25 and 1.3 mm. The proportions are visually distinguishable. perspective.png shows the patch/dielectric/full-metal-ground stack, consistent with structure.json dimensions. Missing features or incorrect topology fail.",
+          "task_category": "Modeling",
+          "weight": 8,
+          "evidence_inputs": [
+            {
+              "path": "submission/views/unit_cell/top.png",
+              "kind": "image"
+            },
+            {
+              "path": "submission/views/unit_cell/perspective.png",
+              "kind": "image"
+            },
+            {
+              "path": "submission/results/unit_normal/structure.json",
+              "kind": "json"
+            }
+          ]
+        },
+        {
+          "id": "A7",
+          "title": "Coding-array layout visual audit vs Fig. 4",
+          "description": "submission/views/array_ms/top.png shows the complete 24 x 24 patch array, with identifiable 6 x 6 orientation blocks of 4 x 4 elements. Horizontal/vertical stripe distribution agrees cell-by-cell with Fig. 4 under the row/column and layout-preserving relabeling convention accepted in A4. No edge row or column is missing. The view agrees with structure.json orientations. Incorrect lattice orientation, transposition or inconsistent mirroring fails.",
+          "task_category": "Modeling",
+          "weight": 9,
+          "evidence_inputs": [
+            {
+              "path": "submission/views/array_ms/top.png",
+              "kind": "image"
+            },
+            {
+              "path": "submission/results/unit_normal/structure.json",
+              "kind": "json"
+            },
+            {
+              "path": "submission/results/unit_tm15/structure.json",
+              "kind": "json"
+            },
+            {
+              "path": "submission/results/unit_tm30/structure.json",
+              "kind": "json"
+            },
+            {
+              "path": "submission/results/unit_tm45/structure.json",
+              "kind": "json"
+            },
+            {
+              "path": "submission/results/array_ms/structure.json",
+              "kind": "json"
+            },
+            {
+              "path": "submission/results/array_pec/structure.json",
+              "kind": "json"
+            },
+            {
+              "path": "submission/results/af_patterns/coding_matrices.json",
+              "kind": "json"
+            }
+          ]
+        },
+        {
+          "id": "A8",
+          "title": "PEC reference plate visual audit",
+          "description": "submission/views/array_pec/perspective.png shows a bare 240 x 240 mm metal plate matching the metasurface footprint, without a patch pattern or visible dielectric. Any explained thickness treatment agrees with the image and structure.json.",
+          "task_category": "Modeling",
+          "weight": 5,
+          "evidence_inputs": [
+            {
+              "path": "submission/views/array_pec/perspective.png",
+              "kind": "image"
+            },
+            {
+              "path": "submission/results/unit_normal/structure.json",
+              "kind": "json"
+            },
+            {
+              "path": "submission/results/unit_tm15/structure.json",
+              "kind": "json"
+            },
+            {
+              "path": "submission/results/unit_tm30/structure.json",
+              "kind": "json"
+            },
+            {
+              "path": "submission/results/unit_tm45/structure.json",
+              "kind": "json"
+            },
+            {
+              "path": "submission/results/array_ms/structure.json",
+              "kind": "json"
+            },
+            {
+              "path": "submission/results/array_pec/structure.json",
+              "kind": "json"
+            }
+          ]
+        },
+        {
+          "id": "A9",
+          "title": "Evidence-based paper audit without a contradiction quota",
+          "description": "PAPER_AUDIT.md covers the three public audit domains: geometry/materials, result claims, and formulas/conventions. At least two substantive checks include locatable paper evidence, verification, conclusion, resolution and impact. Findings may be contradictions, ambiguities or verified consistency; neither a contradiction quota nor a match to private examples is required. Genuine findings outside the examples are accepted. Reject unsupported findings individually without erasing other valid checks. An evidenced conclusion that no contradiction was found may pass; a generic assertion or copied addendum without independent verification is insufficient.",
+          "task_category": "Modeling",
+          "weight": 20,
+          "evidence_inputs": [
+            {
+              "path": "submission/PAPER_AUDIT.md",
+              "kind": "text"
+            },
+            {
+              "path": "submission/README.md",
+              "kind": "text"
+            },
+            {
+              "path": "refs/paper_audit_key.json",
+              "kind": "json"
+            },
+            {
+              "path": "refs/paper_reading_context.md",
+              "kind": "text"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "B",
+      "title": "Solver Config & Run Evidence Audit",
+      "task_category": null,
+      "weight": 10,
+      "sub_tasks": [
+        {
+          "id": "B1",
+          "title": "Solver Configuration",
+          "task_category": null,
+          "weight": 60,
+          "sub_tasks": [
+            {
+              "id": "B1_1",
+              "title": "Real PyAEDT/HFSS run chain",
+              "description": "The submission/src entrypoint genuinely calls ansys.aedt.core Hfss analyze()/analyze_setup() for all six HFSS variants: unit_normal, unit_tm15/30/45, array_ms and array_pec, on the paths producing their results. Use the contract entry python3 src/run_all.py --variant <name>; if absent, inspect the README entry and note that omission without weakening the solve requirement. No if-False, dry-run, cached branch or swallowed exception may conceal omitted solves. Setup names agree with unit_normal/array_ms metadata and logs. af_patterns is the declared numerical exception.",
+              "task_category": "Execution",
+              "weight": 30,
+              "critical": true,
+              "gate": true,
+              "evidence_inputs": [
+                {
+                  "path": "submission/src/",
+                  "kind": "source"
+                },
+                {
+                  "path": "submission/src/run_all.py",
+                  "kind": "source"
+                },
+                {
+                  "path": "submission/results/unit_normal/meta.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/unit_normal/run.log",
+                  "kind": "log"
+                },
+                {
+                  "path": "submission/results/array_ms/meta.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/array_ms/run.log",
+                  "kind": "log"
+                }
+              ]
+            },
+            {
+              "id": "B1_2",
+              "title": "Unit-cell periodic/Floquet configuration",
+              "description": "Periodic/Floquet settings match the model. Record incident/reflected modal polarization bases, normalization, the nominal z=h reference plane, port distance and de-embedding sign, consistently with source and native exports. Both genuinely solved polarization/orientation phases use a common reference plane; no fitted candidate phase shift may enforce paper agreement. The unknown paper absolute reference does not alter the fixed public convention. Outputs use exp(+i*omega*t), with meta.phasor_convention and reflection_basis recording the public laboratory co-polarized bases. Convert opposite internal conventions; conjugating 205 into 155 degrees or arbitrarily reversing a reflected basis is not equivalent.",
+              "task_category": "Modeling",
+              "weight": 18,
+              "evidence_inputs": [
+                {
+                  "path": "submission/src/",
+                  "kind": "source"
+                },
+                {
+                  "path": "submission/results/unit_normal/structure.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/unit_tm15/structure.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/unit_tm30/structure.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/unit_tm45/structure.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/unit_normal/meta.json",
+                  "kind": "json"
+                }
+              ]
+            },
+            {
+              "id": "B1_3",
+              "title": "Oblique incidence and polarization definitions recorded",
+              "description": "Each unit_tm15/30/45 meta.json contains angle_convention, incident_plane, polarization_definition and floquet_phase_or_scan_settings. Use the xoz incidence plane and respective 15/30/45-degree angles; TM has H perpendicular to that plane (Clarification 1). summary.json incidence_theta_deg agrees with the variant and Floquet/scan settings. The element1/element0 solve configurations are traceable through result_source and source.",
+              "task_category": "Modeling",
+              "weight": 18,
+              "evidence_inputs": [
+                {
+                  "path": "submission/results/unit_tm15/meta.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/unit_tm30/meta.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/unit_tm45/meta.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/unit_tm30/summary.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/src/",
+                  "kind": "source"
+                }
+              ]
+            },
+            {
+              "id": "B1_4",
+              "title": "Finite-array excitation and open region",
+              "description": "array_ms and array_pec are finite models with a 1-V/m incident plane wave, recorded polarization and propagation direction, and fully enclosing Radiation/PML/FE-BI open boundaries. Do not use periodic boundaries or symmetry planes; the coding matrix is asymmetric. The normal-incidence monostatic backscatter observation direction and far-field setup are recorded in meta.json/structure.json and agree with source.",
+              "task_category": "Modeling",
+              "weight": 17,
+              "evidence_inputs": [
+                {
+                  "path": "submission/src/",
+                  "kind": "source"
+                },
+                {
+                  "path": "submission/results/unit_normal/structure.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/unit_tm15/structure.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/unit_tm30/structure.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/unit_tm45/structure.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/array_ms/structure.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/array_pec/structure.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/array_ms/meta.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/array_pec/meta.json",
+                  "kind": "json"
+                }
+              ]
+            },
+            {
+              "id": "B1_5",
+              "title": "Native adaptive convergence evidence",
+              "description": "Check native convergence for every required physical HFSS solution: Max Mag. Delta S <= 0.02 for port-driven problems, or native relative Delta Energy <= 0.02 for finite incident-wave scattering. Native logs/tables must report the final value, pass count and convergence status; each meta.mesh_summary must contain a positive tetrahedron count. An allowed shared physical solution may cover variants through run_summary solve_ids. Normal process completion does not establish adaptive convergence. All required solutions must satisfy this criterion; identify each failed or unverified solve_id. Numerical AF is excluded. Honest reporting is assessed separately in B1_5b.",
+              "task_category": "Execution",
+              "weight": 10,
+              "evidence_inputs": [
+                {
+                  "path": "submission/results/unit_normal/run.log",
+                  "kind": "log"
+                },
+                {
+                  "path": "submission/results/unit_normal/meta.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/unit_tm15/run.log",
+                  "kind": "log"
+                },
+                {
+                  "path": "submission/results/unit_tm15/meta.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/unit_tm30/run.log",
+                  "kind": "log"
+                },
+                {
+                  "path": "submission/results/unit_tm30/meta.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/unit_tm45/run.log",
+                  "kind": "log"
+                },
+                {
+                  "path": "submission/results/unit_tm45/meta.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/array_ms/run.log",
+                  "kind": "log"
+                },
+                {
+                  "path": "submission/results/array_ms/meta.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/array_pec/run.log",
+                  "kind": "log"
+                },
+                {
+                  "path": "submission/results/array_pec/meta.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/src/",
+                  "kind": "source"
+                },
+                {
+                  "path": "submission/results/run_summary.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/README.md",
+                  "kind": "text"
+                }
+              ]
+            },
+            {
+              "id": "B1_5b",
+              "title": "Convergence disclosure and fine-feature meshing",
+              "description": "README states static methods, variant/dependency mappings and the results/run_summary.json path. The current report covers every variant and maps solve_ids to actual physical solutions, truthfully reporting native criterion, final value, pass count, mesh count, log location and failure reasons. Shared-solution statistics may be stored once. Historical statistics need not equal the new run, and replay need not rewrite README. Honest disclosure may pass even when convergence fails. Also verify the 4-8 GHz sweep and separate Fig. 6 field-frequency solve/export settings.",
+              "task_category": "Execution",
+              "weight": 7,
+              "evidence_inputs": [
+                {
+                  "path": "submission/README.md",
+                  "kind": "text"
+                },
+                {
+                  "path": "submission/src/",
+                  "kind": "source"
+                },
+                {
+                  "path": "submission/results/array_ms/meta.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/unit_normal/meta.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/array_ms/run.log",
+                  "kind": "log"
+                },
+                {
+                  "path": "submission/results/run_summary.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/unit_normal/run.log",
+                  "kind": "log"
+                },
+                {
+                  "path": "submission/results/unit_tm15/meta.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/unit_tm15/run.log",
+                  "kind": "log"
+                },
+                {
+                  "path": "submission/results/unit_tm30/meta.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/unit_tm30/run.log",
+                  "kind": "log"
+                },
+                {
+                  "path": "submission/results/unit_tm45/meta.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/unit_tm45/run.log",
+                  "kind": "log"
+                },
+                {
+                  "path": "submission/results/array_pec/meta.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/array_pec/run.log",
+                  "kind": "log"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "B2",
+          "title": "Run Evidence & Provenance",
+          "task_category": null,
+          "weight": 40,
+          "sub_tasks": [
+            {
+              "id": "B2_1",
+              "title": "Native AEDT/HFSS log authenticity",
+              "description": "Sample unit_normal, unit_tm30, array_ms and array_pec run.log files. Each contains at least three native evidence classes: (a) adaptive pass numbers and Delta S/Delta Energy values; (b) analysis start/completion pairs, normal simulation completion or sweep completion; (c) native convergence and mesh/tetrahedron statistics; (d) report/field-export records; (e) AEDT message-manager severity lines, excluding PyAEDT INFO/WARNING wrapper prefixes; (f) .aedtresults or solver-profile paths. Corresponding meta.json setup_names appear. Python prints, timestamps or the words HFSS/Ansys alone do not qualify.",
+              "task_category": "Execution",
+              "weight": 19,
+              "critical": true,
+              "gate": true,
+              "evidence_inputs": [
+                {
+                  "path": "submission/results/unit_normal/run.log",
+                  "kind": "log"
+                },
+                {
+                  "path": "submission/results/unit_tm30/run.log",
+                  "kind": "log"
+                },
+                {
+                  "path": "submission/results/array_ms/run.log",
+                  "kind": "log"
+                },
+                {
+                  "path": "submission/results/array_pec/run.log",
+                  "kind": "log"
+                },
+                {
+                  "path": "submission/results/unit_normal/meta.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/array_ms/meta.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/src/",
+                  "kind": "source"
+                }
+              ]
+            },
+            {
+              "id": "B2_2",
+              "title": "Cross-variant solve independence and declared sharing",
+              "description": "Use meta.result_source, run_summary and native exports to verify every required geometry, angle and orientation. An Optimetrics session may share a parent log, but solve_id, design, setup, variation and excitation must distinguish physical solutions and map their exports. Equal log hashes, pass counts or similar curves alone do not prove copying; a sharing declaration cannot replace required independent solutions. Fail when evidence shows that distinct physical variants reused one response, or a required solve mapping is missing. Apply the public rules for legitimate multiport/multipolarization processing of one solution. AF is excluded.",
+              "task_category": "Execution",
+              "weight": 19,
+              "critical": true,
+              "gate": true,
+              "evidence_inputs": [
+                {
+                  "path": "submission/results/unit_normal/meta.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/unit_tm15/meta.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/unit_tm30/meta.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/unit_tm45/meta.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/array_ms/meta.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/array_pec/meta.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/unit_tm15/run.log",
+                  "kind": "log"
+                },
+                {
+                  "path": "submission/results/unit_tm45/run.log",
+                  "kind": "log"
+                },
+                {
+                  "path": "submission/results/array_ms/run.log",
+                  "kind": "log"
+                },
+                {
+                  "path": "submission/results/array_pec/run.log",
+                  "kind": "log"
+                },
+                {
+                  "path": "submission/src/",
+                  "kind": "source"
+                },
+                {
+                  "path": "submission/results/run_summary.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/README.md",
+                  "kind": "text"
+                },
+                {
+                  "path": "submission/results/unit_normal/run.log",
+                  "kind": "log"
+                },
+                {
+                  "path": "submission/results/unit_tm30/run.log",
+                  "kind": "log"
+                }
+              ]
+            },
+            {
+              "id": "B2_3",
+              "title": "Paper-reading blacklist on result-feeding paths",
+              "description": "Blacklisted output literals {205,182,177,158,26.5,26.7,7.7,7.8,17.3,14.2,8.7,8.77,12.2,12.3,5.1,1.85} may not be assigned as response values on paths writing submission/results/*.csv, *.json or *.png, including fallbacks and hardcoded returns. af_summary.json scalars must derive from computed AF arrays, not direct literal assignments. Apply public exemptions for assertions/comparisons, comments/debug output, version substrings and frequency/angle/geometry inputs; 5.2/6.86/5.44/6.9/5.86/15/30/45/9.5/7.4 in those input roles are not blacklisted. Any non-exempt assignment fails.",
+              "task_category": "Execution",
+              "weight": 13,
+              "critical": true,
+              "evidence_inputs": [
+                {
+                  "path": "submission/src/",
+                  "kind": "source"
+                }
+              ]
+            },
+            {
+              "id": "B2_4",
+              "title": "Provenance consistency",
+              "description": "Maintain a complete consistent provenance chain from project/design, setup, variation, excitation, UTC time and native log through raw MANIFEST to results. Public structured references in result_source/report_export_summary need not duplicate the manifest. Identify the solution and export for each response/image; mentioning HFSS alone is insufficient. Verify AF inputs, equation and source hashes separately. For finite arrays and PEC, check meta.rcs_quantity.kind=total, native RCSTotal or the sum of both orthogonal scattered-field powers, dBsm conversion and incidence/observation directions. x/y denote incident polarization, not interchangeable receiver components.",
+              "task_category": "Execution",
+              "weight": 13,
+              "evidence_inputs": [
+                {
+                  "path": "submission/hfss/",
+                  "kind": "text"
+                },
+                {
+                  "path": "submission/results/array_ms/meta.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/array_pec/meta.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/af_patterns/meta.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/array_ms/run.log",
+                  "kind": "log"
+                },
+                {
+                  "path": "submission/src/",
+                  "kind": "source"
+                },
+                {
+                  "path": "submission/results/run_summary.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/README.md",
+                  "kind": "text"
+                }
+              ]
+            },
+            {
+              "id": "B2_5",
+              "title": "Native export presence and manifest integrity",
+              "description": "Each HFSS variant has nonempty raw/ and MANIFEST files. Preserve exports byte-for-byte and record file, sha256, bytes, producer, aedt_solution, run_log_lines and exported_utc, with identifiable design/variation/excitation. Check all manifests and sample native files, hashes and log intervals from at least two distinct physical solutions. Moving or renaming a byte-identical export is allowed; reordered columns, converted units or filtered rows are derived data, not raw exports. AF follows its numerical provenance contract and does not require AEDT raw files or run.log.",
+              "task_category": "Execution",
+              "weight": 18,
+              "critical": true,
+              "evidence_inputs": [
+                {
+                  "path": "submission/results/array_ms/raw/",
+                  "kind": "text"
+                },
+                {
+                  "path": "submission/results/array_pec/raw/",
+                  "kind": "text"
+                },
+                {
+                  "path": "submission/results/unit_normal/raw/",
+                  "kind": "text"
+                },
+                {
+                  "path": "submission/results/array_ms/raw/MANIFEST.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/array_pec/raw/MANIFEST.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/unit_normal/raw/MANIFEST.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/array_ms/run.log",
+                  "kind": "log"
+                },
+                {
+                  "path": "submission/results/unit_normal/raw/",
+                  "kind": "dir"
+                },
+                {
+                  "path": "submission/results/unit_normal/meta.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/unit_tm15/raw/",
+                  "kind": "dir"
+                },
+                {
+                  "path": "submission/results/unit_tm15/raw/MANIFEST.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/unit_tm15/meta.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/unit_tm30/raw/",
+                  "kind": "dir"
+                },
+                {
+                  "path": "submission/results/unit_tm30/raw/MANIFEST.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/unit_tm30/meta.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/unit_tm45/raw/",
+                  "kind": "dir"
+                },
+                {
+                  "path": "submission/results/unit_tm45/raw/MANIFEST.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/unit_tm45/meta.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/array_ms/raw/",
+                  "kind": "dir"
+                },
+                {
+                  "path": "submission/results/array_ms/meta.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/array_pec/raw/",
+                  "kind": "dir"
+                },
+                {
+                  "path": "submission/results/array_pec/meta.json",
+                  "kind": "json"
+                }
+              ]
+            },
+            {
+              "id": "B2_6",
+              "title": "Scored files reproducible from raw exports (derive.py)",
+              "description": "src/derive.py implements the public interface. --check runs with only the standard library, NumPy and SciPy, without HFSS, AEDT or network access, and actually recomputes every required response array and CSV-derived summary at the public direct/derived tolerances. Metadata, structure, input matrices, nominal frequencies and README are not raw responses. Verify native PNG copies by bytes/hash; review redrawn figures through their input data and rendering code without requiring offline graphics libraries. Recompute AF from the prescribed matrices and Eq. (2), without ansys imports. Empty checks, substituted constants, omitted responses and execution failures do not pass. Trusted execution and source coverage are both evidence.",
+              "task_category": "Execution",
+              "weight": 18,
+              "critical": true,
+              "evidence_inputs": [
+                {
+                  "path": "submission/src/derive.py",
+                  "kind": "source"
+                },
+                {
+                  "path": "submission/results/array_ms/raw/MANIFEST.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/array_pec/raw/MANIFEST.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/unit_normal/raw/MANIFEST.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/array_ms/rcs_normal.csv",
+                  "kind": "csv"
+                },
+                {
+                  "path": "submission/results/array_ms/rcs_reduction.csv",
+                  "kind": "csv"
+                },
+                {
+                  "path": "submission/results/af_patterns/af_samples.npz",
+                  "kind": "data"
+                },
+                {
+                  "path": "submission/results/af_patterns/meta.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/af_patterns/coding_matrices.json",
+                  "kind": "json"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "C",
+      "title": "Result Analysis",
+      "task_category": null,
+      "weight": 80,
+      "sub_tasks": [
+        {
+          "id": "C1",
+          "title": "Unit cell, normal incidence (Fig. 1b/1c)",
+          "task_category": null,
+          "weight": 21,
+          "sub_tasks": [
+            {
+              "id": "C1_1",
+              "title": "Reflection amplitude near unity for both polarizations",
+              "description": "unit_normal/summary.json min_mag_x and min_mag_y are both in [0.985,1.002]. The paper states magnitudes above 0.99 and the reference minimum is 0.994. At 4.50 and 6.50 GHz, reflection.csv mag_x and mag_y are also all in [0.985,1.002].",
+              "task_category": "Validation",
+              "weight": 20,
+              "evidence_inputs": [
+                {
+                  "path": "submission/results/unit_normal/summary.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/unit_normal/reflection.csv",
+                  "kind": "csv"
+                },
+                {
+                  "path": "papers/02-anisotropic-coding-diffusion-metasurface/judge/refs/unit_normal/reflection_amplitude_fig1b.csv",
+                  "kind": "csv"
+                }
+              ],
+              "check": {
+                "tier": 1,
+                "mode": "full",
+                "all": [
+                  {
+                    "value": {
+                      "json": "results/unit_normal/summary.json",
+                      "path": "min_mag_x"
+                    },
+                    "in": [
+                      0.985,
+                      1.002
+                    ],
+                    "label": "min_mag_x"
+                  },
+                  {
+                    "value": {
+                      "json": "results/unit_normal/summary.json",
+                      "path": "min_mag_y"
+                    },
+                    "in": [
+                      0.985,
+                      1.002
+                    ],
+                    "label": "min_mag_y"
+                  },
+                  {
+                    "value": {
+                      "csv": "results/unit_normal/reflection.csv",
+                      "where": {
+                        "frequency_GHz": 4.5
+                      },
+                      "col": "mag_x"
+                    },
+                    "in": [
+                      0.985,
+                      1.002
+                    ],
+                    "label": "mag_x@4.5"
+                  },
+                  {
+                    "value": {
+                      "csv": "results/unit_normal/reflection.csv",
+                      "where": {
+                        "frequency_GHz": 4.5
+                      },
+                      "col": "mag_y"
+                    },
+                    "in": [
+                      0.985,
+                      1.002
+                    ],
+                    "label": "mag_y@4.5"
+                  },
+                  {
+                    "value": {
+                      "csv": "results/unit_normal/reflection.csv",
+                      "where": {
+                        "frequency_GHz": 6.5
+                      },
+                      "col": "mag_x"
+                    },
+                    "in": [
+                      0.985,
+                      1.002
+                    ],
+                    "label": "mag_x@6.5"
+                  },
+                  {
+                    "value": {
+                      "csv": "results/unit_normal/reflection.csv",
+                      "where": {
+                        "frequency_GHz": 6.5
+                      },
+                      "col": "mag_y"
+                    },
+                    "in": [
+                      0.985,
+                      1.002
+                    ],
+                    "label": "mag_y@6.5"
+                  }
+                ]
+              }
+            },
+            {
+              "id": "C1_2",
+              "title": "Native phase extraction and reference-plane traceability",
+              "description": "Native exports and source verify unit_normal x/y complex reflections, port/mode bases, nominal z=h de-embedding and phase conversion. Output phases are in (-180,180]; zero crossings follow the public unwrap rule or valid no_crossing status. Do not fill values from paper plots or fit a common phase shift. Check native/reference-plane consistency without paper absolute-phase or zero-crossing windows.",
+              "task_category": "Validation",
+              "weight": 10,
+              "evidence_inputs": [
+                {
+                  "path": "submission/results/unit_normal/reflection.csv",
+                  "kind": "csv"
+                },
+                {
+                  "path": "submission/results/unit_normal/summary.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/unit_normal/meta.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/unit_normal/raw/",
+                  "kind": "dir"
+                },
+                {
+                  "path": "submission/results/unit_normal/raw/MANIFEST.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/src/",
+                  "kind": "source"
+                }
+              ]
+            },
+            {
+              "id": "C1_3",
+              "title": "Oriented circular phase-difference consistency",
+              "description": "At every unit_normal row, phase_diff equals phase_y-phase_x modulo 360 within 0.001 degree circular error. The difference is in [0,360), and both phases in (-180,180]. This checks an internal common-reference-plane identity, not the paper absolute y-phase.",
+              "task_category": "Validation",
+              "weight": 10,
+              "evidence_inputs": [
+                {
+                  "path": "submission/results/unit_normal/reflection.csv",
+                  "kind": "csv"
+                }
+              ],
+              "check": {
+                "tier": 0,
+                "mode": "full",
+                "all": [
+                  {
+                    "value": {
+                      "csv": "results/unit_normal/reflection.csv",
+                      "colexpr": "min(abs(phase_diff_deg-phase_y_deg+phase_x_deg+(-720)),abs(phase_diff_deg-phase_y_deg+phase_x_deg+(-360)),abs(phase_diff_deg-phase_y_deg+phase_x_deg+(0)),abs(phase_diff_deg-phase_y_deg+phase_x_deg+(360)),abs(phase_diff_deg-phase_y_deg+phase_x_deg+(720)))",
+                      "agg": "max"
+                    },
+                    "le": 0.001
+                  },
+                  {
+                    "value": {
+                      "csv": "results/unit_normal/reflection.csv",
+                      "col": "phase_diff_deg",
+                      "agg": "min"
+                    },
+                    "ge": 0
+                  },
+                  {
+                    "value": {
+                      "csv": "results/unit_normal/reflection.csv",
+                      "col": "phase_diff_deg",
+                      "agg": "max"
+                    },
+                    "lt": 360
+                  },
+                  {
+                    "value": {
+                      "csv": "results/unit_normal/reflection.csv",
+                      "col": "phase_x_deg",
+                      "agg": "min"
+                    },
+                    "gt": -180
+                  },
+                  {
+                    "value": {
+                      "csv": "results/unit_normal/reflection.csv",
+                      "col": "phase_x_deg",
+                      "agg": "max"
+                    },
+                    "le": 180
+                  },
+                  {
+                    "value": {
+                      "csv": "results/unit_normal/reflection.csv",
+                      "col": "phase_y_deg",
+                      "agg": "min"
+                    },
+                    "gt": -180
+                  },
+                  {
+                    "value": {
+                      "csv": "results/unit_normal/reflection.csv",
+                      "col": "phase_y_deg",
+                      "agg": "max"
+                    },
+                    "le": 180
+                  }
+                ]
+              }
+            },
+            {
+              "id": "C1_4",
+              "title": "Phase-difference peak and effective 150-deg band (must-differ anchor)",
+              "weight": 60,
+              "task_category": "Result Analysis",
+              "sub_tasks": [
+                {
+                  "id": "C1_4_peak",
+                  "title": "Normal-incidence phase-difference magnitude",
+                  "description": "The maximum directed phase_diff in reflection.csv is in [188,222] degrees. A common reference-plane shift cannot explain a wrong differential value.",
+                  "task_category": "Validation",
+                  "weight": 40,
+                  "evidence_inputs": [
+                    {
+                      "path": "submission/results/unit_normal/reflection.csv",
+                      "kind": "csv"
+                    },
+                    {
+                      "path": "papers/02-anisotropic-coding-diffusion-metasurface/judge/refs/unit_normal/reflection_phase_fig1c.csv",
+                      "kind": "csv"
+                    },
+                    {
+                      "path": "papers/02-anisotropic-coding-diffusion-metasurface/judge/refs/targets/key_targets.json",
+                      "kind": "json"
+                    }
+                  ],
+                  "check": {
+                    "tier": 1,
+                    "mode": "full",
+                    "all": [
+                      {
+                        "value": {
+                          "csv": "results/unit_normal/reflection.csv",
+                          "col": "phase_diff_deg",
+                          "agg": "max"
+                        },
+                        "in": [
+                          188,
+                          222
+                        ],
+                        "label": "phase_diff_peak_deg"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "id": "C1_4_frequency",
+                  "title": "Normal-incidence phase-difference peak frequency",
+                  "description": "The earliest frequency attaining the maximum directed phase difference in reflection.csv is in [5.35,5.90] GHz.",
+                  "task_category": "Validation",
+                  "weight": 20,
+                  "evidence_inputs": [
+                    {
+                      "path": "submission/results/unit_normal/reflection.csv",
+                      "kind": "csv"
+                    },
+                    {
+                      "path": "papers/02-anisotropic-coding-diffusion-metasurface/judge/refs/unit_normal/reflection_phase_fig1c.csv",
+                      "kind": "csv"
+                    },
+                    {
+                      "path": "papers/02-anisotropic-coding-diffusion-metasurface/judge/refs/targets/key_targets.json",
+                      "kind": "json"
+                    }
+                  ],
+                  "check": {
+                    "tier": 1,
+                    "mode": "full",
+                    "all": [
+                      {
+                        "value": {
+                          "csv": "results/unit_normal/reflection.csv",
+                          "col": "phase_diff_deg",
+                          "agg": "argmax",
+                          "arg_col": "frequency_GHz"
+                        },
+                        "in": [
+                          5.35,
+                          5.9
+                        ],
+                        "label": "f_phase_diff_peak_GHz"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "id": "C1_4_band",
+                  "title": "Continuous 150-degree phase component",
+                  "description": "The connected phase_diff>=150-degree component containing the global peak has endpoints in [4.49,4.89] and [6.63,7.08] GHz. Every fixed-core row from 4.90 through 6.60 GHz is >=150 degrees. A disconnected outer envelope cannot replace a continuous band; C_INV_1 also verifies component/summary consistency.",
+                  "task_category": "Validation",
+                  "weight": 40,
+                  "evidence_inputs": [
+                    {
+                      "path": "submission/results/unit_normal/summary.json",
+                      "kind": "json"
+                    },
+                    {
+                      "path": "submission/results/unit_normal/reflection.csv",
+                      "kind": "csv"
+                    },
+                    {
+                      "path": "papers/02-anisotropic-coding-diffusion-metasurface/judge/refs/unit_normal/reflection_phase_fig1c.csv",
+                      "kind": "csv"
+                    },
+                    {
+                      "path": "papers/02-anisotropic-coding-diffusion-metasurface/judge/refs/targets/key_targets.json",
+                      "kind": "json"
+                    }
+                  ],
+                  "check": {
+                    "tier": 1,
+                    "mode": "full",
+                    "all": [
+                      {
+                        "value": {
+                          "json": "results/unit_normal/summary.json",
+                          "path": [
+                            "phase_diff_band_150deg_GHz",
+                            0
+                          ]
+                        },
+                        "in": [
+                          4.49,
+                          4.89
+                        ],
+                        "label": "band150 lo"
+                      },
+                      {
+                        "value": {
+                          "json": "results/unit_normal/summary.json",
+                          "path": [
+                            "phase_diff_band_150deg_GHz",
+                            1
+                          ]
+                        },
+                        "in": [
+                          6.63,
+                          7.08
+                        ],
+                        "label": "band150 hi"
+                      },
+                      {
+                        "value": {
+                          "csv": "results/unit_normal/reflection.csv",
+                          "col": "phase_diff_deg",
+                          "agg": "min",
+                          "range": {
+                            "frequency_GHz": [
+                              4.9,
+                              6.6
+                            ]
+                          }
+                        },
+                        "ge": 150
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "C2",
+          "title": "Unit cell, oblique TM incidence (Fig. 7a)",
+          "task_category": null,
+          "weight": 13,
+          "sub_tasks": [
+            {
+              "id": "C2_1",
+              "title": "TM 15-deg phase-difference peak",
+              "weight": 30,
+              "task_category": "Result Analysis",
+              "sub_tasks": [
+                {
+                  "id": "C2_1_magnitude",
+                  "title": "unit_tm15 phase-difference magnitude",
+                  "description": "Compute the maximum directed phase difference from this variant phase_diff.csv; it is in [170,196] degrees. Do not substitute a self-reported peak for the CSV calculation.",
+                  "task_category": "Validation",
+                  "weight": 60,
+                  "evidence_inputs": [
+                    {
+                      "path": "submission/results/unit_tm15/phase_diff.csv",
+                      "kind": "csv"
+                    },
+                    {
+                      "path": "papers/02-anisotropic-coding-diffusion-metasurface/judge/refs/unit_oblique/phase_diff_fig7a.csv",
+                      "kind": "csv"
+                    }
+                  ],
+                  "check": {
+                    "tier": 1,
+                    "mode": "full",
+                    "all": [
+                      {
+                        "value": {
+                          "csv": "results/unit_tm15/phase_diff.csv",
+                          "col": "phase_diff_deg",
+                          "agg": "max"
+                        },
+                        "in": [
+                          170,
+                          196
+                        ]
+                      }
+                    ]
+                  }
+                },
+                {
+                  "id": "C2_1_frequency",
+                  "title": "unit_tm15 peak frequency",
+                  "description": "Compute the earliest tied-peak frequency from this variant phase_diff.csv; it is in [5.79,6.29] GHz. Score independently of peak magnitude.",
+                  "task_category": "Validation",
+                  "weight": 40,
+                  "evidence_inputs": [
+                    {
+                      "path": "submission/results/unit_tm15/phase_diff.csv",
+                      "kind": "csv"
+                    },
+                    {
+                      "path": "papers/02-anisotropic-coding-diffusion-metasurface/judge/refs/unit_oblique/phase_diff_fig7a.csv",
+                      "kind": "csv"
+                    }
+                  ],
+                  "check": {
+                    "tier": 1,
+                    "mode": "full",
+                    "all": [
+                      {
+                        "value": {
+                          "csv": "results/unit_tm15/phase_diff.csv",
+                          "col": "phase_diff_deg",
+                          "agg": "argmax",
+                          "arg_col": "frequency_GHz"
+                        },
+                        "in": [
+                          5.79,
+                          6.29
+                        ]
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "id": "C2_2",
+              "title": "TM 30-deg phase-difference peak",
+              "weight": 25,
+              "task_category": "Result Analysis",
+              "sub_tasks": [
+                {
+                  "id": "C2_2_magnitude",
+                  "title": "unit_tm30 phase-difference magnitude",
+                  "description": "Compute the maximum directed phase difference from this variant phase_diff.csv; it is in [163,189] degrees. Do not substitute a self-reported peak for the CSV calculation.",
+                  "task_category": "Validation",
+                  "weight": 60,
+                  "evidence_inputs": [
+                    {
+                      "path": "submission/results/unit_tm30/phase_diff.csv",
+                      "kind": "csv"
+                    },
+                    {
+                      "path": "papers/02-anisotropic-coding-diffusion-metasurface/judge/refs/unit_oblique/phase_diff_fig7a.csv",
+                      "kind": "csv"
+                    }
+                  ],
+                  "check": {
+                    "tier": 1,
+                    "mode": "full",
+                    "all": [
+                      {
+                        "value": {
+                          "csv": "results/unit_tm30/phase_diff.csv",
+                          "col": "phase_diff_deg",
+                          "agg": "max"
+                        },
+                        "in": [
+                          163,
+                          189
+                        ]
+                      }
+                    ]
+                  }
+                },
+                {
+                  "id": "C2_2_frequency",
+                  "title": "unit_tm30 peak frequency",
+                  "description": "Compute the earliest tied-peak frequency from this variant phase_diff.csv; it is in [5.89,6.39] GHz. Score independently of peak magnitude.",
+                  "task_category": "Validation",
+                  "weight": 40,
+                  "evidence_inputs": [
+                    {
+                      "path": "submission/results/unit_tm30/phase_diff.csv",
+                      "kind": "csv"
+                    },
+                    {
+                      "path": "papers/02-anisotropic-coding-diffusion-metasurface/judge/refs/unit_oblique/phase_diff_fig7a.csv",
+                      "kind": "csv"
+                    }
+                  ],
+                  "check": {
+                    "tier": 1,
+                    "mode": "full",
+                    "all": [
+                      {
+                        "value": {
+                          "csv": "results/unit_tm30/phase_diff.csv",
+                          "col": "phase_diff_deg",
+                          "agg": "argmax",
+                          "arg_col": "frequency_GHz"
+                        },
+                        "in": [
+                          5.89,
+                          6.39
+                        ]
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "id": "C2_3",
+              "title": "TM 45-deg phase-difference peak",
+              "weight": 25,
+              "task_category": "Result Analysis",
+              "sub_tasks": [
+                {
+                  "id": "C2_3_magnitude",
+                  "title": "unit_tm45 phase-difference magnitude",
+                  "description": "Compute the maximum directed phase difference from this variant phase_diff.csv; it is in [144,171] degrees. Do not substitute a self-reported peak for the CSV calculation.",
+                  "task_category": "Validation",
+                  "weight": 60,
+                  "evidence_inputs": [
+                    {
+                      "path": "submission/results/unit_tm45/phase_diff.csv",
+                      "kind": "csv"
+                    },
+                    {
+                      "path": "papers/02-anisotropic-coding-diffusion-metasurface/judge/refs/unit_oblique/phase_diff_fig7a.csv",
+                      "kind": "csv"
+                    }
+                  ],
+                  "check": {
+                    "tier": 1,
+                    "mode": "full",
+                    "all": [
+                      {
+                        "value": {
+                          "csv": "results/unit_tm45/phase_diff.csv",
+                          "col": "phase_diff_deg",
+                          "agg": "max"
+                        },
+                        "in": [
+                          144,
+                          171
+                        ]
+                      }
+                    ]
+                  }
+                },
+                {
+                  "id": "C2_3_frequency",
+                  "title": "unit_tm45 peak frequency",
+                  "description": "Compute the earliest tied-peak frequency from this variant phase_diff.csv; it is in [6.07,6.57] GHz. Score independently of peak magnitude.",
+                  "task_category": "Validation",
+                  "weight": 40,
+                  "evidence_inputs": [
+                    {
+                      "path": "submission/results/unit_tm45/phase_diff.csv",
+                      "kind": "csv"
+                    },
+                    {
+                      "path": "papers/02-anisotropic-coding-diffusion-metasurface/judge/refs/unit_oblique/phase_diff_fig7a.csv",
+                      "kind": "csv"
+                    }
+                  ],
+                  "check": {
+                    "tier": 1,
+                    "mode": "full",
+                    "all": [
+                      {
+                        "value": {
+                          "csv": "results/unit_tm45/phase_diff.csv",
+                          "col": "phase_diff_deg",
+                          "agg": "argmax",
+                          "arg_col": "frequency_GHz"
+                        },
+                        "in": [
+                          6.07,
+                          6.57
+                        ]
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "id": "C2_4",
+              "title": "Angular degradation ordering across incidence angles",
+              "description": "Use the eight reported scalars in the four summaries to test ordering. unit_normal.phase_diff_peak_deg >= unit_tm15 peak +5 degrees; unit_tm15 >= unit_tm30 +2; unit_tm30 >= unit_tm45 +8 (references 205/183/176/158). unit_tm45.f_phase_diff_peak_GHz >= unit_tm15.f_phase_diff_peak_GHz +0.10 (references 6.35 versus 6.05).",
+              "task_category": "Validation",
+              "weight": 20,
+              "evidence_inputs": [
+                {
+                  "path": "submission/results/unit_normal/summary.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/unit_tm15/summary.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/unit_tm30/summary.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/unit_tm45/summary.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "papers/02-anisotropic-coding-diffusion-metasurface/judge/refs/unit_oblique/phase_diff_fig7a.csv",
+                  "kind": "csv"
+                },
+                {
+                  "path": "papers/02-anisotropic-coding-diffusion-metasurface/judge/refs/targets/key_targets.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/unit_normal/reflection.csv",
+                  "kind": "csv"
+                },
+                {
+                  "path": "submission/results/unit_tm15/phase_diff.csv",
+                  "kind": "csv"
+                },
+                {
+                  "path": "submission/results/unit_tm30/phase_diff.csv",
+                  "kind": "csv"
+                },
+                {
+                  "path": "submission/results/unit_tm45/phase_diff.csv",
+                  "kind": "csv"
+                }
+              ],
+              "check": {
+                "tier": 1,
+                "mode": "full",
+                "all": [
+                  {
+                    "value": {
+                      "sub": [
+                        {
+                          "json": "results/unit_normal/summary.json",
+                          "path": "phase_diff_peak_deg"
+                        },
+                        {
+                          "json": "results/unit_tm15/summary.json",
+                          "path": "phase_diff_peak_deg"
+                        }
+                      ]
+                    },
+                    "ge": 5,
+                    "label": "peak(normal) ≥ peak(tm15) + 5"
+                  },
+                  {
+                    "value": {
+                      "sub": [
+                        {
+                          "json": "results/unit_tm15/summary.json",
+                          "path": "phase_diff_peak_deg"
+                        },
+                        {
+                          "json": "results/unit_tm30/summary.json",
+                          "path": "phase_diff_peak_deg"
+                        }
+                      ]
+                    },
+                    "ge": 2,
+                    "label": "peak(tm15) ≥ peak(tm30) + 2"
+                  },
+                  {
+                    "value": {
+                      "sub": [
+                        {
+                          "json": "results/unit_tm30/summary.json",
+                          "path": "phase_diff_peak_deg"
+                        },
+                        {
+                          "json": "results/unit_tm45/summary.json",
+                          "path": "phase_diff_peak_deg"
+                        }
+                      ]
+                    },
+                    "ge": 8,
+                    "label": "peak(tm30) ≥ peak(tm45) + 8"
+                  },
+                  {
+                    "value": {
+                      "sub": [
+                        {
+                          "json": "results/unit_tm45/summary.json",
+                          "path": "f_phase_diff_peak_GHz"
+                        },
+                        {
+                          "json": "results/unit_tm15/summary.json",
+                          "path": "f_phase_diff_peak_GHz"
+                        }
+                      ]
+                    },
+                    "ge": 0.1,
+                    "label": "f45 ≥ f15 + 0.10"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "C3",
+          "title": "Array-factor model (Fig. 3, numerical)",
+          "task_category": null,
+          "weight": 12,
+          "sub_tasks": [
+            {
+              "id": "C3_1",
+              "title": "Uniform and initial matrices AF scalars",
+              "description": "Under the public AF contract (5.8 GHz, 1-degree grid, theta 0-90 degrees, EF=1), af_summary.json af_max_uniform and af_at_broadside_uniform are each in [35.5,36.5], consistent with 36 in-phase elements. af_max_initial is in [25.2,28.2] (reference 26.7 and Fig. 2(b) initial value about 26.5), while af_at_broadside_initial <=0.6 for the balanced 18/18 matrix. evaluation_frequency_GHz=5.8 and grid_step_deg=1.0.",
+              "task_category": "Validation",
+              "weight": 30,
+              "evidence_inputs": [
+                {
+                  "path": "submission/results/af_patterns/af_summary.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "papers/02-anisotropic-coding-diffusion-metasurface/judge/refs/af_patterns/af_targets.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/af_patterns/af_samples.npz",
+                  "kind": "data"
+                },
+                {
+                  "path": "submission/results/af_patterns/coding_matrices.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/af_patterns/meta.json",
+                  "kind": "json"
+                }
+              ],
+              "check": {
+                "tier": 1,
+                "mode": "full",
+                "all": [
+                  {
+                    "value": {
+                      "json": "results/af_patterns/af_summary.json",
+                      "path": "af_max_uniform"
+                    },
+                    "in": [
+                      35.5,
+                      36.5
+                    ],
+                    "label": "af_max_uniform"
+                  },
+                  {
+                    "value": {
+                      "json": "results/af_patterns/af_summary.json",
+                      "path": "af_at_broadside_uniform"
+                    },
+                    "in": [
+                      35.5,
+                      36.5
+                    ],
+                    "label": "af_at_broadside_uniform"
+                  },
+                  {
+                    "value": {
+                      "json": "results/af_patterns/af_summary.json",
+                      "path": "af_max_initial"
+                    },
+                    "in": [
+                      25.2,
+                      28.2
+                    ],
+                    "label": "af_max_initial"
+                  },
+                  {
+                    "value": {
+                      "json": "results/af_patterns/af_summary.json",
+                      "path": "af_at_broadside_initial"
+                    },
+                    "le": 0.6,
+                    "label": "af_at_broadside_initial ≤ 0.6"
+                  },
+                  {
+                    "value": {
+                      "json": "results/af_patterns/af_summary.json",
+                      "path": "evaluation_frequency_GHz"
+                    },
+                    "eq": 5.8,
+                    "tol": 1e-06,
+                    "label": "evaluation_frequency_GHz = 5.8"
+                  },
+                  {
+                    "value": {
+                      "json": "results/af_patterns/af_summary.json",
+                      "path": "grid_step_deg"
+                    },
+                    "eq": 1.0,
+                    "tol": 1e-06,
+                    "label": "grid_step_deg = 1.0"
+                  }
+                ]
+              }
+            },
+            {
+              "id": "C3_2",
+              "title": "Optimal matrix AF scalars (diffusion vs uniform, must-differ)",
+              "description": "af_summary.json af_max_optimal is in [10.9,13.1], around the deterministic public-contract value 12.000; af_at_broadside_optimal <=0.6; and af_max_optimal <=0.40*af_max_uniform. This distinguishes diffuse scattering from a single beam. Fig. 2(b) convergence near 7.7 is not this criterion target because the paper evaluation domain is underspecified; follow the public Numerical and Bandwidth Details.",
+              "task_category": "Validation",
+              "weight": 40,
+              "evidence_inputs": [
+                {
+                  "path": "submission/results/af_patterns/af_summary.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "papers/02-anisotropic-coding-diffusion-metasurface/judge/refs/af_patterns/af_targets.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/af_patterns/af_samples.npz",
+                  "kind": "data"
+                },
+                {
+                  "path": "submission/results/af_patterns/coding_matrices.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/af_patterns/meta.json",
+                  "kind": "json"
+                }
+              ],
+              "check": {
+                "tier": 1,
+                "mode": "full",
+                "all": [
+                  {
+                    "value": {
+                      "json": "results/af_patterns/af_summary.json",
+                      "path": "af_max_optimal"
+                    },
+                    "in": [
+                      10.9,
+                      13.1
+                    ],
+                    "label": "af_max_optimal"
+                  },
+                  {
+                    "value": {
+                      "json": "results/af_patterns/af_summary.json",
+                      "path": "af_at_broadside_optimal"
+                    },
+                    "le": 0.6,
+                    "label": "af_at_broadside_optimal ≤ 0.6"
+                  },
+                  {
+                    "value": {
+                      "sub": [
+                        {
+                          "json": "results/af_patterns/af_summary.json",
+                          "path": "af_max_optimal"
+                        },
+                        {
+                          "mul": [
+                            0.4,
+                            {
+                              "json": "results/af_patterns/af_summary.json",
+                              "path": "af_max_uniform"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    "le": 0,
+                    "label": "af_max_optimal ≤ 0.40×af_max_uniform"
+                  }
+                ]
+              }
+            },
+            {
+              "id": "C3_3",
+              "title": "AF pattern morphology visual (three matrices)",
+              "description": "Render all three AF figures from af_samples arrays on the prescribed 5.8-GHz, 1-degree full-hemisphere grid. uniform has a broadside main lobe, initial two principal symmetric off-axis beams, and optimal dispersed multiple lobes. Linear magnitude, coordinates and scale agree with actual arrays. Compare morphology under the fixed numerical contract, not pointwise against a paper plot with undisclosed sampling. AEDT raw data and run.log are not required.",
+              "task_category": "Validation",
+              "weight": 30,
+              "evidence_inputs": [
+                {
+                  "path": "submission/results/af_patterns/af_pattern_uniform.png",
+                  "kind": "image"
+                },
+                {
+                  "path": "submission/results/af_patterns/af_pattern_initial.png",
+                  "kind": "image"
+                },
+                {
+                  "path": "submission/results/af_patterns/af_pattern_optimal.png",
+                  "kind": "image"
+                },
+                {
+                  "path": "papers/02-anisotropic-coding-diffusion-metasurface/judge/refs/af_patterns/af_pattern_fig3a.png",
+                  "kind": "image"
+                },
+                {
+                  "path": "papers/02-anisotropic-coding-diffusion-metasurface/judge/refs/af_patterns/af_pattern_fig3b.png",
+                  "kind": "image"
+                },
+                {
+                  "path": "papers/02-anisotropic-coding-diffusion-metasurface/judge/refs/af_patterns/af_pattern_fig3c.png",
+                  "kind": "image"
+                },
+                {
+                  "path": "submission/results/af_patterns/af_samples.npz",
+                  "kind": "data"
+                },
+                {
+                  "path": "submission/results/af_patterns/meta.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/af_patterns/coding_matrices.json",
+                  "kind": "json"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "C4",
+          "title": "Finite-array scattering (Fig. 5, Fig. 10a sim, Fig. 6)",
+          "task_category": null,
+          "weight": 42,
+          "sub_tasks": [
+            {
+              "id": "C4_1",
+              "title": "PEC reference RCS anchors and monotonic rise",
+              "description": "The native total-RCS metallic reference must be in [7.3,10.3] dBsm at 4.00 GHz, [13.4,16.5] at 8.00 GHz, and [10.7,13.7] at 5.85 GHz. Across 4.0,4.5,5.0,5.5,6.0,6.5,7.0,7.5,8.0 GHz, each decrease must be no greater than 0.3 dB. Reported endpoint summaries must agree with the native-derived CSV within 0.011 dB. Recompute from the required native evidence under the public definitions. A correctly reported mismatch, absent feature or unresolved model convention does not satisfy this result requirement. Method/evidence credit must remain separate; do not waive the numerical or morphology conditions, fit corrections, or substitute reference arrays.",
+              "task_category": "Validation",
+              "weight": 12,
+              "evidence_inputs": [
+                {
+                  "path": "submission/results/array_pec/rcs_normal.csv",
+                  "kind": "csv"
+                },
+                {
+                  "path": "submission/results/array_pec/summary.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "papers/02-anisotropic-coding-diffusion-metasurface/judge/refs/array_pec/rcs_pec_fig5.csv",
+                  "kind": "csv"
+                },
+                {
+                  "path": "submission/README.md",
+                  "kind": "text"
+                }
+              ],
+              "check": {
+                "tier": 1,
+                "mode": "full",
+                "all": [
+                  {
+                    "value": {
+                      "csv": "results/array_pec/rcs_normal.csv",
+                      "where": {
+                        "frequency_GHz": 4.0
+                      },
+                      "col": "rcs_dBsm"
+                    },
+                    "in": [
+                      7.3,
+                      10.3
+                    ],
+                    "label": "PEC reference RCS anchors and monotonic rise condition 1"
+                  },
+                  {
+                    "value": {
+                      "csv": "results/array_pec/rcs_normal.csv",
+                      "where": {
+                        "frequency_GHz": 8.0
+                      },
+                      "col": "rcs_dBsm"
+                    },
+                    "in": [
+                      13.4,
+                      16.5
+                    ],
+                    "label": "PEC reference RCS anchors and monotonic rise condition 2"
+                  },
+                  {
+                    "value": {
+                      "csv": "results/array_pec/rcs_normal.csv",
+                      "where": {
+                        "frequency_GHz": 5.85
+                      },
+                      "col": "rcs_dBsm"
+                    },
+                    "in": [
+                      10.7,
+                      13.7
+                    ],
+                    "label": "PEC reference RCS anchors and monotonic rise condition 3"
+                  },
+                  {
+                    "value": {
+                      "sub": [
+                        {
+                          "csv": "results/array_pec/rcs_normal.csv",
+                          "where": {
+                            "frequency_GHz": 4.5
+                          },
+                          "col": "rcs_dBsm"
+                        },
+                        {
+                          "csv": "results/array_pec/rcs_normal.csv",
+                          "where": {
+                            "frequency_GHz": 4.0
+                          },
+                          "col": "rcs_dBsm"
+                        }
+                      ]
+                    },
+                    "ge": -0.3,
+                    "label": "PEC reference RCS anchors and monotonic rise condition 4"
+                  },
+                  {
+                    "value": {
+                      "sub": [
+                        {
+                          "csv": "results/array_pec/rcs_normal.csv",
+                          "where": {
+                            "frequency_GHz": 5.0
+                          },
+                          "col": "rcs_dBsm"
+                        },
+                        {
+                          "csv": "results/array_pec/rcs_normal.csv",
+                          "where": {
+                            "frequency_GHz": 4.5
+                          },
+                          "col": "rcs_dBsm"
+                        }
+                      ]
+                    },
+                    "ge": -0.3,
+                    "label": "PEC reference RCS anchors and monotonic rise condition 5"
+                  },
+                  {
+                    "value": {
+                      "sub": [
+                        {
+                          "csv": "results/array_pec/rcs_normal.csv",
+                          "where": {
+                            "frequency_GHz": 5.5
+                          },
+                          "col": "rcs_dBsm"
+                        },
+                        {
+                          "csv": "results/array_pec/rcs_normal.csv",
+                          "where": {
+                            "frequency_GHz": 5.0
+                          },
+                          "col": "rcs_dBsm"
+                        }
+                      ]
+                    },
+                    "ge": -0.3,
+                    "label": "PEC reference RCS anchors and monotonic rise condition 6"
+                  },
+                  {
+                    "value": {
+                      "sub": [
+                        {
+                          "csv": "results/array_pec/rcs_normal.csv",
+                          "where": {
+                            "frequency_GHz": 6.0
+                          },
+                          "col": "rcs_dBsm"
+                        },
+                        {
+                          "csv": "results/array_pec/rcs_normal.csv",
+                          "where": {
+                            "frequency_GHz": 5.5
+                          },
+                          "col": "rcs_dBsm"
+                        }
+                      ]
+                    },
+                    "ge": -0.3,
+                    "label": "PEC reference RCS anchors and monotonic rise condition 7"
+                  },
+                  {
+                    "value": {
+                      "sub": [
+                        {
+                          "csv": "results/array_pec/rcs_normal.csv",
+                          "where": {
+                            "frequency_GHz": 6.5
+                          },
+                          "col": "rcs_dBsm"
+                        },
+                        {
+                          "csv": "results/array_pec/rcs_normal.csv",
+                          "where": {
+                            "frequency_GHz": 6.0
+                          },
+                          "col": "rcs_dBsm"
+                        }
+                      ]
+                    },
+                    "ge": -0.3,
+                    "label": "PEC reference RCS anchors and monotonic rise condition 8"
+                  },
+                  {
+                    "value": {
+                      "sub": [
+                        {
+                          "csv": "results/array_pec/rcs_normal.csv",
+                          "where": {
+                            "frequency_GHz": 7.0
+                          },
+                          "col": "rcs_dBsm"
+                        },
+                        {
+                          "csv": "results/array_pec/rcs_normal.csv",
+                          "where": {
+                            "frequency_GHz": 6.5
+                          },
+                          "col": "rcs_dBsm"
+                        }
+                      ]
+                    },
+                    "ge": -0.3,
+                    "label": "PEC reference RCS anchors and monotonic rise condition 9"
+                  },
+                  {
+                    "value": {
+                      "sub": [
+                        {
+                          "csv": "results/array_pec/rcs_normal.csv",
+                          "where": {
+                            "frequency_GHz": 7.5
+                          },
+                          "col": "rcs_dBsm"
+                        },
+                        {
+                          "csv": "results/array_pec/rcs_normal.csv",
+                          "where": {
+                            "frequency_GHz": 7.0
+                          },
+                          "col": "rcs_dBsm"
+                        }
+                      ]
+                    },
+                    "ge": -0.3,
+                    "label": "PEC reference RCS anchors and monotonic rise condition 10"
+                  },
+                  {
+                    "value": {
+                      "sub": [
+                        {
+                          "csv": "results/array_pec/rcs_normal.csv",
+                          "where": {
+                            "frequency_GHz": 8.0
+                          },
+                          "col": "rcs_dBsm"
+                        },
+                        {
+                          "csv": "results/array_pec/rcs_normal.csv",
+                          "where": {
+                            "frequency_GHz": 7.5
+                          },
+                          "col": "rcs_dBsm"
+                        }
+                      ]
+                    },
+                    "ge": -0.3,
+                    "label": "PEC reference RCS anchors and monotonic rise condition 11"
+                  },
+                  {
+                    "value": {
+                      "abs": {
+                        "sub": [
+                          {
+                            "json": "results/array_pec/summary.json",
+                            "path": "rcs_dBsm_at_4GHz"
+                          },
+                          {
+                            "csv": "results/array_pec/rcs_normal.csv",
+                            "where": {
+                              "frequency_GHz": 4.0
+                            },
+                            "col": "rcs_dBsm"
+                          }
+                        ]
+                      }
+                    },
+                    "le": 0.011,
+                    "label": "PEC reference RCS anchors and monotonic rise condition 12"
+                  },
+                  {
+                    "value": {
+                      "abs": {
+                        "sub": [
+                          {
+                            "json": "results/array_pec/summary.json",
+                            "path": "rcs_dBsm_at_8GHz"
+                          },
+                          {
+                            "csv": "results/array_pec/rcs_normal.csv",
+                            "where": {
+                              "frequency_GHz": 8.0
+                            },
+                            "col": "rcs_dBsm"
+                          }
+                        ]
+                      }
+                    },
+                    "le": 0.011,
+                    "label": "PEC reference RCS anchors and monotonic rise condition 13"
+                  }
+                ]
+              }
+            },
+            {
+              "id": "C4_2",
+              "title": "Metasurface x-polarization primary dip",
+              "description": "Require the x-polarized metasurface total-RCS minimum in [-8.1,-2.1] dBsm at a frequency in [5.58,6.08] GHz. The nearest native-derived CSV sample must agree with the reported minimum within 0.3 dB. Recompute from the required native evidence under the public definitions. A correctly reported mismatch, absent feature or unresolved model convention does not satisfy this result requirement. Method/evidence credit must remain separate; do not waive the numerical or morphology conditions, fit corrections, or substitute reference arrays.",
+              "task_category": "Validation",
+              "weight": 16,
+              "evidence_inputs": [
+                {
+                  "path": "submission/results/array_ms/summary.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/array_ms/rcs_normal.csv",
+                  "kind": "csv"
+                },
+                {
+                  "path": "papers/02-anisotropic-coding-diffusion-metasurface/judge/refs/array_ms/rcs_fig5.csv",
+                  "kind": "csv"
+                },
+                {
+                  "path": "submission/README.md",
+                  "kind": "text"
+                }
+              ],
+              "check": {
+                "tier": 1,
+                "mode": "full",
+                "all": [
+                  {
+                    "value": {
+                      "json": "results/array_ms/summary.json",
+                      "path": "rcs_x_min_dBsm"
+                    },
+                    "in": [
+                      -8.1,
+                      -2.1
+                    ],
+                    "label": "Metasurface x-polarization primary dip condition 1"
+                  },
+                  {
+                    "value": {
+                      "json": "results/array_ms/summary.json",
+                      "path": "f_rcs_x_min_GHz"
+                    },
+                    "in": [
+                      5.58,
+                      6.08
+                    ],
+                    "label": "Metasurface x-polarization primary dip condition 2"
+                  },
+                  {
+                    "value": {
+                      "abs": {
+                        "sub": [
+                          {
+                            "csv": "results/array_ms/rcs_normal.csv",
+                            "where": {
+                              "frequency_GHz": {
+                                "nearest": {
+                                  "json": "results/array_ms/summary.json",
+                                  "path": "f_rcs_x_min_GHz"
+                                }
+                              }
+                            },
+                            "col": "rcs_x_dBsm"
+                          },
+                          {
+                            "json": "results/array_ms/summary.json",
+                            "path": "rcs_x_min_dBsm"
+                          }
+                        ]
+                      }
+                    },
+                    "le": 0.3,
+                    "label": "Metasurface x-polarization primary dip condition 3"
+                  }
+                ]
+              }
+            },
+            {
+              "id": "C4_3",
+              "title": "x-polarization double-dip morphology",
+              "description": "Require x-polarized RCS at 6.20 GHz in [0.0,6.0] dBsm, and the smaller RCS at 6.45/6.50 GHz in [-2.7,3.3] dBsm. The 6.20-GHz value must exceed that second-dip value by at least 1.0 dB. Recompute from the required native evidence under the public definitions. A correctly reported mismatch, absent feature or unresolved model convention does not satisfy this result requirement. Method/evidence credit must remain separate; do not waive the numerical or morphology conditions, fit corrections, or substitute reference arrays.",
+              "task_category": "Validation",
+              "weight": 12,
+              "evidence_inputs": [
+                {
+                  "path": "submission/results/array_ms/rcs_normal.csv",
+                  "kind": "csv"
+                },
+                {
+                  "path": "papers/02-anisotropic-coding-diffusion-metasurface/judge/refs/array_ms/rcs_fig5.csv",
+                  "kind": "csv"
+                },
+                {
+                  "path": "submission/results/array_ms/summary.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/README.md",
+                  "kind": "text"
+                }
+              ],
+              "check": {
+                "tier": 1,
+                "mode": "full",
+                "all": [
+                  {
+                    "value": {
+                      "csv": "results/array_ms/rcs_normal.csv",
+                      "where": {
+                        "frequency_GHz": 6.2
+                      },
+                      "col": "rcs_x_dBsm"
+                    },
+                    "in": [
+                      0,
+                      6
+                    ],
+                    "label": "x-polarization double-dip morphology condition 1"
+                  },
+                  {
+                    "value": {
+                      "min": [
+                        {
+                          "csv": "results/array_ms/rcs_normal.csv",
+                          "where": {
+                            "frequency_GHz": 6.45
+                          },
+                          "col": "rcs_x_dBsm"
+                        },
+                        {
+                          "csv": "results/array_ms/rcs_normal.csv",
+                          "where": {
+                            "frequency_GHz": 6.5
+                          },
+                          "col": "rcs_x_dBsm"
+                        }
+                      ]
+                    },
+                    "in": [
+                      -2.7,
+                      3.3
+                    ],
+                    "label": "x-polarization double-dip morphology condition 2"
+                  },
+                  {
+                    "value": {
+                      "sub": [
+                        {
+                          "csv": "results/array_ms/rcs_normal.csv",
+                          "where": {
+                            "frequency_GHz": 6.2
+                          },
+                          "col": "rcs_x_dBsm"
+                        },
+                        {
+                          "min": [
+                            {
+                              "csv": "results/array_ms/rcs_normal.csv",
+                              "where": {
+                                "frequency_GHz": 6.45
+                              },
+                              "col": "rcs_x_dBsm"
+                            },
+                            {
+                              "csv": "results/array_ms/rcs_normal.csv",
+                              "where": {
+                                "frequency_GHz": 6.5
+                              },
+                              "col": "rcs_x_dBsm"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    "ge": 1.0,
+                    "label": "x-polarization double-dip morphology condition 3"
+                  }
+                ]
+              }
+            },
+            {
+              "id": "C4_4",
+              "title": "Metasurface y-polarization dip and x-y asymmetry",
+              "description": "Require the y-polarized total-RCS minimum in [-4.9,1.2] dBsm at a frequency in [5.69,6.19] GHz. The x minimum must be at least 1.3 dB below the y minimum, using the fixed physical polarization labels. Recompute from the required native evidence under the public definitions. A correctly reported mismatch, absent feature or unresolved model convention does not satisfy this result requirement. Method/evidence credit must remain separate; do not waive the numerical or morphology conditions, fit corrections, or substitute reference arrays.",
+              "task_category": "Validation",
+              "weight": 12,
+              "evidence_inputs": [
+                {
+                  "path": "submission/results/array_ms/summary.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/array_ms/rcs_normal.csv",
+                  "kind": "csv"
+                },
+                {
+                  "path": "papers/02-anisotropic-coding-diffusion-metasurface/judge/refs/array_ms/rcs_fig5.csv",
+                  "kind": "csv"
+                },
+                {
+                  "path": "submission/README.md",
+                  "kind": "text"
+                }
+              ],
+              "check": {
+                "tier": 1,
+                "mode": "full",
+                "all": [
+                  {
+                    "value": {
+                      "json": "results/array_ms/summary.json",
+                      "path": "rcs_y_min_dBsm"
+                    },
+                    "in": [
+                      -4.9,
+                      1.2
+                    ],
+                    "label": "Metasurface y-polarization dip and x-y asymmetry condition 1"
+                  },
+                  {
+                    "value": {
+                      "json": "results/array_ms/summary.json",
+                      "path": "f_rcs_y_min_GHz"
+                    },
+                    "in": [
+                      5.69,
+                      6.19
+                    ],
+                    "label": "Metasurface y-polarization dip and x-y asymmetry condition 2"
+                  },
+                  {
+                    "value": {
+                      "sub": [
+                        {
+                          "json": "results/array_ms/summary.json",
+                          "path": "rcs_x_min_dBsm"
+                        },
+                        {
+                          "json": "results/array_ms/summary.json",
+                          "path": "rcs_y_min_dBsm"
+                        }
+                      ]
+                    },
+                    "le": -1.3,
+                    "label": "Metasurface y-polarization dip and x-y asymmetry condition 3"
+                  }
+                ]
+              }
+            },
+            {
+              "id": "C4_5",
+              "title": "10-dB RCS-reduction bands (paper text values)",
+              "weight": 18,
+              "task_category": "Result Analysis",
+              "sub_tasks": [
+                {
+                  "id": "C4_5_envelope",
+                  "title": "Outer envelope of -10 dB samples",
+                  "description": "From actual RCS-reduction samples <=-10 dB, require the first/last x frequencies in [5.00,5.40]/[6.66,7.06] GHz and the first/last y frequencies in [5.24,5.64]/[6.70,7.10] GHz. These are outer-envelope endpoints, not proof of a connected bandwidth. An empty qualifying set does not satisfy the endpoint requirements. Recompute from the required native evidence under the public definitions. A correctly reported mismatch, absent feature or unresolved model convention does not satisfy this result requirement. Method/evidence credit must remain separate; do not waive the numerical or morphology conditions, fit corrections, or substitute reference arrays.",
+                  "task_category": "Validation",
+                  "weight": 40,
+                  "evidence_inputs": [
+                    {
+                      "path": "submission/results/array_ms/rcs_reduction.csv",
+                      "kind": "csv"
+                    },
+                    {
+                      "path": "papers/02-anisotropic-coding-diffusion-metasurface/judge/refs/array_ms/rcs_reduction_x_fig5fig10a.csv",
+                      "kind": "csv"
+                    },
+                    {
+                      "path": "papers/02-anisotropic-coding-diffusion-metasurface/judge/refs/array_ms/rcs_reduction_y_fig5fig10a.csv",
+                      "kind": "csv"
+                    },
+                    {
+                      "path": "papers/02-anisotropic-coding-diffusion-metasurface/judge/refs/targets/key_targets.json",
+                      "kind": "json"
+                    },
+                    {
+                      "path": "submission/results/array_ms/summary.json",
+                      "kind": "json"
+                    },
+                    {
+                      "path": "submission/README.md",
+                      "kind": "text"
+                    }
+                  ],
+                  "check": {
+                    "tier": 1,
+                    "mode": "full",
+                    "all": [
+                      {
+                        "value": {
+                          "csv": "results/array_ms/rcs_reduction.csv",
+                          "col": "frequency_GHz",
+                          "agg": "min",
+                          "range": {
+                            "reduction_x_dB": [
+                              null,
+                              -10
+                            ]
+                          }
+                        },
+                        "in": [
+                          5,
+                          5.4
+                        ],
+                        "label": "Outer envelope of -10 dB samples condition 1"
+                      },
+                      {
+                        "value": {
+                          "csv": "results/array_ms/rcs_reduction.csv",
+                          "col": "frequency_GHz",
+                          "agg": "max",
+                          "range": {
+                            "reduction_x_dB": [
+                              null,
+                              -10
+                            ]
+                          }
+                        },
+                        "in": [
+                          6.66,
+                          7.06
+                        ],
+                        "label": "Outer envelope of -10 dB samples condition 2"
+                      },
+                      {
+                        "value": {
+                          "csv": "results/array_ms/rcs_reduction.csv",
+                          "col": "frequency_GHz",
+                          "agg": "min",
+                          "range": {
+                            "reduction_y_dB": [
+                              null,
+                              -10
+                            ]
+                          }
+                        },
+                        "in": [
+                          5.24,
+                          5.64
+                        ],
+                        "label": "Outer envelope of -10 dB samples condition 3"
+                      },
+                      {
+                        "value": {
+                          "csv": "results/array_ms/rcs_reduction.csv",
+                          "col": "frequency_GHz",
+                          "agg": "max",
+                          "range": {
+                            "reduction_y_dB": [
+                              null,
+                              -10
+                            ]
+                          }
+                        },
+                        "in": [
+                          6.7,
+                          7.1
+                        ],
+                        "label": "Outer envelope of -10 dB samples condition 4"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "id": "C4_5_coverage",
+                  "title": "Near-10 dB suppression inside the band",
+                  "description": "On the complete 0.05-GHz grid require every x sample in [5.40,6.65] GHz and every y sample in [5.65,6.70] GHz to have reduction <=-9 dB; at least 80% of each window must have reduction <=-10 dB. Two isolated qualifying endpoints are insufficient. Separately report strict connected <=-10-dB intervals. Recompute from the required native evidence under the public definitions. A correctly reported mismatch, absent feature or unresolved model convention does not satisfy this result requirement. Method/evidence credit must remain separate; do not waive the numerical or morphology conditions, fit corrections, or substitute reference arrays.",
+                  "task_category": "Validation",
+                  "weight": 60,
+                  "evidence_inputs": [
+                    {
+                      "path": "submission/results/array_ms/rcs_reduction.csv",
+                      "kind": "csv"
+                    },
+                    {
+                      "path": "papers/02-anisotropic-coding-diffusion-metasurface/judge/refs/array_ms/rcs_reduction_x_fig5fig10a.csv",
+                      "kind": "csv"
+                    },
+                    {
+                      "path": "papers/02-anisotropic-coding-diffusion-metasurface/judge/refs/array_ms/rcs_reduction_y_fig5fig10a.csv",
+                      "kind": "csv"
+                    },
+                    {
+                      "path": "papers/02-anisotropic-coding-diffusion-metasurface/judge/refs/targets/key_targets.json",
+                      "kind": "json"
+                    },
+                    {
+                      "path": "submission/results/array_ms/summary.json",
+                      "kind": "json"
+                    },
+                    {
+                      "path": "submission/README.md",
+                      "kind": "text"
+                    }
+                  ],
+                  "check": {
+                    "tier": 1,
+                    "mode": "full",
+                    "all": [
+                      {
+                        "value": {
+                          "csv": "results/array_ms/rcs_reduction.csv",
+                          "col": "frequency_GHz",
+                          "agg": "count",
+                          "range": {
+                            "frequency_GHz": [
+                              5.4,
+                              6.65
+                            ]
+                          }
+                        },
+                        "eq": 26,
+                        "tol": 0,
+                        "label": "Near-10 dB suppression inside the band condition 1"
+                      },
+                      {
+                        "value": {
+                          "csv": "results/array_ms/rcs_reduction.csv",
+                          "col": "reduction_x_dB",
+                          "agg": "max",
+                          "range": {
+                            "frequency_GHz": [
+                              5.4,
+                              6.65
+                            ]
+                          }
+                        },
+                        "le": -9,
+                        "label": "Near-10 dB suppression inside the band condition 2"
+                      },
+                      {
+                        "value": {
+                          "div": [
+                            {
+                              "csv": "results/array_ms/rcs_reduction.csv",
+                              "col": "frequency_GHz",
+                              "agg": "count",
+                              "range": {
+                                "frequency_GHz": [
+                                  5.4,
+                                  6.65
+                                ],
+                                "reduction_x_dB": [
+                                  null,
+                                  -10
+                                ]
+                              }
+                            },
+                            {
+                              "csv": "results/array_ms/rcs_reduction.csv",
+                              "col": "frequency_GHz",
+                              "agg": "count",
+                              "range": {
+                                "frequency_GHz": [
+                                  5.4,
+                                  6.65
+                                ]
+                              }
+                            }
+                          ]
+                        },
+                        "ge": 0.8,
+                        "label": "Near-10 dB suppression inside the band condition 3"
+                      },
+                      {
+                        "value": {
+                          "csv": "results/array_ms/rcs_reduction.csv",
+                          "col": "frequency_GHz",
+                          "agg": "count",
+                          "range": {
+                            "frequency_GHz": [
+                              5.65,
+                              6.7
+                            ]
+                          }
+                        },
+                        "eq": 22,
+                        "tol": 0,
+                        "label": "Near-10 dB suppression inside the band condition 4"
+                      },
+                      {
+                        "value": {
+                          "csv": "results/array_ms/rcs_reduction.csv",
+                          "col": "reduction_y_dB",
+                          "agg": "max",
+                          "range": {
+                            "frequency_GHz": [
+                              5.65,
+                              6.7
+                            ]
+                          }
+                        },
+                        "le": -9,
+                        "label": "Near-10 dB suppression inside the band condition 5"
+                      },
+                      {
+                        "value": {
+                          "div": [
+                            {
+                              "csv": "results/array_ms/rcs_reduction.csv",
+                              "col": "frequency_GHz",
+                              "agg": "count",
+                              "range": {
+                                "frequency_GHz": [
+                                  5.65,
+                                  6.7
+                                ],
+                                "reduction_y_dB": [
+                                  null,
+                                  -10
+                                ]
+                              }
+                            },
+                            {
+                              "csv": "results/array_ms/rcs_reduction.csv",
+                              "col": "frequency_GHz",
+                              "agg": "count",
+                              "range": {
+                                "frequency_GHz": [
+                                  5.65,
+                                  6.7
+                                ]
+                              }
+                            }
+                          ]
+                        },
+                        "ge": 0.8,
+                        "label": "Near-10 dB suppression inside the band condition 6"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "id": "C4_6",
+              "title": "Peak RCS-reduction depths (Fig. 10a simulated)",
+              "description": "Require the x reduction minimum in [-20.3,-14.3] dB at a frequency in [5.60,6.10] GHz, and the y minimum in [-17.2,-11.2] dB. The nearest native-derived x sample must agree with the reported minimum within 0.3 dB. Both scattered-power spectra must use the same total-RCS normalization. Recompute from the required native evidence under the public definitions. A correctly reported mismatch, absent feature or unresolved model convention does not satisfy this result requirement. Method/evidence credit must remain separate; do not waive the numerical or morphology conditions, fit corrections, or substitute reference arrays.",
+              "task_category": "Validation",
+              "weight": 12,
+              "evidence_inputs": [
+                {
+                  "path": "submission/results/array_ms/summary.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/array_ms/rcs_reduction.csv",
+                  "kind": "csv"
+                },
+                {
+                  "path": "papers/02-anisotropic-coding-diffusion-metasurface/judge/refs/array_ms/rcs_reduction_x_fig5fig10a.csv",
+                  "kind": "csv"
+                },
+                {
+                  "path": "papers/02-anisotropic-coding-diffusion-metasurface/judge/refs/array_ms/rcs_reduction_y_fig5fig10a.csv",
+                  "kind": "csv"
+                },
+                {
+                  "path": "submission/README.md",
+                  "kind": "text"
+                }
+              ],
+              "check": {
+                "tier": 1,
+                "mode": "full",
+                "all": [
+                  {
+                    "value": {
+                      "json": "results/array_ms/summary.json",
+                      "path": "reduction_x_min_dB"
+                    },
+                    "in": [
+                      -20.3,
+                      -14.3
+                    ],
+                    "label": "Peak RCS-reduction depths (Fig. 10a simulated) condition 1"
+                  },
+                  {
+                    "value": {
+                      "json": "results/array_ms/summary.json",
+                      "path": "f_reduction_x_min_GHz"
+                    },
+                    "in": [
+                      5.6,
+                      6.1
+                    ],
+                    "label": "Peak RCS-reduction depths (Fig. 10a simulated) condition 2"
+                  },
+                  {
+                    "value": {
+                      "json": "results/array_ms/summary.json",
+                      "path": "reduction_y_min_dB"
+                    },
+                    "in": [
+                      -17.2,
+                      -11.2
+                    ],
+                    "label": "Peak RCS-reduction depths (Fig. 10a simulated) condition 3"
+                  },
+                  {
+                    "value": {
+                      "abs": {
+                        "sub": [
+                          {
+                            "csv": "results/array_ms/rcs_reduction.csv",
+                            "where": {
+                              "frequency_GHz": {
+                                "nearest": {
+                                  "json": "results/array_ms/summary.json",
+                                  "path": "f_reduction_x_min_GHz"
+                                }
+                              }
+                            },
+                            "col": "reduction_x_dB"
+                          },
+                          {
+                            "json": "results/array_ms/summary.json",
+                            "path": "reduction_x_min_dB"
+                          }
+                        ]
+                      }
+                    },
+                    "le": 0.3,
+                    "label": "Peak RCS-reduction depths (Fig. 10a simulated) condition 4"
+                  }
+                ]
+              }
+            },
+            {
+              "id": "C4_7",
+              "title": "Surface-current maps visual (Fig. 6a/b)",
+              "description": "Require native surface-current maps at the specified Figure 6 conditions. The metasurface must show nonuniform strong/weak 40-mm coding-lattice blocks; the metallic reference must show the reported low-amplitude, non-blocked pattern. Retain the paper comparison color range and underlying native values. Missing maps or contradictory morphology do not establish reproduction; do not rescale independently to fabricate agreement. Recompute from the required native evidence under the public definitions. A correctly reported mismatch, absent feature or unresolved model convention does not satisfy this result requirement. Method/evidence credit must remain separate; do not waive the numerical or morphology conditions, fit corrections, or substitute reference arrays.",
+              "task_category": "Validation",
+              "weight": 8,
+              "evidence_inputs": [
+                {
+                  "path": "submission/results/array_ms/current_fig6.png",
+                  "kind": "image"
+                },
+                {
+                  "path": "submission/results/array_pec/current_fig6.png",
+                  "kind": "image"
+                },
+                {
+                  "path": "papers/02-anisotropic-coding-diffusion-metasurface/judge/refs/array_ms/current_fig6a.png",
+                  "kind": "image"
+                },
+                {
+                  "path": "papers/02-anisotropic-coding-diffusion-metasurface/judge/refs/array_pec/current_fig6b.png",
+                  "kind": "image"
+                },
+                {
+                  "path": "submission/results/array_ms/raw/MANIFEST.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/array_ms/meta.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/array_ms/run.log",
+                  "kind": "log"
+                },
+                {
+                  "path": "submission/src/",
+                  "kind": "source"
+                },
+                {
+                  "path": "submission/results/array_pec/raw/MANIFEST.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/array_pec/meta.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/array_pec/run.log",
+                  "kind": "log"
+                },
+                {
+                  "path": "submission/results/array_ms/summary.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/array_pec/summary.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/README.md",
+                  "kind": "text"
+                }
+              ]
+            },
+            {
+              "id": "C4_8",
+              "title": "3D far-field scattering patterns visual (Fig. 6e/f)",
+              "description": "Require native three-dimensional scattered-power patterns at the specified Figure 6 conditions. The metallic reference must have a dominant normal pencil beam; the metasurface must redistribute scattering into multiple comparable lobes without that dominant beam and with a lower peak. Use the specified common dBsm scale and native total-RCS definition. Missing patterns or contradictory morphology do not establish reproduction. Recompute from the required native evidence under the public definitions. A correctly reported mismatch, absent feature or unresolved model convention does not satisfy this result requirement. Method/evidence credit must remain separate; do not waive the numerical or morphology conditions, fit corrections, or substitute reference arrays.",
+              "task_category": "Validation",
+              "weight": 10,
+              "evidence_inputs": [
+                {
+                  "path": "submission/results/array_ms/farfield3d_fig6.png",
+                  "kind": "image"
+                },
+                {
+                  "path": "submission/results/array_pec/farfield3d_fig6.png",
+                  "kind": "image"
+                },
+                {
+                  "path": "papers/02-anisotropic-coding-diffusion-metasurface/judge/refs/array_ms/farfield3d_fig6e.png",
+                  "kind": "image"
+                },
+                {
+                  "path": "papers/02-anisotropic-coding-diffusion-metasurface/judge/refs/array_pec/farfield3d_fig6f.png",
+                  "kind": "image"
+                },
+                {
+                  "path": "submission/results/array_ms/raw/MANIFEST.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/array_ms/meta.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/array_ms/run.log",
+                  "kind": "log"
+                },
+                {
+                  "path": "submission/src/",
+                  "kind": "source"
+                },
+                {
+                  "path": "submission/results/array_pec/raw/MANIFEST.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/array_pec/meta.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/array_pec/run.log",
+                  "kind": "log"
+                },
+                {
+                  "path": "submission/results/array_ms/summary.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/array_pec/summary.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/README.md",
+                  "kind": "text"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "C_INV",
+          "title": "Physical invariants and submission self-consistency",
+          "description": "Physical and internal-consistency checks use only the submission, not paper reference curves. They evaluate whether the data form a genuine, converged and self-consistent electromagnetic result, independently of whether the other result criteria reproduce the paper. Copying digitized paper curves does not establish these invariants; unresolved convergence or insufficient numerical resolution may violate them.",
+          "task_category": null,
+          "weight": 12,
+          "sub_tasks": [
+            {
+              "id": "C_INV_1",
+              "title": "Submission grids and aggregate consistency",
+              "description": "Validate complete public CSV grids, unique rows, within-group ordering and finite values. Equivalent numeric spelling alone is not a failure. Recompute CSV-derived summaries using the public rules for tied extrema, connected components, endpoint truncation and null/status values. Nominal inputs need not derive from raw responses. Defined N/A states need no redundant README explanation; report execution failures in run_summary. Identify each reported/recomputed discrepancy. A format or summary error does not automatically invalidate unrelated CSV-only scientific criteria.",
+              "task_category": "Validation",
+              "weight": 30,
+              "evidence_inputs": [
+                {
+                  "path": "submission/results/unit_normal/reflection.csv",
+                  "kind": "csv"
+                },
+                {
+                  "path": "submission/results/unit_normal/summary.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/unit_tm15/phase_diff.csv",
+                  "kind": "csv"
+                },
+                {
+                  "path": "submission/results/unit_tm15/summary.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/unit_tm30/phase_diff.csv",
+                  "kind": "csv"
+                },
+                {
+                  "path": "submission/results/unit_tm30/summary.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/unit_tm45/phase_diff.csv",
+                  "kind": "csv"
+                },
+                {
+                  "path": "submission/results/unit_tm45/summary.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/array_ms/rcs_normal.csv",
+                  "kind": "csv"
+                },
+                {
+                  "path": "submission/results/array_ms/rcs_reduction.csv",
+                  "kind": "csv"
+                },
+                {
+                  "path": "submission/results/array_ms/summary.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/array_pec/rcs_normal.csv",
+                  "kind": "csv"
+                },
+                {
+                  "path": "submission/results/array_pec/summary.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/af_patterns/af_summary.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/af_patterns/coding_matrices.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/run_summary.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/README.md",
+                  "kind": "text"
+                }
+              ],
+              "check": {
+                "tier": 0,
+                "mode": "fail_only",
+                "all": [
+                  {
+                    "value": {
+                      "csv": "results/unit_normal/reflection.csv",
+                      "col": "frequency_GHz",
+                      "agg": "count"
+                    },
+                    "eq": 81,
+                    "tol": 0
+                  },
+                  {
+                    "value": {
+                      "csv": "results/unit_normal/reflection.csv",
+                      "col": "frequency_GHz",
+                      "agg": "n_unique"
+                    },
+                    "eq": 81,
+                    "tol": 0
+                  },
+                  {
+                    "value": {
+                      "csv": "results/unit_normal/reflection.csv",
+                      "col": "frequency_GHz",
+                      "agg": "min"
+                    },
+                    "eq": 4,
+                    "tol": 1e-08
+                  },
+                  {
+                    "value": {
+                      "csv": "results/unit_normal/reflection.csv",
+                      "col": "frequency_GHz",
+                      "agg": "max"
+                    },
+                    "eq": 8,
+                    "tol": 1e-08
+                  },
+                  {
+                    "value": {
+                      "csv": "results/unit_normal/reflection.csv",
+                      "col": "frequency_GHz",
+                      "agg": "n_nonincreasing"
+                    },
+                    "eq": 0,
+                    "tol": 0
+                  },
+                  {
+                    "value": {
+                      "csv": "results/unit_normal/reflection.csv",
+                      "col": "frequency_GHz",
+                      "agg": "n_offgrid",
+                      "step": 0.05
+                    },
+                    "eq": 0,
+                    "tol": 0
+                  },
+                  {
+                    "value": {
+                      "csv": "results/unit_tm15/phase_diff.csv",
+                      "col": "frequency_GHz",
+                      "agg": "count"
+                    },
+                    "eq": 81,
+                    "tol": 0
+                  },
+                  {
+                    "value": {
+                      "csv": "results/unit_tm15/phase_diff.csv",
+                      "col": "frequency_GHz",
+                      "agg": "n_unique"
+                    },
+                    "eq": 81,
+                    "tol": 0
+                  },
+                  {
+                    "value": {
+                      "csv": "results/unit_tm15/phase_diff.csv",
+                      "col": "frequency_GHz",
+                      "agg": "min"
+                    },
+                    "eq": 4,
+                    "tol": 1e-08
+                  },
+                  {
+                    "value": {
+                      "csv": "results/unit_tm15/phase_diff.csv",
+                      "col": "frequency_GHz",
+                      "agg": "max"
+                    },
+                    "eq": 8,
+                    "tol": 1e-08
+                  },
+                  {
+                    "value": {
+                      "csv": "results/unit_tm15/phase_diff.csv",
+                      "col": "frequency_GHz",
+                      "agg": "n_nonincreasing"
+                    },
+                    "eq": 0,
+                    "tol": 0
+                  },
+                  {
+                    "value": {
+                      "csv": "results/unit_tm15/phase_diff.csv",
+                      "col": "frequency_GHz",
+                      "agg": "n_offgrid",
+                      "step": 0.05
+                    },
+                    "eq": 0,
+                    "tol": 0
+                  },
+                  {
+                    "value": {
+                      "csv": "results/unit_tm30/phase_diff.csv",
+                      "col": "frequency_GHz",
+                      "agg": "count"
+                    },
+                    "eq": 81,
+                    "tol": 0
+                  },
+                  {
+                    "value": {
+                      "csv": "results/unit_tm30/phase_diff.csv",
+                      "col": "frequency_GHz",
+                      "agg": "n_unique"
+                    },
+                    "eq": 81,
+                    "tol": 0
+                  },
+                  {
+                    "value": {
+                      "csv": "results/unit_tm30/phase_diff.csv",
+                      "col": "frequency_GHz",
+                      "agg": "min"
+                    },
+                    "eq": 4,
+                    "tol": 1e-08
+                  },
+                  {
+                    "value": {
+                      "csv": "results/unit_tm30/phase_diff.csv",
+                      "col": "frequency_GHz",
+                      "agg": "max"
+                    },
+                    "eq": 8,
+                    "tol": 1e-08
+                  },
+                  {
+                    "value": {
+                      "csv": "results/unit_tm30/phase_diff.csv",
+                      "col": "frequency_GHz",
+                      "agg": "n_nonincreasing"
+                    },
+                    "eq": 0,
+                    "tol": 0
+                  },
+                  {
+                    "value": {
+                      "csv": "results/unit_tm30/phase_diff.csv",
+                      "col": "frequency_GHz",
+                      "agg": "n_offgrid",
+                      "step": 0.05
+                    },
+                    "eq": 0,
+                    "tol": 0
+                  },
+                  {
+                    "value": {
+                      "csv": "results/unit_tm45/phase_diff.csv",
+                      "col": "frequency_GHz",
+                      "agg": "count"
+                    },
+                    "eq": 81,
+                    "tol": 0
+                  },
+                  {
+                    "value": {
+                      "csv": "results/unit_tm45/phase_diff.csv",
+                      "col": "frequency_GHz",
+                      "agg": "n_unique"
+                    },
+                    "eq": 81,
+                    "tol": 0
+                  },
+                  {
+                    "value": {
+                      "csv": "results/unit_tm45/phase_diff.csv",
+                      "col": "frequency_GHz",
+                      "agg": "min"
+                    },
+                    "eq": 4,
+                    "tol": 1e-08
+                  },
+                  {
+                    "value": {
+                      "csv": "results/unit_tm45/phase_diff.csv",
+                      "col": "frequency_GHz",
+                      "agg": "max"
+                    },
+                    "eq": 8,
+                    "tol": 1e-08
+                  },
+                  {
+                    "value": {
+                      "csv": "results/unit_tm45/phase_diff.csv",
+                      "col": "frequency_GHz",
+                      "agg": "n_nonincreasing"
+                    },
+                    "eq": 0,
+                    "tol": 0
+                  },
+                  {
+                    "value": {
+                      "csv": "results/unit_tm45/phase_diff.csv",
+                      "col": "frequency_GHz",
+                      "agg": "n_offgrid",
+                      "step": 0.05
+                    },
+                    "eq": 0,
+                    "tol": 0
+                  },
+                  {
+                    "value": {
+                      "csv": "results/array_ms/rcs_normal.csv",
+                      "col": "frequency_GHz",
+                      "agg": "count"
+                    },
+                    "eq": 81,
+                    "tol": 0
+                  },
+                  {
+                    "value": {
+                      "csv": "results/array_ms/rcs_normal.csv",
+                      "col": "frequency_GHz",
+                      "agg": "n_unique"
+                    },
+                    "eq": 81,
+                    "tol": 0
+                  },
+                  {
+                    "value": {
+                      "csv": "results/array_ms/rcs_normal.csv",
+                      "col": "frequency_GHz",
+                      "agg": "min"
+                    },
+                    "eq": 4,
+                    "tol": 1e-08
+                  },
+                  {
+                    "value": {
+                      "csv": "results/array_ms/rcs_normal.csv",
+                      "col": "frequency_GHz",
+                      "agg": "max"
+                    },
+                    "eq": 8,
+                    "tol": 1e-08
+                  },
+                  {
+                    "value": {
+                      "csv": "results/array_ms/rcs_normal.csv",
+                      "col": "frequency_GHz",
+                      "agg": "n_nonincreasing"
+                    },
+                    "eq": 0,
+                    "tol": 0
+                  },
+                  {
+                    "value": {
+                      "csv": "results/array_ms/rcs_normal.csv",
+                      "col": "frequency_GHz",
+                      "agg": "n_offgrid",
+                      "step": 0.05
+                    },
+                    "eq": 0,
+                    "tol": 0
+                  },
+                  {
+                    "value": {
+                      "csv": "results/array_ms/rcs_reduction.csv",
+                      "col": "frequency_GHz",
+                      "agg": "count"
+                    },
+                    "eq": 81,
+                    "tol": 0
+                  },
+                  {
+                    "value": {
+                      "csv": "results/array_ms/rcs_reduction.csv",
+                      "col": "frequency_GHz",
+                      "agg": "n_unique"
+                    },
+                    "eq": 81,
+                    "tol": 0
+                  },
+                  {
+                    "value": {
+                      "csv": "results/array_ms/rcs_reduction.csv",
+                      "col": "frequency_GHz",
+                      "agg": "min"
+                    },
+                    "eq": 4,
+                    "tol": 1e-08
+                  },
+                  {
+                    "value": {
+                      "csv": "results/array_ms/rcs_reduction.csv",
+                      "col": "frequency_GHz",
+                      "agg": "max"
+                    },
+                    "eq": 8,
+                    "tol": 1e-08
+                  },
+                  {
+                    "value": {
+                      "csv": "results/array_ms/rcs_reduction.csv",
+                      "col": "frequency_GHz",
+                      "agg": "n_nonincreasing"
+                    },
+                    "eq": 0,
+                    "tol": 0
+                  },
+                  {
+                    "value": {
+                      "csv": "results/array_ms/rcs_reduction.csv",
+                      "col": "frequency_GHz",
+                      "agg": "n_offgrid",
+                      "step": 0.05
+                    },
+                    "eq": 0,
+                    "tol": 0
+                  },
+                  {
+                    "value": {
+                      "csv": "results/array_pec/rcs_normal.csv",
+                      "col": "frequency_GHz",
+                      "agg": "count"
+                    },
+                    "eq": 81,
+                    "tol": 0
+                  },
+                  {
+                    "value": {
+                      "csv": "results/array_pec/rcs_normal.csv",
+                      "col": "frequency_GHz",
+                      "agg": "n_unique"
+                    },
+                    "eq": 81,
+                    "tol": 0
+                  },
+                  {
+                    "value": {
+                      "csv": "results/array_pec/rcs_normal.csv",
+                      "col": "frequency_GHz",
+                      "agg": "min"
+                    },
+                    "eq": 4,
+                    "tol": 1e-08
+                  },
+                  {
+                    "value": {
+                      "csv": "results/array_pec/rcs_normal.csv",
+                      "col": "frequency_GHz",
+                      "agg": "max"
+                    },
+                    "eq": 8,
+                    "tol": 1e-08
+                  },
+                  {
+                    "value": {
+                      "csv": "results/array_pec/rcs_normal.csv",
+                      "col": "frequency_GHz",
+                      "agg": "n_nonincreasing"
+                    },
+                    "eq": 0,
+                    "tol": 0
+                  },
+                  {
+                    "value": {
+                      "csv": "results/array_pec/rcs_normal.csv",
+                      "col": "frequency_GHz",
+                      "agg": "n_offgrid",
+                      "step": 0.05
+                    },
+                    "eq": 0,
+                    "tol": 0
+                  }
+                ],
+                "manual": "The mechanical check covers the public grid. Then recompute every summary, connected component, tied extremum and null/status according to Output Schemas; inspect nominal inputs and resolvable references. Allowed no-passband, N/A and truncated states are not schema errors. Where AF exists, independently verify its matrices, fixed-grid arrays and summaries."
+              }
+            },
+            {
+              "id": "C_INV_2",
+              "title": "Passivity and valid physical domains",
+              "description": "Response magnitudes satisfy passive upper bounds and all responses are finite. Individual phases are in (-180,180] and directed differences in [0,360). A modulo-360 branch jump alone is not an error. Verify every row against the two complex reflections with circular error <=0.001 degree; do not use an absolute difference or change 205 to155 degrees. AF is unnormalized amplitude, not a quantity bounded by one.",
+              "task_category": "Validation",
+              "weight": 25,
+              "evidence_inputs": [
+                {
+                  "path": "submission/results/unit_normal/reflection.csv",
+                  "kind": "csv"
+                },
+                {
+                  "path": "submission/results/unit_normal/summary.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/unit_tm15/phase_diff.csv",
+                  "kind": "csv"
+                },
+                {
+                  "path": "submission/results/unit_tm15/summary.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/unit_tm30/phase_diff.csv",
+                  "kind": "csv"
+                },
+                {
+                  "path": "submission/results/unit_tm30/summary.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/unit_tm45/phase_diff.csv",
+                  "kind": "csv"
+                },
+                {
+                  "path": "submission/results/unit_tm45/summary.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/array_ms/rcs_normal.csv",
+                  "kind": "csv"
+                },
+                {
+                  "path": "submission/results/array_ms/rcs_reduction.csv",
+                  "kind": "csv"
+                },
+                {
+                  "path": "submission/results/array_ms/summary.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/array_pec/rcs_normal.csv",
+                  "kind": "csv"
+                },
+                {
+                  "path": "submission/results/array_pec/summary.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/af_patterns/af_summary.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/af_patterns/coding_matrices.json",
+                  "kind": "json"
+                }
+              ],
+              "check": {
+                "tier": 0,
+                "mode": "fail_only",
+                "manual": "Response magnitudes satisfy passive upper bounds and all responses are finite. Individual phases are in (-180,180] and directed differences in [0,360). A modulo-360 branch jump alone is not an error. Verify every row against the two complex reflections with circular error <=0.001 degree; do not use an absolute difference or change 205 to155 degrees. AF is unnormalized amplitude, not a quantity bounded by one.",
+                "all": [
+                  {
+                    "value": {
+                      "csv": "results/unit_normal/reflection.csv",
+                      "col": "mag_x",
+                      "agg": "max"
+                    },
+                    "le": 1.005,
+                    "label": "mag_x ≤ 1.005"
+                  },
+                  {
+                    "value": {
+                      "csv": "results/unit_normal/reflection.csv",
+                      "col": "mag_x",
+                      "agg": "min"
+                    },
+                    "ge": -1e-06,
+                    "label": "mag_x ≥ 0"
+                  },
+                  {
+                    "value": {
+                      "csv": "results/unit_normal/reflection.csv",
+                      "col": "mag_y",
+                      "agg": "max"
+                    },
+                    "le": 1.005,
+                    "label": "mag_y ≤ 1.005"
+                  },
+                  {
+                    "value": {
+                      "csv": "results/unit_normal/reflection.csv",
+                      "col": "mag_y",
+                      "agg": "min"
+                    },
+                    "ge": -1e-06,
+                    "label": "mag_y ≥ 0"
+                  },
+                  {
+                    "value": {
+                      "csv": "results/unit_normal/reflection.csv",
+                      "col": "phase_x_deg",
+                      "agg": "max"
+                    },
+                    "le": 180.001,
+                    "label": "phase_x_deg ≤ 180"
+                  },
+                  {
+                    "value": {
+                      "csv": "results/unit_normal/reflection.csv",
+                      "col": "phase_x_deg",
+                      "agg": "min"
+                    },
+                    "ge": -180.001,
+                    "label": "phase_x_deg ≥ −180"
+                  },
+                  {
+                    "value": {
+                      "csv": "results/unit_normal/reflection.csv",
+                      "col": "phase_y_deg",
+                      "agg": "max"
+                    },
+                    "le": 180.001,
+                    "label": "phase_y_deg ≤ 180"
+                  },
+                  {
+                    "value": {
+                      "csv": "results/unit_normal/reflection.csv",
+                      "col": "phase_y_deg",
+                      "agg": "min"
+                    },
+                    "ge": -180.001,
+                    "label": "phase_y_deg ≥ −180"
+                  },
+                  {
+                    "value": {
+                      "csv": "results/unit_normal/reflection.csv",
+                      "col": "phase_diff_deg",
+                      "agg": "max"
+                    },
+                    "le": 360.001,
+                    "label": "reflection phase_diff ≤ 360"
+                  },
+                  {
+                    "value": {
+                      "csv": "results/unit_normal/reflection.csv",
+                      "col": "phase_diff_deg",
+                      "agg": "min"
+                    },
+                    "ge": -0.001,
+                    "label": "reflection phase_diff ≥ 0"
+                  },
+                  {
+                    "forall": {
+                      "over": [
+                        "unit_tm15",
+                        "unit_tm30",
+                        "unit_tm45"
+                      ],
+                      "as": "V",
+                      "all": [
+                        {
+                          "value": {
+                            "csv": "results/{V}/phase_diff.csv",
+                            "col": "phase_diff_deg",
+                            "agg": "max"
+                          },
+                          "le": 360.001,
+                          "label": "{V} phase_diff ≤ 360"
+                        },
+                        {
+                          "value": {
+                            "csv": "results/{V}/phase_diff.csv",
+                            "col": "phase_diff_deg",
+                            "agg": "min"
+                          },
+                          "ge": -0.001,
+                          "label": "{V} phase_diff ≥ 0"
+                        },
+                        {
+                          "value": {
+                            "csv": "results/{V}/phase_diff.csv",
+                            "col": "frequency_GHz",
+                            "agg": "maxabs"
+                          },
+                          "finite": true,
+                          "label": "{V} frequency_GHz is finite"
+                        },
+                        {
+                          "value": {
+                            "csv": "results/{V}/phase_diff.csv",
+                            "col": "phase_element1_deg",
+                            "agg": "maxabs"
+                          },
+                          "finite": true,
+                          "label": "{V} phase_element1_deg is finite"
+                        },
+                        {
+                          "value": {
+                            "csv": "results/{V}/phase_diff.csv",
+                            "col": "phase_element0_deg",
+                            "agg": "maxabs"
+                          },
+                          "finite": true,
+                          "label": "{V} phase_element0_deg is finite"
+                        },
+                        {
+                          "value": {
+                            "csv": "results/{V}/phase_diff.csv",
+                            "col": "phase_diff_deg",
+                            "agg": "maxabs"
+                          },
+                          "finite": true,
+                          "label": "{V} phase_diff_deg is finite"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "value": {
+                      "csv": "results/unit_normal/reflection.csv",
+                      "col": "frequency_GHz",
+                      "agg": "maxabs"
+                    },
+                    "finite": true,
+                    "label": "reflection frequency_GHz is finite"
+                  },
+                  {
+                    "value": {
+                      "csv": "results/unit_normal/reflection.csv",
+                      "col": "mag_x",
+                      "agg": "maxabs"
+                    },
+                    "finite": true,
+                    "label": "reflection mag_x is finite"
+                  },
+                  {
+                    "value": {
+                      "csv": "results/unit_normal/reflection.csv",
+                      "col": "phase_x_deg",
+                      "agg": "maxabs"
+                    },
+                    "finite": true,
+                    "label": "reflection phase_x_deg is finite"
+                  },
+                  {
+                    "value": {
+                      "csv": "results/unit_normal/reflection.csv",
+                      "col": "mag_y",
+                      "agg": "maxabs"
+                    },
+                    "finite": true,
+                    "label": "reflection mag_y is finite"
+                  },
+                  {
+                    "value": {
+                      "csv": "results/unit_normal/reflection.csv",
+                      "col": "phase_y_deg",
+                      "agg": "maxabs"
+                    },
+                    "finite": true,
+                    "label": "reflection phase_y_deg is finite"
+                  },
+                  {
+                    "value": {
+                      "csv": "results/unit_normal/reflection.csv",
+                      "col": "phase_diff_deg",
+                      "agg": "maxabs"
+                    },
+                    "finite": true,
+                    "label": "reflection phase_diff_deg is finite"
+                  },
+                  {
+                    "value": {
+                      "csv": "results/array_ms/rcs_normal.csv",
+                      "col": "frequency_GHz",
+                      "agg": "maxabs"
+                    },
+                    "finite": true,
+                    "label": "array_ms rcs_normal frequency_GHz is finite"
+                  },
+                  {
+                    "value": {
+                      "csv": "results/array_ms/rcs_normal.csv",
+                      "col": "rcs_x_dBsm",
+                      "agg": "maxabs"
+                    },
+                    "finite": true,
+                    "label": "array_ms rcs_normal rcs_x_dBsm is finite"
+                  },
+                  {
+                    "value": {
+                      "csv": "results/array_ms/rcs_normal.csv",
+                      "col": "rcs_y_dBsm",
+                      "agg": "maxabs"
+                    },
+                    "finite": true,
+                    "label": "array_ms rcs_normal rcs_y_dBsm is finite"
+                  },
+                  {
+                    "value": {
+                      "csv": "results/array_ms/rcs_reduction.csv",
+                      "col": "frequency_GHz",
+                      "agg": "maxabs"
+                    },
+                    "finite": true,
+                    "label": "rcs_reduction frequency_GHz is finite"
+                  },
+                  {
+                    "value": {
+                      "csv": "results/array_ms/rcs_reduction.csv",
+                      "col": "reduction_x_dB",
+                      "agg": "maxabs"
+                    },
+                    "finite": true,
+                    "label": "rcs_reduction reduction_x_dB is finite"
+                  },
+                  {
+                    "value": {
+                      "csv": "results/array_ms/rcs_reduction.csv",
+                      "col": "reduction_y_dB",
+                      "agg": "maxabs"
+                    },
+                    "finite": true,
+                    "label": "rcs_reduction reduction_y_dB is finite"
+                  },
+                  {
+                    "value": {
+                      "csv": "results/array_pec/rcs_normal.csv",
+                      "col": "frequency_GHz",
+                      "agg": "maxabs"
+                    },
+                    "finite": true,
+                    "label": "array_pec frequency_GHz is finite"
+                  },
+                  {
+                    "value": {
+                      "csv": "results/array_pec/rcs_normal.csv",
+                      "col": "rcs_dBsm",
+                      "agg": "maxabs"
+                    },
+                    "finite": true,
+                    "label": "array_pec rcs_dBsm is finite"
+                  },
+                  {
+                    "value": {
+                      "csv": "results/unit_normal/reflection.csv",
+                      "colexpr": "min(abs(phase_diff_deg-phase_y_deg+phase_x_deg+(-720)),abs(phase_diff_deg-phase_y_deg+phase_x_deg+(-360)),abs(phase_diff_deg-phase_y_deg+phase_x_deg+(0)),abs(phase_diff_deg-phase_y_deg+phase_x_deg+(360)),abs(phase_diff_deg-phase_y_deg+phase_x_deg+(720)))",
+                      "agg": "max"
+                    },
+                    "le": 0.001
+                  },
+                  {
+                    "value": {
+                      "csv": "results/unit_normal/reflection.csv",
+                      "col": "phase_diff_deg",
+                      "agg": "min"
+                    },
+                    "ge": 0
+                  },
+                  {
+                    "value": {
+                      "csv": "results/unit_normal/reflection.csv",
+                      "col": "phase_diff_deg",
+                      "agg": "max"
+                    },
+                    "lt": 360
+                  },
+                  {
+                    "value": {
+                      "csv": "results/unit_normal/reflection.csv",
+                      "col": "phase_x_deg",
+                      "agg": "min"
+                    },
+                    "gt": -180
+                  },
+                  {
+                    "value": {
+                      "csv": "results/unit_normal/reflection.csv",
+                      "col": "phase_x_deg",
+                      "agg": "max"
+                    },
+                    "le": 180
+                  },
+                  {
+                    "value": {
+                      "csv": "results/unit_normal/reflection.csv",
+                      "col": "phase_y_deg",
+                      "agg": "min"
+                    },
+                    "gt": -180
+                  },
+                  {
+                    "value": {
+                      "csv": "results/unit_normal/reflection.csv",
+                      "col": "phase_y_deg",
+                      "agg": "max"
+                    },
+                    "le": 180
+                  },
+                  {
+                    "value": {
+                      "csv": "results/unit_tm15/phase_diff.csv",
+                      "agg": "max",
+                      "colexpr": "min(abs(phase_diff_deg-phase_element0_deg+phase_element1_deg+(-720)),abs(phase_diff_deg-phase_element0_deg+phase_element1_deg+(-360)),abs(phase_diff_deg-phase_element0_deg+phase_element1_deg+(0)),abs(phase_diff_deg-phase_element0_deg+phase_element1_deg+(360)),abs(phase_diff_deg-phase_element0_deg+phase_element1_deg+(720)))"
+                    },
+                    "le": 0.001
+                  },
+                  {
+                    "value": {
+                      "csv": "results/unit_tm15/phase_diff.csv",
+                      "col": "phase_diff_deg",
+                      "agg": "min"
+                    },
+                    "ge": 0
+                  },
+                  {
+                    "value": {
+                      "csv": "results/unit_tm15/phase_diff.csv",
+                      "col": "phase_diff_deg",
+                      "agg": "max"
+                    },
+                    "lt": 360
+                  },
+                  {
+                    "value": {
+                      "csv": "results/unit_tm15/phase_diff.csv",
+                      "col": "phase_element0_deg",
+                      "agg": "min"
+                    },
+                    "gt": -180
+                  },
+                  {
+                    "value": {
+                      "csv": "results/unit_tm15/phase_diff.csv",
+                      "col": "phase_element0_deg",
+                      "agg": "max"
+                    },
+                    "le": 180
+                  },
+                  {
+                    "value": {
+                      "csv": "results/unit_tm15/phase_diff.csv",
+                      "col": "phase_element1_deg",
+                      "agg": "min"
+                    },
+                    "gt": -180
+                  },
+                  {
+                    "value": {
+                      "csv": "results/unit_tm15/phase_diff.csv",
+                      "col": "phase_element1_deg",
+                      "agg": "max"
+                    },
+                    "le": 180
+                  },
+                  {
+                    "value": {
+                      "csv": "results/unit_tm30/phase_diff.csv",
+                      "agg": "max",
+                      "colexpr": "min(abs(phase_diff_deg-phase_element0_deg+phase_element1_deg+(-720)),abs(phase_diff_deg-phase_element0_deg+phase_element1_deg+(-360)),abs(phase_diff_deg-phase_element0_deg+phase_element1_deg+(0)),abs(phase_diff_deg-phase_element0_deg+phase_element1_deg+(360)),abs(phase_diff_deg-phase_element0_deg+phase_element1_deg+(720)))"
+                    },
+                    "le": 0.001
+                  },
+                  {
+                    "value": {
+                      "csv": "results/unit_tm30/phase_diff.csv",
+                      "col": "phase_diff_deg",
+                      "agg": "min"
+                    },
+                    "ge": 0
+                  },
+                  {
+                    "value": {
+                      "csv": "results/unit_tm30/phase_diff.csv",
+                      "col": "phase_diff_deg",
+                      "agg": "max"
+                    },
+                    "lt": 360
+                  },
+                  {
+                    "value": {
+                      "csv": "results/unit_tm30/phase_diff.csv",
+                      "col": "phase_element0_deg",
+                      "agg": "min"
+                    },
+                    "gt": -180
+                  },
+                  {
+                    "value": {
+                      "csv": "results/unit_tm30/phase_diff.csv",
+                      "col": "phase_element0_deg",
+                      "agg": "max"
+                    },
+                    "le": 180
+                  },
+                  {
+                    "value": {
+                      "csv": "results/unit_tm30/phase_diff.csv",
+                      "col": "phase_element1_deg",
+                      "agg": "min"
+                    },
+                    "gt": -180
+                  },
+                  {
+                    "value": {
+                      "csv": "results/unit_tm30/phase_diff.csv",
+                      "col": "phase_element1_deg",
+                      "agg": "max"
+                    },
+                    "le": 180
+                  },
+                  {
+                    "value": {
+                      "csv": "results/unit_tm45/phase_diff.csv",
+                      "agg": "max",
+                      "colexpr": "min(abs(phase_diff_deg-phase_element0_deg+phase_element1_deg+(-720)),abs(phase_diff_deg-phase_element0_deg+phase_element1_deg+(-360)),abs(phase_diff_deg-phase_element0_deg+phase_element1_deg+(0)),abs(phase_diff_deg-phase_element0_deg+phase_element1_deg+(360)),abs(phase_diff_deg-phase_element0_deg+phase_element1_deg+(720)))"
+                    },
+                    "le": 0.001
+                  },
+                  {
+                    "value": {
+                      "csv": "results/unit_tm45/phase_diff.csv",
+                      "col": "phase_diff_deg",
+                      "agg": "min"
+                    },
+                    "ge": 0
+                  },
+                  {
+                    "value": {
+                      "csv": "results/unit_tm45/phase_diff.csv",
+                      "col": "phase_diff_deg",
+                      "agg": "max"
+                    },
+                    "lt": 360
+                  },
+                  {
+                    "value": {
+                      "csv": "results/unit_tm45/phase_diff.csv",
+                      "col": "phase_element0_deg",
+                      "agg": "min"
+                    },
+                    "gt": -180
+                  },
+                  {
+                    "value": {
+                      "csv": "results/unit_tm45/phase_diff.csv",
+                      "col": "phase_element0_deg",
+                      "agg": "max"
+                    },
+                    "le": 180
+                  },
+                  {
+                    "value": {
+                      "csv": "results/unit_tm45/phase_diff.csv",
+                      "col": "phase_element1_deg",
+                      "agg": "min"
+                    },
+                    "gt": -180
+                  },
+                  {
+                    "value": {
+                      "csv": "results/unit_tm45/phase_diff.csv",
+                      "col": "phase_element1_deg",
+                      "agg": "max"
+                    },
+                    "le": 180
+                  }
+                ]
+              }
+            },
+            {
+              "id": "C_INV_3",
+              "title": "Agreement with native exports",
+              "description": "Recompute all HFSS manifest hashes and verify response provenance. The derived records cover all numerical responses and their summary statistics. Use the native column/expression mapping to recompute at least five response samples across frequencies and variants. Complex-to-magnitude/phase/dB conversion, units and publicly defined normalization/integration are allowed; frequency or angle coordinates are not response samples. Record native inputs, transformations, recomputed values and errors at the public direct/derived tolerances. Metadata, structure, README and nominal inputs need not derive from raw responses. Native PNG copies may be hash-checked; independently recompute AF from its matrices, fixed grid and Eq. (2). Missing chains, modified native bytes, inconsistent samples or substituted response constants fail.",
+              "task_category": "Validation",
+              "weight": 25,
+              "evidence_inputs": [
+                {
+                  "path": "submission/results/unit_normal/raw/MANIFEST.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/unit_tm15/raw/MANIFEST.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/unit_tm30/raw/MANIFEST.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/unit_tm45/raw/MANIFEST.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/array_ms/raw/MANIFEST.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/array_pec/raw/MANIFEST.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/src/derive.py",
+                  "kind": "source"
+                },
+                {
+                  "path": "submission/results/unit_normal/reflection.csv",
+                  "kind": "csv"
+                },
+                {
+                  "path": "submission/results/unit_normal/summary.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/unit_tm15/phase_diff.csv",
+                  "kind": "csv"
+                },
+                {
+                  "path": "submission/results/unit_tm15/summary.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/unit_tm30/phase_diff.csv",
+                  "kind": "csv"
+                },
+                {
+                  "path": "submission/results/unit_tm30/summary.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/unit_tm45/phase_diff.csv",
+                  "kind": "csv"
+                },
+                {
+                  "path": "submission/results/unit_tm45/summary.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/array_ms/rcs_normal.csv",
+                  "kind": "csv"
+                },
+                {
+                  "path": "submission/results/array_ms/rcs_reduction.csv",
+                  "kind": "csv"
+                },
+                {
+                  "path": "submission/results/array_ms/summary.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/array_pec/rcs_normal.csv",
+                  "kind": "csv"
+                },
+                {
+                  "path": "submission/results/array_pec/summary.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/af_patterns/af_summary.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/af_patterns/coding_matrices.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/unit_normal/raw/",
+                  "kind": "dir"
+                },
+                {
+                  "path": "submission/results/unit_normal/meta.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/unit_tm15/raw/",
+                  "kind": "dir"
+                },
+                {
+                  "path": "submission/results/unit_tm15/meta.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/unit_tm30/raw/",
+                  "kind": "dir"
+                },
+                {
+                  "path": "submission/results/unit_tm30/meta.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/unit_tm45/raw/",
+                  "kind": "dir"
+                },
+                {
+                  "path": "submission/results/unit_tm45/meta.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/array_ms/raw/",
+                  "kind": "dir"
+                },
+                {
+                  "path": "submission/results/array_ms/meta.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/array_pec/raw/",
+                  "kind": "dir"
+                },
+                {
+                  "path": "submission/results/array_pec/meta.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/af_patterns/af_samples.npz",
+                  "kind": "data"
+                },
+                {
+                  "path": "submission/results/af_patterns/meta.json",
+                  "kind": "json"
+                }
+              ]
+            },
+            {
+              "id": "C_INV_4",
+              "title": "Task-specific physical invariants",
+              "description": "For every physical unit-cell solution, inspect native power-normalized reflection matrices. For each required incidence polarization/orientation, fundamental co-plus-cross reflected power is <=1.005. This bounds the exported subset; a few modes do not prove total energy equals one. Map every native mode to the public polarization, scan angle and reference plane. A missing cross export cannot be treated as zero.",
+              "task_category": "Validation",
+              "weight": 20,
+              "evidence_inputs": [
+                {
+                  "path": "submission/results/unit_normal/reflection.csv",
+                  "kind": "csv"
+                },
+                {
+                  "path": "submission/results/unit_normal/summary.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/unit_tm15/phase_diff.csv",
+                  "kind": "csv"
+                },
+                {
+                  "path": "submission/results/unit_tm15/summary.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/unit_tm30/phase_diff.csv",
+                  "kind": "csv"
+                },
+                {
+                  "path": "submission/results/unit_tm30/summary.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/unit_tm45/phase_diff.csv",
+                  "kind": "csv"
+                },
+                {
+                  "path": "submission/results/unit_tm45/summary.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/array_ms/rcs_normal.csv",
+                  "kind": "csv"
+                },
+                {
+                  "path": "submission/results/array_ms/rcs_reduction.csv",
+                  "kind": "csv"
+                },
+                {
+                  "path": "submission/results/array_ms/summary.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/array_pec/rcs_normal.csv",
+                  "kind": "csv"
+                },
+                {
+                  "path": "submission/results/array_pec/summary.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/af_patterns/af_summary.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/af_patterns/coding_matrices.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/unit_normal/raw/",
+                  "kind": "dir"
+                },
+                {
+                  "path": "submission/results/unit_normal/raw/MANIFEST.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/unit_normal/meta.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/unit_tm15/raw/",
+                  "kind": "dir"
+                },
+                {
+                  "path": "submission/results/unit_tm15/raw/MANIFEST.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/unit_tm15/meta.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/unit_tm30/raw/",
+                  "kind": "dir"
+                },
+                {
+                  "path": "submission/results/unit_tm30/raw/MANIFEST.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/unit_tm30/meta.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/unit_tm45/raw/",
+                  "kind": "dir"
+                },
+                {
+                  "path": "submission/results/unit_tm45/raw/MANIFEST.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/unit_tm45/meta.json",
+                  "kind": "json"
+                }
+              ],
+              "check": {
+                "tier": 0,
+                "mode": "fail_only",
+                "manual": "For every physical unit-cell solution, inspect native power-normalized reflection matrices. For each required incidence polarization/orientation, fundamental co-plus-cross reflected power is <=1.005. This bounds the exported subset; a few modes do not prove total energy equals one. Map every native mode to the public polarization, scan angle and reference plane. A missing cross export cannot be treated as zero.",
+                "all": [
+                  {
+                    "value": {
+                      "csv": "results/unit_normal/reflection.csv",
+                      "colexpr": "mag_x**2",
+                      "agg": "max"
+                    },
+                    "le": 1.005,
+                    "label": "|Rxx|² ≤ 1.005"
+                  },
+                  {
+                    "value": {
+                      "csv": "results/unit_normal/reflection.csv",
+                      "colexpr": "mag_y**2",
+                      "agg": "max"
+                    },
+                    "le": 1.005,
+                    "label": "|Ryy|² ≤ 1.005"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

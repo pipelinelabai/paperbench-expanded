@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "image_id": "sha256:c392ec76b8b7e4019c3ffeebe242537b07e0651ec7378482de5efb7153f9c058",
+  "packages": {
+    "numpy": "2.2.6",
+    "pyscf": "2.13.1",
+    "gpu4pyscf-cuda12x": "1.7.4",
+    "pyscf-dispersion": "1.5.0"
+  },
+  "electronic_model": {
+    "reference": "RKS",
+    "engine_class": "gpu4pyscf.dft.rks.RKS",
+    "basis": "6-31G(d)",
+    "xc": "B3LYP",
+    "dispersion": "D3BJ",
+    "dispersion_three_body_atm": false,
+    "charge": 1,
+    "spin": 0,
+    "density_fitting": false,
+    "auxiliary_basis": null,
+    "grid_level": 1,
+    "grid_other_settings": "Unmodified defaults of the identified image and package versions; retain native grid/pruning banners",
+    "conv_tol_hartree": 1e-08,
+    "max_cycle": 150,
+    "initial_guess_first_frame": "minao",
+    "later_frame_guesses": [
+      "minao",
+      "previous_converged_rks_density"
+    ]
+  },
+  "resources": {
+    "cpus": 8,
+    "ram_gib": 32,
+    "gpus": 1,
+    "native_budget_seconds": 21600
+  },
+  "scope": "Pins the existing declared model and integral approximation; contains no trajectories, forces, outcome labels or calibrated answer values. Electronic-state uniqueness and cross-platform numerical error envelopes are not established by this manifest."
+}

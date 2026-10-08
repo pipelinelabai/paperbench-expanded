@@ -1,0 +1,27 @@
+{
+  "_purpose": "Private evaluation examples for the paper-audit leaf; never expose this file to the solver.",
+  "_scoring": "These are verifiable examples, not mandatory answers. Apply the public three-domain audit scope. At least two substantive checks require identifiable evidence, reasoning, conclusions, resolution and impact. Accept supported findings outside this list equally. Identify already disclosed clarifications as such. Disregard an erroneous entry individually without invalidating other sound checks. Never require invented contradictions.",
+  "pass_threshold": 0,
+  "disclosed_items": [
+    {
+      "source": "environment/paper/addendum.md",
+      "text": "The explicit conventions, missing-information statements and diagnostic requirements in this source are public and must not be presented as independently discovered findings."
+    }
+  ],
+  "_note_no_required": "There is no hidden contradiction quota. Assess A9 against the public scope and the actual evidence and resolution.",
+  "example_findings": [
+    {
+      "id": "null_depth_14p3",
+      "locus": "The S11 minimum near 14.3 GHz for the same design in Figs. 4, 6 and 8.",
+      "contradiction": "The plots render different depths near this minimum. This can support a finding of incomplete sampling or setup information, but the graphical difference alone does not prove inconsistent physical solutions.",
+      "expected_resolution": "Compare the minimum location and applicable one-sided depth criterion rather than fitting an exact depth read from a particular figure."
+    },
+    {
+      "id": "fig1b_clipped_dip",
+      "locus": "The S11 minimum near 14.15 GHz in Fig. 1(b).",
+      "contradiction": "The vertical-axis limit clips the deep minimum, so its exact depth cannot be read reliably. This is an observability limitation, not a required contradiction with the prose.",
+      "expected_resolution": "Use the minimum location rather than the clipped depth as the target, and explain the limitation in README or PAPER_AUDIT."
+    }
+  ],
+  "required_findings": []
+}

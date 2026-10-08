@@ -1,0 +1,821 @@
+{
+  "id": "85091800-0000-4000-8000-000000000000",
+  "requirements": "Score science, not paths/formats or a desired score distribution. Public contract is authoritative. Each leaf is binary, no global penalty.",
+  "sub_tasks": [
+    {
+      "id": "A",
+      "title": "Structural Modeling",
+      "weight": 10,
+      "sub_tasks": [
+        {
+          "id": "85091800-0000-4000-8000-000000000001",
+          "weight": 100.0,
+          "requirements": "Verify the public 3D double-SWG model, BOTH widths, their 0.200 um difference, constant material indices and actual 110-period propagation separation; track the fundamental quasi-TE branch from source and geometry. Inspect longitudinal termination and transverse-boundary sensitivity; a missing native comparison is an evidence gap, not a demonstrated physical defect. No new numerical termination threshold is imposed.",
+          "title": "Fixed model and modes",
+          "task_category": "Modeling",
+          "evidence_inputs": [
+            {
+              "path": "submission/src/",
+              "kind": "source_complete",
+              "role": "executed model and derivation"
+            },
+            {
+              "path": "submission/results/",
+              "kind": "data",
+              "recursive": true,
+              "role": "native raw arrays, solver logs and independent controls for this requirement"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "B",
+      "title": "Solver Config & Run Evidence Audit",
+      "weight": 10,
+      "sub_tasks": [
+        {
+          "id": "85091800-0000-4000-8000-000000000002",
+          "weight": 30.769231,
+          "requirements": "Verify genuine Meep FDTD and independent 3D Bloch/MPB logs, model inputs and raw-output associations. Broadband is postprocessing, not a third required solve. Do not equate a label or a derived array with native execution.",
+          "title": "Native evidence provenance",
+          "task_category": "Execution",
+          "evidence_inputs": [
+            {
+              "path": "submission/src/",
+              "kind": "source_complete",
+              "role": "executed model and derivation"
+            },
+            {
+              "path": "submission/results/",
+              "kind": "data",
+              "recursive": true,
+              "role": "native raw arrays, solver logs and independent controls for this requirement"
+            }
+          ]
+        },
+        {
+          "id": "85091800-0000-4000-8000-000000000009",
+          "weight": 30.769231,
+          "requirements": "Independent current checks for spatial convergence.",
+          "title": "Spatial convergence",
+          "sub_tasks": [
+            {
+              "id": "0b8af436-89d6-583a-9e8e-a49e8d281829",
+              "weight": 1,
+              "title": "Spatial convergence native refinement",
+              "requirements": "Verify independent full-three-dimensional raw baseline/refined runs at at least 1.4 times actual resolution, with full model and transverse-domain convergence evidence. Qualify the identities, executed settings and native origin of the arrays used by the numerical checks; do not rejudge their phase or power values.",
+              "task_category": "Execution",
+              "evidence_inputs": [
+                {
+                  "path": "submission/src/",
+                  "kind": "source_complete",
+                  "role": "executed model and derivation"
+                },
+                {
+                  "path": "submission/results/",
+                  "kind": "data",
+                  "recursive": true,
+                  "role": "native raw arrays, solver logs and independent controls for this requirement"
+                }
+              ],
+              "scoring_type": "llm_binary"
+            },
+            {
+              "id": "dbb68cf7-7d05-5a5f-8f82-1a6e0ca9b9f7",
+              "weight": 1,
+              "title": "Spatial convergence phase",
+              "requirements": "Recompute the full-public-band maximum phase difference from the two independent native raw runs; it must be <= 1.0 degrees. The number is decided only by code.",
+              "task_category": "Validation",
+              "evidence_inputs": [
+                {
+                  "path": "submission/src/",
+                  "kind": "source_complete",
+                  "role": "executed model and derivation"
+                },
+                {
+                  "path": "submission/results/",
+                  "kind": "data",
+                  "recursive": true,
+                  "role": "native raw arrays, solver logs and independent controls for this requirement"
+                }
+              ],
+              "scoring_type": "deterministic_metric",
+              "metric_operation": "swg_phase_power_compare",
+              "numeric_checks": [
+                {
+                  "path": "metrics.first.native_sampling.is_full_public_band",
+                  "operator": "is_true"
+                },
+                {
+                  "path": "metrics.first.native_sampling.covers_requested_band",
+                  "operator": "is_true"
+                },
+                {
+                  "path": "metrics.second.native_sampling.is_full_public_band",
+                  "operator": "is_true"
+                },
+                {
+                  "path": "metrics.second.native_sampling.covers_requested_band",
+                  "operator": "is_true"
+                },
+                {
+                  "path": "metrics.max_phase_difference_deg",
+                  "operator": "leq",
+                  "upper": 1.0
+                }
+              ],
+              "source_qualification_ids": [
+                "0b8af436-89d6-583a-9e8e-a49e8d281829"
+              ]
+            },
+            {
+              "id": "72225cb6-ca9b-5af2-acd7-3f01ca16563c",
+              "weight": 1,
+              "title": "Spatial convergence wide arm power",
+              "requirements": "Recompute wide-arm transmission from that arm's own incident and transmitted powers in both independent native runs. The full-public-band maximum change must be <= 0.01. Do not use a design-point-only comparison.",
+              "task_category": "Validation",
+              "evidence_inputs": [
+                {
+                  "path": "submission/src/",
+                  "kind": "source_complete",
+                  "role": "executed model and derivation"
+                },
+                {
+                  "path": "submission/results/",
+                  "kind": "data",
+                  "recursive": true,
+                  "role": "native raw arrays, solver logs and independent controls for this requirement"
+                }
+              ],
+              "scoring_type": "deterministic_metric",
+              "metric_operation": "swg_phase_power_compare",
+              "numeric_checks": [
+                {
+                  "path": "metrics.first.native_sampling.is_full_public_band",
+                  "operator": "is_true"
+                },
+                {
+                  "path": "metrics.first.native_sampling.covers_requested_band",
+                  "operator": "is_true"
+                },
+                {
+                  "path": "metrics.second.native_sampling.is_full_public_band",
+                  "operator": "is_true"
+                },
+                {
+                  "path": "metrics.second.native_sampling.covers_requested_band",
+                  "operator": "is_true"
+                },
+                {
+                  "path": "metrics.max_T_difference.wide",
+                  "operator": "leq",
+                  "upper": 0.01
+                }
+              ],
+              "source_qualification_ids": [
+                "0b8af436-89d6-583a-9e8e-a49e8d281829"
+              ]
+            },
+            {
+              "id": "ca66ddb3-6431-5205-b88b-13f4ce3ae0d9",
+              "weight": 1,
+              "title": "Spatial convergence narrow arm power",
+              "requirements": "Recompute narrow-arm transmission from that arm's own incident and transmitted powers in both independent native runs. The full-public-band maximum change must be <= 0.01. Do not use a design-point-only comparison.",
+              "task_category": "Validation",
+              "evidence_inputs": [
+                {
+                  "path": "submission/src/",
+                  "kind": "source_complete",
+                  "role": "executed model and derivation"
+                },
+                {
+                  "path": "submission/results/",
+                  "kind": "data",
+                  "recursive": true,
+                  "role": "native raw arrays, solver logs and independent controls for this requirement"
+                }
+              ],
+              "scoring_type": "deterministic_metric",
+              "metric_operation": "swg_phase_power_compare",
+              "numeric_checks": [
+                {
+                  "path": "metrics.first.native_sampling.is_full_public_band",
+                  "operator": "is_true"
+                },
+                {
+                  "path": "metrics.first.native_sampling.covers_requested_band",
+                  "operator": "is_true"
+                },
+                {
+                  "path": "metrics.second.native_sampling.is_full_public_band",
+                  "operator": "is_true"
+                },
+                {
+                  "path": "metrics.second.native_sampling.covers_requested_band",
+                  "operator": "is_true"
+                },
+                {
+                  "path": "metrics.max_T_difference.narrow",
+                  "operator": "leq",
+                  "upper": 0.01
+                }
+              ],
+              "source_qualification_ids": [
+                "0b8af436-89d6-583a-9e8e-a49e8d281829"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "85091800-0000-4000-8000-000000000010",
+          "weight": 23.076923,
+          "requirements": "Independent current checks for temporal convergence.",
+          "title": "Temporal convergence",
+          "sub_tasks": [
+            {
+              "id": "7792e55f-6305-5a54-accd-b66c0eb8b176",
+              "weight": 1,
+              "title": "Temporal convergence native refinement",
+              "requirements": "Verify independent raw runs with at least twice the post-source duration or demonstrably tighter decay, and inspect actual stopping conditions. Qualify run identities, settings and native data origin; do not rejudge the code-owned phase or power values.",
+              "task_category": "Execution",
+              "evidence_inputs": [
+                {
+                  "path": "submission/src/",
+                  "kind": "source_complete",
+                  "role": "executed model and derivation"
+                },
+                {
+                  "path": "submission/results/",
+                  "kind": "data",
+                  "recursive": true,
+                  "role": "native raw arrays, solver logs and independent controls for this requirement"
+                }
+              ],
+              "scoring_type": "llm_binary"
+            },
+            {
+              "id": "70daa56f-d0c0-50d6-af2b-66ebdc8c433e",
+              "weight": 1,
+              "title": "Temporal convergence phase",
+              "requirements": "Recompute the full-public-band maximum phase difference from the two independent native raw runs; it must be <= 0.2 degrees. The number is decided only by code.",
+              "task_category": "Validation",
+              "evidence_inputs": [
+                {
+                  "path": "submission/src/",
+                  "kind": "source_complete",
+                  "role": "executed model and derivation"
+                },
+                {
+                  "path": "submission/results/",
+                  "kind": "data",
+                  "recursive": true,
+                  "role": "native raw arrays, solver logs and independent controls for this requirement"
+                }
+              ],
+              "scoring_type": "deterministic_metric",
+              "metric_operation": "swg_phase_power_compare",
+              "numeric_checks": [
+                {
+                  "path": "metrics.first.native_sampling.is_full_public_band",
+                  "operator": "is_true"
+                },
+                {
+                  "path": "metrics.first.native_sampling.covers_requested_band",
+                  "operator": "is_true"
+                },
+                {
+                  "path": "metrics.second.native_sampling.is_full_public_band",
+                  "operator": "is_true"
+                },
+                {
+                  "path": "metrics.second.native_sampling.covers_requested_band",
+                  "operator": "is_true"
+                },
+                {
+                  "path": "metrics.max_phase_difference_deg",
+                  "operator": "leq",
+                  "upper": 0.2
+                }
+              ],
+              "source_qualification_ids": [
+                "7792e55f-6305-5a54-accd-b66c0eb8b176"
+              ]
+            },
+            {
+              "id": "e2c6a01f-929e-5cad-937c-de667ed970b8",
+              "weight": 1,
+              "title": "Temporal convergence wide arm power",
+              "requirements": "Recompute wide-arm transmission from that arm's own incident and transmitted powers in both independent native runs. The full-public-band maximum change must be <= 0.005. Do not use a design-point-only comparison.",
+              "task_category": "Validation",
+              "evidence_inputs": [
+                {
+                  "path": "submission/src/",
+                  "kind": "source_complete",
+                  "role": "executed model and derivation"
+                },
+                {
+                  "path": "submission/results/",
+                  "kind": "data",
+                  "recursive": true,
+                  "role": "native raw arrays, solver logs and independent controls for this requirement"
+                }
+              ],
+              "scoring_type": "deterministic_metric",
+              "metric_operation": "swg_phase_power_compare",
+              "numeric_checks": [
+                {
+                  "path": "metrics.first.native_sampling.is_full_public_band",
+                  "operator": "is_true"
+                },
+                {
+                  "path": "metrics.first.native_sampling.covers_requested_band",
+                  "operator": "is_true"
+                },
+                {
+                  "path": "metrics.second.native_sampling.is_full_public_band",
+                  "operator": "is_true"
+                },
+                {
+                  "path": "metrics.second.native_sampling.covers_requested_band",
+                  "operator": "is_true"
+                },
+                {
+                  "path": "metrics.max_T_difference.wide",
+                  "operator": "leq",
+                  "upper": 0.005
+                }
+              ],
+              "source_qualification_ids": [
+                "7792e55f-6305-5a54-accd-b66c0eb8b176"
+              ]
+            },
+            {
+              "id": "8d75e51b-782d-5c4d-9145-9e165b5494a6",
+              "weight": 1,
+              "title": "Temporal convergence narrow arm power",
+              "requirements": "Recompute narrow-arm transmission from that arm's own incident and transmitted powers in both independent native runs. The full-public-band maximum change must be <= 0.005. Do not use a design-point-only comparison.",
+              "task_category": "Validation",
+              "evidence_inputs": [
+                {
+                  "path": "submission/src/",
+                  "kind": "source_complete",
+                  "role": "executed model and derivation"
+                },
+                {
+                  "path": "submission/results/",
+                  "kind": "data",
+                  "recursive": true,
+                  "role": "native raw arrays, solver logs and independent controls for this requirement"
+                }
+              ],
+              "scoring_type": "deterministic_metric",
+              "metric_operation": "swg_phase_power_compare",
+              "numeric_checks": [
+                {
+                  "path": "metrics.first.native_sampling.is_full_public_band",
+                  "operator": "is_true"
+                },
+                {
+                  "path": "metrics.first.native_sampling.covers_requested_band",
+                  "operator": "is_true"
+                },
+                {
+                  "path": "metrics.second.native_sampling.is_full_public_band",
+                  "operator": "is_true"
+                },
+                {
+                  "path": "metrics.second.native_sampling.covers_requested_band",
+                  "operator": "is_true"
+                },
+                {
+                  "path": "metrics.max_T_difference.narrow",
+                  "operator": "leq",
+                  "upper": 0.005
+                }
+              ],
+              "source_qualification_ids": [
+                "7792e55f-6305-5a54-accd-b66c0eb8b176"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "85091800-0000-4000-8000-000000000011",
+          "weight": 15.384615,
+          "requirements": "Independent current checks for spectral convergence.",
+          "title": "Spectral convergence",
+          "sub_tasks": [
+            {
+              "id": "baa6dbd1-9cb8-5a59-b383-c28ee39eb3d8",
+              "weight": 1,
+              "title": "Independent spectral refinement",
+              "requirements": "Verify genuinely new raw wavelength samples at half the spacing, with a comparison on common physical wavelengths. Retain bandwidth-endpoint sensitivity evidence; interpolation of unchanged old samples is not an independent refinement. Do not rejudge the code-owned phase change.",
+              "task_category": "Execution",
+              "evidence_inputs": [
+                {
+                  "path": "submission/src/",
+                  "kind": "source_complete",
+                  "role": "executed model and derivation"
+                },
+                {
+                  "path": "submission/results/",
+                  "kind": "data",
+                  "recursive": true,
+                  "role": "native raw arrays, solver logs and independent controls for this requirement"
+                }
+              ],
+              "scoring_type": "llm_binary"
+            },
+            {
+              "id": "b98a87b2-271f-5a1a-a9ae-626fea2de071",
+              "weight": 1,
+              "title": "Spectral phase convergence",
+              "requirements": "Recompute phase on common physical wavelengths from the genuine baseline/refined complex raw data over the public full band; the maximum change must be <=0.2 degrees.",
+              "task_category": "Validation",
+              "evidence_inputs": [
+                {
+                  "path": "submission/src/",
+                  "kind": "source_complete",
+                  "role": "executed model and derivation"
+                },
+                {
+                  "path": "submission/results/",
+                  "kind": "data",
+                  "recursive": true,
+                  "role": "native raw arrays, solver logs and independent controls for this requirement"
+                }
+              ],
+              "scoring_type": "deterministic_metric",
+              "metric_operation": "swg_raw_compare",
+              "numeric_checks": [
+                {
+                  "path": "metrics.first.native_sampling.is_full_public_band",
+                  "operator": "is_true"
+                },
+                {
+                  "path": "metrics.first.native_sampling.covers_requested_band",
+                  "operator": "is_true"
+                },
+                {
+                  "path": "metrics.second.native_sampling.is_full_public_band",
+                  "operator": "is_true"
+                },
+                {
+                  "path": "metrics.second.native_sampling.covers_requested_band",
+                  "operator": "is_true"
+                },
+                {
+                  "path": "metrics.max_phase_difference_deg",
+                  "operator": "leq",
+                  "upper": 0.2
+                }
+              ],
+              "source_qualification_ids": [
+                "baa6dbd1-9cb8-5a59-b383-c28ee39eb3d8"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "C",
+      "title": "Result Analysis",
+      "weight": 80,
+      "sub_tasks": [
+        {
+          "id": "85091800-0000-4000-8000-000000000003",
+          "weight": 16.129033,
+          "requirements": "Reconstruct both complex arm transfers from raw input/output amplitudes, matching frequencies and consistent phase gauge. Source amplitudes need not be equal; each arm uses its own input normalization. Do not replace phase by intensity. Assess local algebra/gauge on the available measured wavelengths without requiring unrelated full-band coverage. Inspect periodic Bloch projection applicability and source-relative noise/uncertainty when coefficients approach zero; a successful arithmetic result alone does not resolve noisy phase.",
+          "metric_operation": "swg_local_transfer",
+          "title": "Complex transfer normalization",
+          "task_category": "Validation",
+          "evidence_inputs": [
+            {
+              "path": "submission/src/",
+              "kind": "source_complete",
+              "role": "executed model and derivation"
+            },
+            {
+              "path": "submission/results/",
+              "kind": "data",
+              "recursive": true,
+              "role": "native raw arrays, solver logs and independent controls for this requirement"
+            }
+          ]
+        },
+        {
+          "id": "85091800-0000-4000-8000-000000000004",
+          "weight": 16.129032,
+          "requirements": "Recompute FDTD relative phase from complex transfers with a physically justified sign and integer branch. Audit source and reported curves for backend attribution and any corrections. Do not pass fabricated offsets, target fitting or MPB presented as FDTD. Legitimate separately documented corrections need their own underlying numerical evidence. Assess local algebra/gauge on the available measured wavelengths without requiring unrelated full-band coverage. Inspect periodic Bloch projection applicability and source-relative noise/uncertainty when coefficients approach zero; a successful arithmetic result alone does not resolve noisy phase.",
+          "metric_operation": "swg_local_transfer",
+          "title": "Phase reconstruction and branch",
+          "task_category": "Validation",
+          "evidence_inputs": [
+            {
+              "path": "submission/src/",
+              "kind": "source_complete",
+              "role": "executed model and derivation"
+            },
+            {
+              "path": "submission/results/",
+              "kind": "data",
+              "recursive": true,
+              "role": "native raw arrays, solver logs and independent controls for this requirement"
+            }
+          ]
+        },
+        {
+          "id": "85091800-0000-4000-8000-000000000005",
+          "weight": 16.129032,
+          "requirements": "Recompute the design phase at 1.550 um, absolute and signed slopes, full-band maximum error and connected design-containing 1.7/5 degree intervals. Accept honestly zero bandwidth. Distinguish sampling-center from design wavelength, and do not impose nearest-90 wavelength, neff=2.40 or experimental 16 degree/um as extra thresholds. Inspect native_sampling: the requested band must be the public full band, with genuine native coverage and maximum initial gap <=0.020 um. Interpolation cannot manufacture density. There is no mandatory 90-degree success or nonzero bandwidth; the paper complete-device performance is not gold data for these 110-period arms.",
+          "metric_operation": "swg_phase",
+          "title": "Broadband spectral measurements",
+          "task_category": "Validation",
+          "evidence_inputs": [
+            {
+              "path": "submission/src/",
+              "kind": "source_complete",
+              "role": "executed model and derivation"
+            },
+            {
+              "path": "submission/results/",
+              "kind": "data",
+              "recursive": true,
+              "role": "native raw arrays, solver logs and independent controls for this requirement"
+            }
+          ]
+        },
+        {
+          "id": "85091800-0000-4000-8000-000000000006",
+          "weight": 12.903226,
+          "requirements": "Verify the tracked 3D Bloch mode/eigenvalue provenance and actual length, then independently recompute the periodic-section differential phase. MPB is legitimate numerical evidence for this item, but never substitutes for the FDTD items.",
+          "metric_operation": "swg_bloch",
+          "title": "Independent Bloch prediction",
+          "task_category": "Validation",
+          "evidence_inputs": [
+            {
+              "path": "submission/src/",
+              "kind": "source_complete",
+              "role": "executed model and derivation"
+            },
+            {
+              "path": "submission/results/",
+              "kind": "data",
+              "recursive": true,
+              "role": "native raw arrays, solver logs and independent controls for this requirement"
+            }
+          ]
+        },
+        {
+          "id": "85091800-0000-4000-8000-000000000007",
+          "weight": 16.129032,
+          "requirements": "Independent current checks for same-model cross-check.",
+          "title": "Same-model cross-check",
+          "sub_tasks": [
+            {
+              "id": "162e0f12-e04c-5eaf-b5b2-b86f382c17a2",
+              "weight": 1,
+              "title": "Common-model FDTD and Bloch evidence",
+              "requirements": "Qualify original complex FDTD transfers and independently tracked native Bloch indices for identical geometry, material, physical length and port definition. No fitted correction toward 90 degrees is allowed. Check independent solver attribution and uncertainty, not the code-owned discrepancy. Native indices must be interpolated before wavelength-dependent phase conversion.",
+              "task_category": "Modeling",
+              "evidence_inputs": [
+                {
+                  "path": "submission/src/",
+                  "kind": "source_complete",
+                  "role": "executed model and derivation"
+                },
+                {
+                  "path": "submission/results/",
+                  "kind": "data",
+                  "recursive": true,
+                  "role": "native raw arrays, solver logs and independent controls for this requirement"
+                }
+              ],
+              "scoring_type": "llm_binary"
+            },
+            {
+              "id": "95b80644-c1d7-5c4f-a4ee-02cc0ef7ea2f",
+              "weight": 1,
+              "title": "FDTD and Bloch phase agreement",
+              "requirements": "Use the original complex FDTD transfers and native Bloch indices to recompute phase on their combined physical wavelength grid. The full-public-band maximum discrepancy must be <=2 degrees. Interpolating a separately derived sparse Bloch phase table is not the specified calculation.",
+              "task_category": "Validation",
+              "evidence_inputs": [
+                {
+                  "path": "submission/src/",
+                  "kind": "source_complete",
+                  "role": "executed model and derivation"
+                },
+                {
+                  "path": "submission/results/",
+                  "kind": "data",
+                  "recursive": true,
+                  "role": "native raw arrays, solver logs and independent controls for this requirement"
+                }
+              ],
+              "scoring_type": "deterministic_metric",
+              "metric_operation": "swg_crosscheck",
+              "numeric_checks": [
+                {
+                  "path": "metrics.max_phase_difference_deg",
+                  "operator": "leq",
+                  "upper": 2.0
+                },
+                {
+                  "path": "metrics.first.native_sampling.is_full_public_band",
+                  "operator": "is_true"
+                },
+                {
+                  "path": "metrics.first.native_sampling.covers_requested_band",
+                  "operator": "is_true"
+                }
+              ],
+              "source_qualification_ids": [
+                "162e0f12-e04c-5eaf-b5b2-b86f382c17a2"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "85091800-0000-4000-8000-000000000008",
+          "weight": 16.129032,
+          "requirements": "Independent current checks for per-arm power accounting.",
+          "title": "Per-arm power accounting",
+          "sub_tasks": [
+            {
+              "id": "53a245b0-c4e3-523d-9d50-b467d1f87843",
+              "weight": 1,
+              "title": "Native per-arm power normalization",
+              "requirements": "Qualify each arm's native incident/transmitted powers and any source-rescaling factor in the same normalization. Equal source amplitudes or equal incident flux are not required. Bare-periodic loss must not be compared with loss including tapers. Do not rejudge the code-owned transmission range.",
+              "task_category": "Execution",
+              "evidence_inputs": [
+                {
+                  "path": "submission/src/",
+                  "kind": "source_complete",
+                  "role": "executed model and derivation"
+                },
+                {
+                  "path": "submission/results/",
+                  "kind": "data",
+                  "recursive": true,
+                  "role": "native raw arrays, solver logs and independent controls for this requirement"
+                }
+              ],
+              "scoring_type": "llm_binary"
+            },
+            {
+              "id": "e8c755f0-20f2-5bdc-997d-b7eeafdc93e1",
+              "weight": 1,
+              "title": "Wide arm transmission range",
+              "requirements": "Recompute wide-arm T from its own incident and transmitted native powers; every retained full-band value must be in [-0.01,1.01].",
+              "task_category": "Validation",
+              "evidence_inputs": [
+                {
+                  "path": "submission/src/",
+                  "kind": "source_complete",
+                  "role": "executed model and derivation"
+                },
+                {
+                  "path": "submission/results/",
+                  "kind": "data",
+                  "recursive": true,
+                  "role": "native raw arrays, solver logs and independent controls for this requirement"
+                }
+              ],
+              "scoring_type": "deterministic_metric",
+              "metric_operation": "swg_power",
+              "numeric_checks": [
+                {
+                  "path": "metrics.wide.T",
+                  "operator": "range",
+                  "lower": -0.01,
+                  "upper": 1.01
+                }
+              ],
+              "source_qualification_ids": [
+                "53a245b0-c4e3-523d-9d50-b467d1f87843"
+              ]
+            },
+            {
+              "id": "f6780632-a12a-51c6-83e2-3b17f208ffaa",
+              "weight": 1,
+              "title": "Narrow arm transmission range",
+              "requirements": "Recompute narrow-arm T from its own incident and transmitted native powers; every retained full-band value must be in [-0.01,1.01].",
+              "task_category": "Validation",
+              "evidence_inputs": [
+                {
+                  "path": "submission/src/",
+                  "kind": "source_complete",
+                  "role": "executed model and derivation"
+                },
+                {
+                  "path": "submission/results/",
+                  "kind": "data",
+                  "recursive": true,
+                  "role": "native raw arrays, solver logs and independent controls for this requirement"
+                }
+              ],
+              "scoring_type": "deterministic_metric",
+              "metric_operation": "swg_power",
+              "numeric_checks": [
+                {
+                  "path": "metrics.narrow.T",
+                  "operator": "range",
+                  "lower": -0.01,
+                  "upper": 1.01
+                }
+              ],
+              "source_qualification_ids": [
+                "53a245b0-c4e3-523d-9d50-b467d1f87843"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "85091800-0000-4000-8000-000000000012",
+          "weight": 6.451613,
+          "requirements": "Independent current checks for scientific negative controls.",
+          "title": "Scientific negative controls",
+          "sub_tasks": [
+            {
+              "id": "d8910921-6115-5381-8c9a-ecd9b688a9d8",
+              "weight": 1,
+              "title": "Native equal-width control",
+              "requirements": "Verify a genuinely executed equal-width two-arm FDTD control in the same phase gauge. Qualify the native model and complex-array origin; do not substitute an analytical fixture for this native control or rejudge its code-owned phase.",
+              "task_category": "Execution",
+              "evidence_inputs": [
+                {
+                  "path": "submission/src/",
+                  "kind": "source_complete",
+                  "role": "executed model and derivation"
+                },
+                {
+                  "path": "submission/results/",
+                  "kind": "data",
+                  "recursive": true,
+                  "role": "native raw arrays, solver logs and independent controls for this requirement"
+                }
+              ],
+              "scoring_type": "llm_binary"
+            },
+            {
+              "id": "aa9b674d-0dc6-5e0d-b2ec-ca884f6f0845",
+              "weight": 1,
+              "title": "Equal-width control phase",
+              "requirements": "Recompute the equal-width native two-arm relative phase in the same gauge; its absolute phase must be <=0.2 degrees.",
+              "task_category": "Validation",
+              "evidence_inputs": [
+                {
+                  "path": "submission/src/",
+                  "kind": "source_complete",
+                  "role": "executed model and derivation"
+                },
+                {
+                  "path": "submission/results/",
+                  "kind": "data",
+                  "recursive": true,
+                  "role": "native raw arrays, solver logs and independent controls for this requirement"
+                }
+              ],
+              "scoring_type": "deterministic_metric",
+              "metric_operation": "swg_phase",
+              "numeric_checks": [
+                {
+                  "path": "metrics.phase_deg",
+                  "operator": "abs_leq",
+                  "upper": 0.2
+                }
+              ],
+              "source_qualification_ids": [
+                "d8910921-6115-5381-8c9a-ecd9b688a9d8"
+              ]
+            },
+            {
+              "id": "fbd7647b-fada-519b-a8ae-5b00c7c388c3",
+              "weight": 1,
+              "title": "Scientific error-injection rejection",
+              "requirements": "Verify that a separate numerical error injection demonstrably fails a scientific test. A copy of measured arrays or an analytical unit-test fixture is allowed; no additional erroneous-physics Meep solve is required. This does not replace the independent native equal-width control.",
+              "task_category": "Validation",
+              "evidence_inputs": [
+                {
+                  "path": "submission/src/",
+                  "kind": "source_complete",
+                  "role": "executed model and derivation"
+                },
+                {
+                  "path": "submission/results/",
+                  "kind": "data",
+                  "recursive": true,
+                  "role": "native raw arrays, solver logs and independent controls for this requirement"
+                }
+              ],
+              "scoring_type": "llm_binary"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "title": "swg-anisotropic-phase-shifter-meep"
+}

@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "study_scope_id": "K562_GENE_MAP_REPLICATION_ROBUSTNESS",
+  "source_accession": "GSE116198",
+  "cell_line": "K562",
+  "inputs": [
+    {
+      "name": "k562_dual_guide_counts.tsv.gz",
+      "role": "Raw construct counts, preserving assay, timepoint and biological replicate column identities; K562 columns only.",
+      "bytes": 24182949,
+      "sha256": "f77f8864fa8aef277b1226383cc7852852027ee447ccde58ba0ce02bd11fd745"
+    },
+    {
+      "name": "guide_gene_barcode_map.tsv.gz",
+      "role": "Guide, target and barcode identities.",
+      "bytes": 36505,
+      "sha256": "84a785108a5bf830ce2ee569e14757fe5c31738ba6d88c95206f38a0b1bbc150"
+    }
+  ]
+}

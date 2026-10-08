@@ -1,0 +1,262 @@
+{
+  "schema_version": 1,
+  "source": "../addendum.md: Required data products / Output Schemas",
+  "variants": [
+    "mimo_final",
+    "single_initial",
+    "single_stub",
+    "h2_10p7",
+    "h2_11p7",
+    "mimo_nostub"
+  ],
+  "hfss_variants": [
+    "mimo_final",
+    "single_initial",
+    "single_stub",
+    "h2_10p7",
+    "h2_11p7",
+    "mimo_nostub"
+  ],
+  "required_paths": [
+    "PAPER_AUDIT.md",
+    "README.md",
+    "hfss/",
+    "reproduce.sh",
+    "results/h2_10p7/meta.json",
+    "results/h2_10p7/raw/",
+    "results/h2_10p7/raw/MANIFEST.json",
+    "results/h2_10p7/run.log",
+    "results/h2_10p7/sparams.csv",
+    "results/h2_10p7/structure.json",
+    "results/h2_10p7/summary.json",
+    "results/h2_11p7/meta.json",
+    "results/h2_11p7/raw/",
+    "results/h2_11p7/raw/MANIFEST.json",
+    "results/h2_11p7/run.log",
+    "results/h2_11p7/sparams.csv",
+    "results/h2_11p7/structure.json",
+    "results/h2_11p7/summary.json",
+    "results/mimo_final/efficiency.csv",
+    "results/mimo_final/gain.csv",
+    "results/mimo_final/meta.json",
+    "results/mimo_final/mimo_metrics.csv",
+    "results/mimo_final/patterns.csv",
+    "results/mimo_final/raw/",
+    "results/mimo_final/raw/MANIFEST.json",
+    "results/mimo_final/run.log",
+    "results/mimo_final/sparams.csv",
+    "results/mimo_final/structure.json",
+    "results/mimo_final/summary.json",
+    "results/mimo_nostub/meta.json",
+    "results/mimo_nostub/raw/",
+    "results/mimo_nostub/raw/MANIFEST.json",
+    "results/mimo_nostub/run.log",
+    "results/mimo_nostub/sparams.csv",
+    "results/mimo_nostub/structure.json",
+    "results/mimo_nostub/summary.json",
+    "results/run_summary.json",
+    "results/single_initial/meta.json",
+    "results/single_initial/raw/",
+    "results/single_initial/raw/MANIFEST.json",
+    "results/single_initial/run.log",
+    "results/single_initial/sparams.csv",
+    "results/single_initial/structure.json",
+    "results/single_initial/summary.json",
+    "results/single_stub/meta.json",
+    "results/single_stub/raw/",
+    "results/single_stub/raw/MANIFEST.json",
+    "results/single_stub/run.log",
+    "results/single_stub/sparams.csv",
+    "results/single_stub/structure.json",
+    "results/single_stub/summary.json",
+    "src/",
+    "src/derive.py",
+    "src/run_all.py",
+    "views/mimo_final/current_f1.png",
+    "views/mimo_final/current_f2.png",
+    "views/mimo_final/current_f3.png",
+    "views/mimo_final/current_f4.png",
+    "views/mimo_final/top.png",
+    "views/single_initial/top.png",
+    "views/single_stub/top.png"
+  ],
+  "csv_contracts": {
+    "results/mimo_final/sparams.csv": {
+      "columns": [
+        "frequency_GHz",
+        "S11_dB",
+        "S12_dB",
+        "S13_dB",
+        "S14_dB"
+      ],
+      "grid": {
+        "type": "linear",
+        "column": "frequency_GHz",
+        "start": 3,
+        "stop": 20,
+        "step": 0.02,
+        "tolerance": 1e-08
+      }
+    },
+    "results/single_initial/sparams.csv": {
+      "columns": [
+        "frequency_GHz",
+        "S11_dB"
+      ],
+      "grid": {
+        "type": "linear",
+        "column": "frequency_GHz",
+        "start": 2,
+        "stop": 20,
+        "step": 0.02,
+        "tolerance": 1e-08
+      }
+    },
+    "results/single_stub/sparams.csv": {
+      "columns": [
+        "frequency_GHz",
+        "S11_dB"
+      ],
+      "grid": {
+        "type": "linear",
+        "column": "frequency_GHz",
+        "start": 2,
+        "stop": 20,
+        "step": 0.02,
+        "tolerance": 1e-08
+      }
+    },
+    "results/h2_10p7/sparams.csv": {
+      "columns": [
+        "frequency_GHz",
+        "S11_dB",
+        "S12_dB",
+        "S13_dB",
+        "S14_dB"
+      ],
+      "grid": {
+        "type": "linear",
+        "column": "frequency_GHz",
+        "start": 3,
+        "stop": 20,
+        "step": 0.02,
+        "tolerance": 1e-08
+      }
+    },
+    "results/h2_11p7/sparams.csv": {
+      "columns": [
+        "frequency_GHz",
+        "S11_dB",
+        "S12_dB",
+        "S13_dB",
+        "S14_dB"
+      ],
+      "grid": {
+        "type": "linear",
+        "column": "frequency_GHz",
+        "start": 3,
+        "stop": 20,
+        "step": 0.02,
+        "tolerance": 1e-08
+      }
+    },
+    "results/mimo_nostub/sparams.csv": {
+      "columns": [
+        "frequency_GHz",
+        "S11_dB",
+        "S12_dB",
+        "S13_dB",
+        "S14_dB"
+      ],
+      "grid": {
+        "type": "linear",
+        "column": "frequency_GHz",
+        "start": 3,
+        "stop": 20,
+        "step": 0.02,
+        "tolerance": 1e-08
+      }
+    },
+    "results/mimo_final/efficiency.csv": {
+      "columns": [
+        "frequency_GHz",
+        "radiation_efficiency"
+      ],
+      "grid": {
+        "type": "linear",
+        "column": "frequency_GHz",
+        "start": 3,
+        "stop": 20,
+        "step": 0.25,
+        "tolerance": 1e-08
+      }
+    },
+    "results/mimo_final/gain.csv": {
+      "columns": [
+        "frequency_GHz",
+        "peak_gain_dBi"
+      ],
+      "grid": {
+        "type": "linear",
+        "column": "frequency_GHz",
+        "start": 3,
+        "stop": 20,
+        "step": 0.25,
+        "tolerance": 1e-08
+      }
+    },
+    "results/mimo_final/mimo_metrics.csv": {
+      "columns": [
+        "frequency_GHz",
+        "ECC12",
+        "ECC13",
+        "ECC14",
+        "DG_dB",
+        "mux_eff_dB"
+      ],
+      "grid": {
+        "type": "linear",
+        "column": "frequency_GHz",
+        "start": 3,
+        "stop": 20,
+        "step": 0.25,
+        "tolerance": 1e-08
+      }
+    },
+    "results/mimo_final/patterns.csv": {
+      "columns": [
+        "plane",
+        "frequency_GHz",
+        "angle_deg",
+        "gain_norm_dB"
+      ],
+      "grid": {
+        "type": "cartesian_values",
+        "axes": [
+          {
+            "column": "plane",
+            "values": [
+              "xy",
+              "xz",
+              "yz"
+            ]
+          },
+          {
+            "column": "frequency_GHz",
+            "values": [
+              3.5,
+              6.5,
+              14
+            ]
+          },
+          {
+            "column": "angle_deg",
+            "start": 0,
+            "stop": 355,
+            "step": 5
+          }
+        ]
+      }
+    }
+  }
+}

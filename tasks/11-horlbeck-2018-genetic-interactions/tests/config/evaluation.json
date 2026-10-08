@@ -1,0 +1,234 @@
+{
+  "numerical_policy": {
+    "task_id": "horlbeck-2018-genetic-interactions",
+    "profile": {
+      "partner_count": 112,
+      "partner_selection": "Sort gene indices by SHA256 of UTF-8 profile-partner followed by NUL followed by gene ID, take the first 112, then restore index order.",
+      "minimum_profile_standard_deviation": 1e-12,
+      "standard_deviation_comparison": "strictly greater",
+      "diagonal_comparison": false,
+      "missing_values": "Complete finite axes are required; undefined correlation is not evidence of fidelity."
+    },
+    "basis": "Numerical comparison and evidence-consistency policy, not confidence intervals reported by the paper. Scientific results and fitted reference arrays are not distributed here.",
+    "curves": {
+      "correlation": [
+        [
+          -0.1,
+          0.0
+        ],
+        [
+          0.0,
+          0.05
+        ],
+        [
+          0.5,
+          0.35
+        ],
+        [
+          0.8,
+          0.7
+        ],
+        [
+          0.95,
+          0.9
+        ],
+        [
+          0.999,
+          1.0
+        ]
+      ],
+      "nrmse": [
+        [
+          0.0,
+          1.0
+        ],
+        [
+          0.02,
+          0.95
+        ],
+        [
+          0.1,
+          0.8
+        ],
+        [
+          0.35,
+          0.45
+        ],
+        [
+          0.75,
+          0.1
+        ],
+        [
+          1.0,
+          0.0
+        ]
+      ],
+      "null_abs_correlation": [
+        [
+          0.0,
+          1.0
+        ],
+        [
+          0.075,
+          1.0
+        ],
+        [
+          0.25,
+          0.5
+        ],
+        [
+          0.5,
+          0.1
+        ],
+        [
+          0.8,
+          0.0
+        ]
+      ]
+    },
+    "curve_interpolation": "Piecewise linear between ordered knots, constant beyond either endpoint, clipped to [0, 1].",
+    "agreement": {
+      "correlation_weight": 0.4,
+      "nrmse_weight": 0.6,
+      "nrmse_definition": "sqrt(mean((candidate-reference)^2))/std(reference), population standard deviation",
+      "undefined_correlation": 0.0,
+      "undefined_nrmse": "infinity"
+    },
+    "coverage": "Aligned finite guide, gene and pair comparisons are multiplied by observed coverage. Full coverage and the public identity/schema gates remain necessary for a complete result; no separate 80-percent minimum is applied.",
+    "consistency": {
+      "pair_to_network_figure_profile_abs_tolerance": 1e-10,
+      "reported_control_correlation_abs_tolerance": 1e-08,
+      "readme_minimum_non_whitespace_trimmed_characters": 100,
+      "permutation_seed_min": 0,
+      "permutation_seed_max": 4294967295
+    },
+    "controls": {
+      "dropout_count": 3,
+      "dropout_minimum_guides_in_gene": 3,
+      "dropout_derivation_weight": 0.7,
+      "dropout_primary_stability_weight": 0.3,
+      "dropout_comparison": "Compare control-minus-primary with independently reaggregated control-minus-primary, then average the three controls.",
+      "permutation_comparison": "Agreement with the seeded permutation multiplied by the null_abs_correlation curve relative to the submitted primary matrix."
+    },
+    "component_combinations": {
+      "preprocessing": {
+        "design_checks": 0.45,
+        "guide_agreement": 0.35,
+        "provenance": 0.2
+      },
+      "guide_and_single_gene_effects": {
+        "guide_agreement": 0.55,
+        "gene_agreement": 0.45
+      },
+      "gene_pair_values": {
+        "observed_double": 0.1,
+        "expected_double": 0.2,
+        "gi_score": 0.65,
+        "uncertainty": 0.05
+      }
+    },
+    "native_timeout_seconds": 18900,
+    "verifier_timeout_seconds": 21600,
+    "invalid_or_null_results": "Report failed fits, zero-variance profiles, unstable dropout or structured permutation controls honestly. Undefined fits do not establish agreement. Null or contradictory scientific findings are not evidence of misconduct; completeness and stated comparison conditions remain applicable."
+  },
+  "scoring_routes": {
+    "schema_version": 1,
+    "rubric_revision": "task11-abc-10-10-80",
+    "scope": "Scientific assessment from native replay evidence",
+    "leaves": {
+      "A1": {
+        "route": "review",
+        "group": "A"
+      },
+      "A2": {
+        "route": "review",
+        "group": "A"
+      },
+      "A3": {
+        "route": "review",
+        "group": "A"
+      },
+      "B1": {
+        "route": "code",
+        "group": "B"
+      },
+      "B2": {
+        "route": "code",
+        "group": "B"
+      },
+      "B3": {
+        "route": "code",
+        "group": "B"
+      },
+      "C1a": {
+        "route": "code",
+        "group": "C_main"
+      },
+      "C1b": {
+        "route": "code",
+        "group": "C_main"
+      },
+      "C1c": {
+        "route": "code",
+        "group": "C_main"
+      },
+      "C1d": {
+        "route": "code",
+        "group": "C_main"
+      },
+      "C1e": {
+        "route": "review",
+        "group": "C_main"
+      },
+      "C2a": {
+        "route": "code",
+        "group": "C_replication"
+      },
+      "C2b": {
+        "route": "code",
+        "group": "C_replication"
+      },
+      "C2c": {
+        "route": "code",
+        "group": "C_replication"
+      },
+      "C2d": {
+        "route": "code",
+        "group": "C_replication"
+      },
+      "C3a": {
+        "route": "code",
+        "group": "C_omission"
+      },
+      "C3b": {
+        "route": "code",
+        "group": "C_omission"
+      },
+      "C3c": {
+        "route": "code",
+        "group": "C_omission"
+      },
+      "C4a": {
+        "route": "code",
+        "group": "C_null"
+      },
+      "C4b": {
+        "route": "code",
+        "group": "C_null"
+      },
+      "C4c": {
+        "route": "review",
+        "group": "C_null"
+      },
+      "C5a": {
+        "route": "review",
+        "group": "C_conclusions"
+      },
+      "C5b": {
+        "route": "review",
+        "group": "C_conclusions"
+      }
+    },
+    "rubric_sha256": "fb5c68910bd2029c33d596a4b4b331cbff4b8ca4fcae1ca0ce1f645a1c176239"
+  }
+}

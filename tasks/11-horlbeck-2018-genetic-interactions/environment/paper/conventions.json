@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "study_scope_id": "K562_GENE_MAP_REPLICATION_ROBUSTNESS",
+  "scope": "Numerical, comparison, and output conventions not completely fixed by the paper; this is not an analysis recipe.",
+  "numerical_conventions": {
+    "fit_observation_weights": "Equal weights for the observations admitted by the paper-defined fit universe.",
+    "standard_deviation": "Sample standard deviation with ddof=1 for residual standardization and reported descriptive guide-pair spread.",
+    "gene_pair_uncertainty": "Descriptive guide-pair standard deviation, not independent-replicate standard error; a singleton spread is reported as zero with its count.",
+    "solver": "Any documented numerically equivalent implementation; no required library or optimizer."
+  },
+  "comparison_conventions": {
+    "replicate_fits": "Each replicate uses its own method-eligible observations; identity intersections are declared when comparing outputs.",
+    "profile_self_components": "Exclude the focal self component for the same-gene comparison, or both focal identities for a comparison of distinct genes.",
+    "missingness": "Compare explicitly identified common entries, retain exclusion reasons, and do not fill unavailable measurements with zero.",
+    "matrix_diagonal": "A zero placeholder is permitted for serialization, but is not a measured interaction and is excluded from scored comparisons."
+  },
+  "benchmark_controls": {
+    "identity_matching_seed": 201806010,
+    "minimum_matching_permutations": 199,
+    "matching_null_statistic": "Median finite Pearson correlation of the focal-gene partner profiles under the recorded cross-replicate identity matching.",
+    "required_direction_of_result": null
+  }
+}

@@ -1,0 +1,4 @@
+curve,H2_mm,f_dip1_GHz,S11_dip1_dB,S11_at_8p14_dB,S11_at_8p80_dB,S11_at_15p20_dB,f_deepest_GHz,S11_deepest_dB,notes
+h2_10p7,10.7,3.35,-32.0,-10.0,-9.3,-20.0,11.35,-33.5,"mismatch >-10 over ~4.6-5.2 (bump -9.8 @4.9) and ~8.3-9.8 (bump -9.3 @8.8); 15.1 local dip -20.5"
+final_11p2,11.2,3.50,-24.0,-13.2,-11.8,-15.0,14.35,-47.3,"= mimo_final nominal; cross-checks Fig. 8 black and Fig. 6 blue"
+h2_11p7,11.7,3.75,-17.5,-25.5,-18.0,-10.1,13.05,-25.5,"low-end -10 crossing ~3.25; near/above -10 over ~14.9-15.6; extra dips 8.15 (-25.5) and 18.75 (-25.3); 20 GHz -10.2"

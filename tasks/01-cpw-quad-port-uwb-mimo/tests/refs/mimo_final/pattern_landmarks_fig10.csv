@@ -1,0 +1,10 @@
+plane,freq_caption_GHz,sim_ripple_dB,sim_min_norm_dB,notes
+xy,3.5,5,-8,"red solid; near-omni ring between ~-3 and -8 on the 0/-10 grid; uncertainty +-3 dB"
+xz,3.5,13,-18,"blue solid; smooth with one dip to ~-18 in the lower half-plane"
+yz,3.5,26,-30,"orange solid; deep polarization null in ~250-290 deg zone, min read -25..-35"
+xy,6.5,20,-23,"red solid; mostly -3..-9 with one notch to ~-20..-25 near 30-40 deg"
+xz,6.5,9,-12,"blue solid; smooth quasi-omni"
+yz,6.5,10,-13,"orange solid; multi-lobe ripple -3..-13"
+xy,14,14,-16,"red solid; multi-lobe -2..-16"
+xz,14,9,-12,"blue solid; smooth -3..-12"
+yz,14,13,-14,"orange solid; multi-lobe 0..-14"

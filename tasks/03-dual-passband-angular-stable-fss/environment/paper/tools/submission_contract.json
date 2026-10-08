@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "source": "../addendum.md: Required data products / Output Schemas",
+  "variants": [
+    "te_00",
+    "te_30",
+    "te_60",
+    "te_86",
+    "tm_00",
+    "tm_30",
+    "tm_60",
+    "tm_83"
+  ],
+  "hfss_variants": [
+    "te_00",
+    "te_30",
+    "te_60",
+    "te_86",
+    "tm_00",
+    "tm_30",
+    "tm_60",
+    "tm_83"
+  ],
+  "required_paths": [
+    "PAPER_AUDIT.md",
+    "README.md",
+    "hfss/",
+    "reproduce.sh",
+    "results/run_summary.json",
+    "results/te_00/fields/efield_12p76GHz.png",
+    "results/te_00/fields/efield_8p45GHz.png",
+    "results/te_00/fields/jsurf_12p76GHz.png",
+    "results/te_00/fields/jsurf_8p45GHz.png",
+    "results/te_00/meta.json",
+    "results/te_00/raw/",
+    "results/te_00/raw/MANIFEST.json",
+    "results/te_00/run.log",
+    "results/te_00/sparams.csv",
+    "results/te_00/structure.json",
+    "results/te_00/summary.json",
+    "results/te_30/meta.json",
+    "results/te_30/raw/",
+    "results/te_30/raw/MANIFEST.json",
+    "results/te_30/run.log",
+    "results/te_30/sparams.csv",
+    "results/te_30/structure.json",
+    "results/te_30/summary.json",
+    "results/te_60/meta.json",
+    "results/te_60/raw/",
+    "results/te_60/raw/MANIFEST.json",
+    "results/te_60/run.log",
+    "results/te_60/sparams.csv",
+    "results/te_60/structure.json",
+    "results/te_60/summary.json",
+    "results/te_86/meta.json",
+    "results/te_86/raw/",
+    "results/te_86/raw/MANIFEST.json",
+    "results/te_86/run.log",
+    "results/te_86/sparams.csv",
+    "results/te_86/structure.json",
+    "results/te_86/summary.json",
+    "results/tm_00/meta.json",
+    "results/tm_00/raw/",
+    "results/tm_00/raw/MANIFEST.json",
+    "results/tm_00/run.log",
+    "results/tm_00/sparams.csv",
+    "results/tm_00/structure.json",
+    "results/tm_00/summary.json",
+    "results/tm_30/meta.json",
+    "results/tm_30/raw/",
+    "results/tm_30/raw/MANIFEST.json",
+    "results/tm_30/run.log",
+    "results/tm_30/sparams.csv",
+    "results/tm_30/structure.json",
+    "results/tm_30/summary.json",
+    "results/tm_60/meta.json",
+    "results/tm_60/raw/",
+    "results/tm_60/raw/MANIFEST.json",
+    "results/tm_60/run.log",
+    "results/tm_60/sparams.csv",
+    "results/tm_60/structure.json",
+    "results/tm_60/summary.json",
+    "results/tm_83/meta.json",
+    "results/tm_83/raw/",
+    "results/tm_83/raw/MANIFEST.json",
+    "results/tm_83/run.log",
+    "results/tm_83/sparams.csv",
+    "results/tm_83/structure.json",
+    "results/tm_83/summary.json",
+    "src/",
+    "src/derive.py",
+    "src/run_all.py",
+    "views/unit_cell/oblique_3d.png",
+    "views/unit_cell/top.png"
+  ],
+  "csv_contracts": {
+    "results/te_00/sparams.csv": {
+      "columns": [
+        "frequency_GHz",
+        "S11_dB",
+        "S21_dB"
+      ],
+      "grid": {
+        "type": "linear",
+        "column": "frequency_GHz",
+        "start": 3,
+        "stop": 16.5,
+        "step": 0.01,
+        "tolerance": 1e-08
+      }
+    },
+    "results/te_30/sparams.csv": {
+      "columns": [
+        "frequency_GHz",
+        "S11_dB",
+        "S21_dB"
+      ],
+      "grid": {
+        "type": "linear",
+        "column": "frequency_GHz",
+        "start": 3,
+        "stop": 16.5,
+        "step": 0.01,
+        "tolerance": 1e-08
+      }
+    },
+    "results/te_60/sparams.csv": {
+      "columns": [
+        "frequency_GHz",
+        "S11_dB",
+        "S21_dB"
+      ],
+      "grid": {
+        "type": "linear",
+        "column": "frequency_GHz",
+        "start": 3,
+        "stop": 16.5,
+        "step": 0.01,
+        "tolerance": 1e-08
+      }
+    },
+    "results/te_86/sparams.csv": {
+      "columns": [
+        "frequency_GHz",
+        "S11_dB",
+        "S21_dB"
+      ],
+      "grid": {
+        "type": "linear",
+        "column": "frequency_GHz",
+        "start": 3,
+        "stop": 16.5,
+        "step": 0.01,
+        "tolerance": 1e-08
+      }
+    },
+    "results/tm_00/sparams.csv": {
+      "columns": [
+        "frequency_GHz",
+        "S11_dB",
+        "S21_dB"
+      ],
+      "grid": {
+        "type": "linear",
+        "column": "frequency_GHz",
+        "start": 3,
+        "stop": 16.5,
+        "step": 0.01,
+        "tolerance": 1e-08
+      }
+    },
+    "results/tm_30/sparams.csv": {
+      "columns": [
+        "frequency_GHz",
+        "S11_dB",
+        "S21_dB"
+      ],
+      "grid": {
+        "type": "linear",
+        "column": "frequency_GHz",
+        "start": 3,
+        "stop": 16.5,
+        "step": 0.01,
+        "tolerance": 1e-08
+      }
+    },
+    "results/tm_60/sparams.csv": {
+      "columns": [
+        "frequency_GHz",
+        "S11_dB",
+        "S21_dB"
+      ],
+      "grid": {
+        "type": "linear",
+        "column": "frequency_GHz",
+        "start": 3,
+        "stop": 16.5,
+        "step": 0.01,
+        "tolerance": 1e-08
+      }
+    },
+    "results/tm_83/sparams.csv": {
+      "columns": [
+        "frequency_GHz",
+        "S11_dB",
+        "S21_dB"
+      ],
+      "grid": {
+        "type": "linear",
+        "column": "frequency_GHz",
+        "start": 3,
+        "stop": 16.5,
+        "step": 0.01,
+        "tolerance": 1e-08
+      }
+    }
+  }
+}

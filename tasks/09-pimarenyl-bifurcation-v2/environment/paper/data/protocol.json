@@ -1,0 +1,560 @@
+{
+  "assay": {
+    "claim_scope": "bounded_40_fs_short_time_commitment",
+    "core_paper_mechanism": "syn-CPP post-transition-state steering contrast between TSre and TSsi",
+    "is_full_article_reproduction": false,
+    "is_terminal_500_fs_product_distribution": false,
+    "variant": "syn-CPP_only"
+  },
+  "classification": {
+    "algorithm_order": [
+      "if reactant_distance < proton_threshold: reactant",
+      "else if transfer_distance >= proton_threshold: incomplete",
+      "else rank product distances by (distance,label)",
+      "if second_minus_first < minimum_commitment_margin_angstrom: ambiguous",
+      "else: toward_<closest_product_label>"
+    ],
+    "atom_index_base": 0,
+    "classification_step": 40,
+    "diagnostics": "always compute reactant, transfer, all product distances, and second-minus-first margin before applying the ordered label tests",
+    "distance_unit": "angstrom",
+    "early_stop_labels": [],
+    "early_stop_persistence_steps": 1,
+    "kind": "terpene_short_time_commitment",
+    "minimum_commitment_margin_angstrom": 0.01,
+    "minimum_early_stop_step": 40,
+    "classification_output_fields": [
+      "label",
+      "reactant_distance_angstrom",
+      "transfer_distance_angstrom",
+      "product_distances_angstrom",
+      "commitment_margin_angstrom"
+    ],
+    "classification_additional_properties": false,
+    "output_labels": [
+      "reactant",
+      "incomplete",
+      "ambiguous",
+      "toward_B",
+      "toward_C",
+      "toward_D"
+    ],
+    "product_pairs": {
+      "B": [
+        44,
+        48
+      ],
+      "C": [
+        38,
+        48
+      ],
+      "D": [
+        41,
+        48
+      ]
+    },
+    "proton_threshold": 1.2,
+    "reactant_pair": [
+      24,
+      25
+    ],
+    "transfer_pair": [
+      25,
+      50
+    ]
+  },
+  "initialization": {
+    "algorithm_version": "pbx_pimarenyl_pcg64_rigid_mode_kick_v1",
+    "atomic_masses_u": {
+      "B": 10.81,
+      "C": 12.011,
+      "Cl": 35.45,
+      "F": 18.998403,
+      "H": 1.00784,
+      "Li": 6.94,
+      "N": 14.007,
+      "O": 15.999,
+      "P": 30.973762,
+      "Pd": 106.42,
+      "S": 32.06,
+      "Si": 28.085
+    },
+    "constants": {
+      "angstrom_per_bohr": 0.52917721092,
+      "atomic_time_per_fs": 41.341373335170154,
+      "fs_per_atomic_time": 0.024188843265864,
+      "k_b_hartree_per_k": 3.166811563e-06,
+      "kcal_mol_per_hartree": 627.5094740631,
+      "u_to_electron_mass": 1822.888486209
+    },
+    "coordinate_displacement": "none; start at exact supplied XYZ coordinates",
+    "float_dtype": "numpy.float64",
+    "mode_internal_definition": "remove_translation_rotation(public displacement, supplied coordinates, electron-mass array)",
+    "mode_kick_definition": "0.5 * sum_i(m_i * |v_kick_i|^2) = mode_kick_kcal_mol",
+    "mode_projection": "c = sum_i(m_i * thermal_i dot mode_internal_i) / sum_i(m_i * |mode_internal_i|^2); thermal -= c * mode_internal",
+    "mode_sign_application": "v_final = thermal_rescaled + mode_sign * sqrt(2*(mode_kick_kcal_mol/kcal_mol_per_hartree)/mode_mass_norm2) * mode_internal",
+    "operation_order": [
+      "draw",
+      "remove_translation_rotation",
+      "project_mode",
+      "remove_translation_rotation",
+      "rescale_thermal",
+      "add_mode_kick"
+    ],
+    "pseudoinverse_rcond": 1e-12,
+    "provenance_schema": {
+      "removed_rotation": "required boolean true",
+      "removed_translation": "required boolean true",
+      "rotation_residual": "optional numeric or structured diagnostic",
+      "translation_residual": "optional numeric or structured diagnostic"
+    },
+    "reactive_mode_projection_record": "with u=public_mode/l2_norm(public_mode), sum_i(m_i*v_final_i dot u_i)/sqrt(sum_i(m_i*|u_i|^2))",
+    "rigid_body_removal": "remove mass-weighted COM velocity; use mass-centered supplied coordinates; I=sum m*((r dot r)I3-r outer r), L=sum cross(r,mv), omega=pinv(I,rcond=1e-12)@L, v-=cross(omega,r); remove COM velocity again",
+    "thermal_dof": "3N-7",
+    "velocity_distribution": "normal(0, sqrt(k_B*T/mass)) per Cartesian component"
+  },
+  "integrator": "velocity-Verlet NVE",
+  "integrator_contract": {
+    "acceleration": "-gradient_eh_per_bohr / mass_electron",
+    "coordinate_internal_unit": "bohr",
+    "frame_count_complete": 41,
+    "frame_required_arrays": {
+      "coordinates_angstrom": [
+        53,
+        3
+      ],
+      "gradient_hartree_per_bohr": [
+        53,
+        3
+      ],
+      "velocities_bohr_per_au": [
+        53,
+        3
+      ]
+    },
+    "frame_velocity_semantics": "step 0 uses initialized velocity; step n>0 uses post-update v_next",
+    "frame_time_rule": "time_fs = step * timestep_fs",
+    "gradient_rms_definition": "sqrt(mean over all 3N Cartesian gradient components of gradient_ij^2)",
+    "step_order": [
+      "q_next = q + v*dt + 0.5*a*dt^2",
+      "evaluate pinned RKS energy and analytic gradient at q_next",
+      "a_next = -gradient_next/mass",
+      "v_next = v + 0.5*(a+a_next)*dt",
+      "atomically checkpoint native receipt, marker, and JSON frame"
+    ],
+    "timestep_internal": "dt = timestep_fs * initialization.constants.atomic_time_per_fs"
+  },
+  "method": {
+    "basis": "6-31G(d)",
+    "charge": 1,
+    "conv_tol": 1e-08,
+    "dispersion": "D3BJ",
+    "engine": "GPU4PySCF",
+    "grid_level": 1,
+    "max_cycle": 150,
+    "reference": "RKS",
+    "solvation": null,
+    "spin": 0,
+    "xc": "B3LYP"
+  },
+  "electronic_state_contract": {
+    "reference": "RKS_only",
+    "scf_guess_policy": {
+      "later_steps": "scf_guess_source must be exactly fresh_rks_minao or carried_rks_density",
+      "step_0": "scf_guess_source must be exactly fresh_rks_minao"
+    },
+    "spin_multiplicity": 1.0,
+    "spin_squared": 0.0,
+    "uks_or_broken_symmetry_allowed": false
+  },
+  "mode_kick_kcal_mol": 1.0,
+  "modes": {
+    "TSre": {
+      "hash_kind": "canonical_json_displacement_sha256",
+      "path": "data/mode_TSre.json",
+      "sha256": "28439af19ce6c40925ca5f096b5c7dc54e58e00f633206270c84cd70b1b2d26b",
+      "strategy": "supplied_imaginary_mode"
+    },
+    "TSsi": {
+      "hash_kind": "canonical_json_displacement_sha256",
+      "path": "data/mode_TSsi.json",
+      "sha256": "055d746e108852fb39aeb92ad4e51dde78348cb2654ea3a5a8e10c0d90ba0dd2",
+      "strategy": "supplied_imaginary_mode"
+    }
+  },
+  "paper_claim": {
+    "claim_semantics": "compatibility of bounded 40 fs commitment directions with the paper; not terminal product reproduction",
+    "condition_target_labels": {
+      "TSre": "toward_B",
+      "TSsi": "toward_C"
+    },
+    "minimum_completed_trajectories": 8,
+    "minimum_target_fraction": 0.75,
+    "minimum_trajectories_per_condition": 4,
+    "paper_result": "syn-CPP TSre predominantly forms B with minority C/D outcomes, while TSsi product trajectories exclusively form C",
+    "paper_result_context_only": "syn-CPP TSre predominantly forms B with minority C/D outcomes, while TSsi product trajectories exclusively form C",
+    "rule": "condition_targets"
+  },
+  "path_base": "/home/paper",
+  "prohibitions": [
+    "paper percentages substituted for fresh calculations",
+    "fabricated or hard-coded energies, gradients, frames, labels, or statistics",
+    "surrogate force fields, learned potentials, or precomputed force archives",
+    "method, engine, structure, mode, seed, integrator, or classifier substitution",
+    "LLM, network, remote API, verifier, judge, rubric, reference-solution, or private-GT access during reproduce.sh"
+  ],
+  "rng": "numpy.PCG64",
+  "schema_version": "1.0",
+  "start_structures": {
+    "TSre": {
+      "atom_count": 53,
+      "coordinate_hash_kind": "canonical_xyz_rows_8dp_sha256",
+      "coordinate_sha256": "5f07872c5b2ae0e7d634a4eb2c059ae7c35b7885192cea5407b35f8cf9c819dc",
+      "path": "data/TSre.xyz"
+    },
+    "TSsi": {
+      "atom_count": 53,
+      "coordinate_hash_kind": "canonical_xyz_rows_8dp_sha256",
+      "coordinate_sha256": "45c3cb429b5644b755eb6aca85be70c042df80939aab48d99bb74ed54bb014cd",
+      "path": "data/TSsi.xyz"
+    }
+  },
+  "statistics": {
+    "conclusion_rule": {
+      "contradicted": "after completeness gate fails support: any non-target label other than incomplete/ambiguous reaches 0.75 in its condition",
+      "inconclusive": "completeness gate fails, or neither supported nor contradicted",
+      "supported": "eight complete total, four per condition, and both target fractions >= 0.75"
+    },
+    "counts_keys": "exactly observed positive-count labels; omit zero-count labels",
+    "denominator": "all completed receipt-backed classified trajectories in the condition, including reactant/incomplete/ambiguous",
+    "mean_lag_fs": "not applicable; omit",
+    "wilson_95": {
+      "formula": "den=1+z^2/n; center=(p+z^2/(2n))/den; radius=z*sqrt(p*(1-p)/n+z^2/(4*n^2))/den",
+      "labels": "observed positive-count labels only",
+      "z": 1.95996398454
+    }
+  },
+  "task_id": "pimarenyl-bifurcation-v2",
+  "timestep_fs": 1.0,
+  "trajectories": [
+    {
+      "condition": "TSre",
+      "direction": "product",
+      "mode_sign": 1.0,
+      "requested_steps": 40,
+      "seed": 46501,
+      "start_structure": "TSre",
+      "temperature_k": 298.15,
+      "trajectory_id": "tsre-01"
+    },
+    {
+      "condition": "TSre",
+      "direction": "product",
+      "mode_sign": 1.0,
+      "requested_steps": 40,
+      "seed": 46502,
+      "start_structure": "TSre",
+      "temperature_k": 298.15,
+      "trajectory_id": "tsre-02"
+    },
+    {
+      "condition": "TSre",
+      "direction": "product",
+      "mode_sign": 1.0,
+      "requested_steps": 40,
+      "seed": 46503,
+      "start_structure": "TSre",
+      "temperature_k": 298.15,
+      "trajectory_id": "tsre-03"
+    },
+    {
+      "condition": "TSre",
+      "direction": "product",
+      "mode_sign": 1.0,
+      "requested_steps": 40,
+      "seed": 46504,
+      "start_structure": "TSre",
+      "temperature_k": 298.15,
+      "trajectory_id": "tsre-04"
+    },
+    {
+      "condition": "TSsi",
+      "direction": "product",
+      "mode_sign": 1.0,
+      "requested_steps": 40,
+      "seed": 46601,
+      "start_structure": "TSsi",
+      "temperature_k": 298.15,
+      "trajectory_id": "tssi-01"
+    },
+    {
+      "condition": "TSsi",
+      "direction": "product",
+      "mode_sign": 1.0,
+      "requested_steps": 40,
+      "seed": 46602,
+      "start_structure": "TSsi",
+      "temperature_k": 298.15,
+      "trajectory_id": "tssi-02"
+    },
+    {
+      "condition": "TSsi",
+      "direction": "product",
+      "mode_sign": 1.0,
+      "requested_steps": 40,
+      "seed": 46603,
+      "start_structure": "TSsi",
+      "temperature_k": 298.15,
+      "trajectory_id": "tssi-03"
+    },
+    {
+      "condition": "TSsi",
+      "direction": "product",
+      "mode_sign": 1.0,
+      "requested_steps": 40,
+      "seed": 46604,
+      "start_structure": "TSsi",
+      "temperature_k": 298.15,
+      "trajectory_id": "tssi-04"
+    }
+  ],
+  "verification_tolerances": {
+    "frame_to_native_receipt": {
+      "energy_hartree": 1e-06,
+      "gradient_rms_hartree_per_bohr": 1e-07,
+      "native_gradient_rms_to_marker_hartree_per_bohr": 5e-07
+    },
+    "initialization": {
+      "start_coordinate_angstrom": 1e-06,
+      "velocity_rtol": 1e-08,
+      "velocity_atol": 1e-12,
+      "mode_projection_atol_floor": 1e-10,
+      "mode_projection_rtol": 1e-08
+    },
+    "reported_outputs": {
+      "classification_diagnostic_abs": 1e-06,
+      "condition_fraction_abs": 1e-06,
+      "wilson_endpoint_abs": 0.0001
+    }
+  },
+  "output_contract": {
+    "entrypoint": "reproduce.sh",
+    "max_native_log_bytes": 200000000,
+    "max_generated_json_bytes": 20000000,
+    "generated_json_scope": "every JSON file under out/, results/, or at results.json, including auxiliary plan/state JSON",
+    "max_generated_entries": 4000,
+    "max_generated_files": 2000,
+    "max_generated_total_bytes": 2000000000,
+    "max_generated_file_bytes": 200000000,
+    "task_local_process_file_limit_bytes": 200000512,
+    "json_object_keys_unique": true,
+    "cleared_before_replay": [
+      "out",
+      "results",
+      "results.json"
+    ],
+    "frame_required_fields": [
+      "step",
+      "time_fs",
+      "energy_hartree",
+      "gradient_hartree_per_bohr",
+      "gradient_rms_eh_per_bohr",
+      "coordinates_angstrom",
+      "velocities_bohr_per_au",
+      "spin_squared",
+      "spin_multiplicity",
+      "scf_guess_source"
+    ],
+    "caught_failure_contract": {
+      "required_when": "the implementation catches a scientific exception and terminates an attempted trajectory before step 40",
+      "external_hard_timeout_exception": "the last atomic continuous prefix may remain without a failure object",
+      "fields": {
+        "stage": [
+          "setup",
+          "trajectory"
+        ],
+        "type": "nonempty exception class name string",
+        "message": "string truncated to at most 1000 characters",
+        "completed_step": "integer from -1 through 39"
+      },
+      "native_log_agreement": "PBX_TRAJ_FAILURE names the same trajectory_id, completed_step, and exception type",
+      "forbidden_when": "trajectory completed step 40"
+    },
+    "log_path_template": "out/logs/<trajectory_id>.log",
+    "native_log_method_identity_substring": "gpu4pyscf.dft.rks",
+    "methods_path": "out/methods.md",
+    "paths_are_relative_to": "/home/submission",
+    "results_path": "results.json",
+    "run_plan_path": "out/run_plan.json",
+    "run_plan_contract": {
+      "required_fields": [
+        "task_id",
+        "gpu_concurrency",
+        "cpu_threads_per_job",
+        "priority",
+        "checkpoint_each_force_step",
+        "status"
+      ],
+      "task_id": "pimarenyl-bifurcation-v2",
+      "status_enum": [
+        "not_started",
+        "running",
+        "complete",
+        "partial",
+        "failed"
+      ],
+      "delivery_template_status": "not_started",
+      "replay_start_transition": "atomically write running before the first force evaluation",
+      "atomic_update": "write a same-directory temporary file under out, fsync it, then rename it to out/run_plan.json",
+      "final_status_semantics": {
+        "running": "at least one canonical attempt began and no final state was committed; may remain only after an external hard timeout or other uncatchable termination",
+        "complete": "all eight canonical trajectories reached step 40",
+        "partial": "fewer than eight reached step 40 and at least one canonical trajectory completed or retained a durable continuous frame prefix",
+        "failed": "an orderly caught failure ended the run with no completed trajectory and no durable frame prefix"
+      },
+      "post_attempt_not_started_valid": false,
+      "orderly_exit_requires_final_state": true
+    },
+    "summary_path": "out/summary.json",
+    "summary_closed_objects": {
+      "statistics": [
+        "conditions"
+      ],
+      "statistics.conditions": [
+        "TSre",
+        "TSsi"
+      ],
+      "statistics.condition": [
+        "total",
+        "counts",
+        "fractions"
+      ],
+      "uncertainty": [
+        "small_sample_caution",
+        "wilson_95"
+      ],
+      "uncertainty.wilson_95": [
+        "TSre",
+        "TSsi"
+      ],
+      "uncertainty.wilson_95.condition": "exactly the observed positive-count labels"
+    },
+    "trajectory_path_template": "out/trajectories/<trajectory_id>.json",
+    "trajectory_files": [
+      "out/trajectories/tsre-01.json",
+      "out/trajectories/tsre-02.json",
+      "out/trajectories/tsre-03.json",
+      "out/trajectories/tsre-04.json",
+      "out/trajectories/tssi-01.json",
+      "out/trajectories/tssi-02.json",
+      "out/trajectories/tssi-03.json",
+      "out/trajectories/tssi-04.json"
+    ],
+    "replay_nonce": {
+      "environment_variable": "PBX_REPLAY_NONCE",
+      "runner_value_policy": "when present, copy unchanged",
+      "absent_fallback": "generate one lowercase 48-hex value from the OS CSPRNG and export it once for official two-container replay compatibility",
+      "required_in": [
+        "results.json",
+        "out/summary.json",
+        "every trajectory record"
+      ],
+      "semantics": "nonsecret replay consistency binding only; must not affect scientific calculations; a candidate-generated fallback is not runner attestation"
+    },
+    "verifier_boundary": "retain gradients and velocities sufficient for independent RMS and velocity-Verlet recomputation; do not access private reference values",
+    "deterministic_global_provenance_gate": {
+      "all_modes": [
+        "delivered_nonstarter_source",
+        "source_policy_passed",
+        "replay_network_isolated",
+        "verifier_isolated",
+        "post_replay_tree_regular",
+        "post_replay_output_policy_passed",
+        "reserved_verifier_record_names_absent",
+        "uniform_artifact_nonce_binding"
+      ],
+      "enhanced_task_local_additional": [
+        "inputs_unchanged",
+        "entrypoint_observed",
+        "python_exec_observed",
+        "gpu4pyscf_package_open_observed",
+        "assigned_nvidia_device_open_observed"
+      ],
+      "official_two_container_additional": [
+        "trusted_status_recognized",
+        "tests_or_private_refs_absent_during_replay",
+        "grade_submission_read_only",
+        "regular_evidence_tree"
+      ],
+      "failure_effect": "reported results lack trusted execution provenance"
+    },
+    "source_snapshot_policy": {
+      "required_scientific_source_root": "src",
+      "sole_top_level_executable_entrypoint": "reproduce.sh",
+      "reject_symlinks_and_nonregular_objects": true,
+      "reject_embedded_trajectory_or_summary_json": true,
+      "reserved_forbidden_source_names": [
+        "candidate_replay.json",
+        "replay_receipt.json"
+      ],
+      "max_source_file_bytes": 2000000,
+      "max_source_total_bytes": 5000000,
+      "max_source_files": 200,
+      "max_source_entries": 400,
+      "max_line_bytes": 20000,
+      "max_python_literal_bytes": 32000,
+      "max_total_python_literal_bytes": 200000,
+      "max_python_numeric_literals": 20000,
+      "max_json_numeric_values": 20000,
+      "reject_long_base64_or_hex_runs": true,
+      "encoded_run_min_bytes": 4096,
+      "forbidden_cache_codecs": [
+        "base64",
+        "bz2",
+        "gzip",
+        "lzma",
+        "marshal",
+        "pickle",
+        "zlib"
+      ],
+      "reject_txt_with_native_receipts_and_step_markers": true,
+      "generated_directory_names": [
+        "__pycache__",
+        "candidate_outputs",
+        "checkpoints",
+        "out",
+        "outputs",
+        "precomputed",
+        "precomputed_outputs",
+        "receipts",
+        "results"
+      ],
+      "generated_suffixes": [
+        ".7z",
+        ".bin",
+        ".bz2",
+        ".chk",
+        ".cube",
+        ".dat",
+        ".fchk",
+        ".gz",
+        ".h5",
+        ".hdf5",
+        ".joblib",
+        ".log",
+        ".ndjson",
+        ".npy",
+        ".npz",
+        ".out",
+        ".pickle",
+        ".pkl",
+        ".stderr",
+        ".stdout",
+        ".wfn",
+        ".wfx",
+        ".xz",
+        ".zip"
+      ]
+    }
+  }
+}

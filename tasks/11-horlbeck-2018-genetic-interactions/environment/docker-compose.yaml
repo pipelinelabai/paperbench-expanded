@@ -1,0 +1,34 @@
+services:
+  main:
+    cap_add: [NET_ADMIN]
+    build:
+      context: ${CONTEXT_DIR}
+      args:
+        PIP_INDEX_URL: ${PBX_PIP_INDEX_URL:-https://pypi.org/simple}
+        PBX_APT_MIRROR: ${PBX_APT_MIRROR:-}
+        PBX_DOWNLOAD_TIMEOUT: ${PBX_DOWNLOAD_TIMEOUT:-30}
+        PBX_DOWNLOAD_RETRIES: ${PBX_DOWNLOAD_RETRIES:-5}
+        npm_config_registry: ${PBX_NPM_REGISTRY:-https://registry.npmjs.org}
+      network: ${PBX_BUILD_NETWORK:-default}
+    command: ["sh", "-ec", "pbx-init-workspace pbsolver; exec sleep infinity"]
+    network_mode: ${NETWORK_MODE:-bridge}
+    environment:
+      - TEST_DIR=${TEST_DIR}
+      - CONTAINER_MEMORY=${MEMORY}
+      - CONTAINER_CPUS=${CPUS}
+      - ANTHROPIC_BASE_URL=${ANTHROPIC_BASE_URL:-}
+      - OPENAI_BASE_URL=${OPENAI_BASE_URL:-}
+      - OPENAI_API_BASE=${OPENAI_API_BASE:-}
+      - JUDGE_BASE_URL=${JUDGE_BASE_URL:-}
+      - JUDGE_API_BASE=${JUDGE_API_BASE:-}
+      - NO_PROXY=${PBX_NO_PROXY:-localhost}
+      - no_proxy=${PBX_NO_PROXY:-localhost}
+    volumes:
+      - ${HOST_VERIFIER_LOGS_PATH}:${ENV_VERIFIER_LOGS_PATH}
+      - ${HOST_AGENT_LOGS_PATH}:${ENV_AGENT_LOGS_PATH}
+      - ${HOST_AGENT_LOGS_PATH}/submission:/home/submission
+    deploy:
+      resources:
+        limits:
+          cpus: ${CPUS}
+          memory: ${MEMORY}

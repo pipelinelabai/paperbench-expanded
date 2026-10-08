@@ -1,0 +1,205 @@
+{
+  "_windows_authority": "Only rubric.json leaf descriptions and checks define acceptance windows. This reference file records paper readings, exact reported statements and extraction uncertainty, not additional acceptance conditions.",
+  "_comment": "Judge-private key targets for 01-cpw-quad-port-uwb-mimo. Figure-derived values carry digitization uncertainty (see extraction_log.md); text/table values are exact as printed in the paper.",
+  "paper_claims_exact": {
+    "impedance_bandwidth_GHz": {
+      "value": [
+        3,
+        20
+      ],
+      "source": "Abstract / Sec. 4.1 / Table 2 'This work' (3.0-20)"
+    },
+    "isolation_better_than_dB": {
+      "value": 17,
+      "source": "Abstract / Sec. 4.1 / Table 2"
+    },
+    "ECC_band_max_claim": {
+      "value": 0.08,
+      "source": "Sec. 4.4 'rather less than 0.08'; Abstract/Table 2 say <0.1/<0.08"
+    },
+    "ECC_6to20_claim": {
+      "value": 0.02,
+      "source": "Sec. 4.4 'less than 0.02 from 6 to 20 GHz'"
+    },
+    "DG_min_claim_dB": {
+      "value": 9.97,
+      "source": "Sec. 4.4 'DG is greater than 9.97'"
+    },
+    "radiation_efficiency_min_claim": {
+      "value": 0.75,
+      "source": "Sec. 1 / Sec. 4.3 'above 75% over 3-20 GHz'"
+    },
+    "peak_gain_range_claim_dBi": {
+      "value": [
+        1.3,
+        6.2
+      ],
+      "source": "Table 2 'This work' 1.3-6.2; Sec. 4.4 'more than 1.3 dBi'"
+    },
+    "mux_eff_min_claim_dB": {
+      "value": -3,
+      "source": "Sec. 4.4 'higher than -3 dB throughout'"
+    },
+    "first_resonance_simulated_GHz": {
+      "value": 3.7,
+      "source": "Sec. 2.2.2 'calculated and simulated fr ... 4 and 3.7 GHz'"
+    },
+    "antenna_size_mm": {
+      "value": [
+        38,
+        38,
+        1.6
+      ],
+      "source": "Abstract / Table 1"
+    },
+    "cpw_Z0_ohm": {
+      "value": 51,
+      "source": "Sec. 2.1 (approx, from Eq. (3))"
+    }
+  },
+  "mimo_final_figure_reads": {
+    "s11_resonances_GHz": {
+      "value": [
+        3.6,
+        6.35,
+        11.4,
+        14.3
+      ],
+      "source": "Fig. 8 black solid",
+      "uncertainty_GHz": 0.15
+    },
+    "s11_resonance_depths_dB": {
+      "value": [
+        -24,
+        -18,
+        -21,
+        -48
+      ],
+      "source": "Fig. 8 black solid",
+      "uncertainty_dB": "1.5; deep dip 4"
+    },
+    "worst_coupling_dB": {
+      "value": -17.5,
+      "source": "Fig. 8 S12 red solid at 3.0 GHz",
+      "uncertainty_dB": 2
+    },
+    "s13_max_dB": {
+      "value": -22,
+      "source": "Fig. 8 S13 blue solid, 3-4.5 GHz region",
+      "uncertainty_dB": 2
+    },
+    "eff_max": {
+      "value": 0.96,
+      "source": "Fig. 11 plateau 4-6 GHz",
+      "uncertainty": 0.004
+    },
+    "eff_min": {
+      "value": 0.766,
+      "source": "Fig. 11 at 20 GHz",
+      "uncertainty": 0.006
+    },
+    "ecc_max": {
+      "value": 0.0745,
+      "source": "Fig. 12 ECC12 at 3.0 GHz",
+      "uncertainty": 0.003
+    },
+    "peak_gain_max_dBi": {
+      "value": 6.2,
+      "source": "Fig. 13 red at 18.9 GHz (Table 2 upper end 6.2)",
+      "uncertainty_dB": 0.15
+    },
+    "gain_at_3GHz_dBi": {
+      "value": 1.35,
+      "source": "Fig. 13 red at 3.0 GHz (Table 2 lower end 1.3)",
+      "uncertainty_dB": 0.15
+    },
+    "mux_eff_min_dB": {
+      "value": -2.6,
+      "source": "Fig. 13 blue dashed at 20 GHz",
+      "uncertainty_dB": 0.15
+    }
+  },
+  "single_element_figure_reads": {
+    "initial_resonances_GHz": {
+      "value": [
+        3.3,
+        6.1,
+        11.3,
+        14.15,
+        16.6
+      ],
+      "source": "Fig. 1b",
+      "uncertainty_GHz": 0.12
+    },
+    "initial_mismatch_17plus": {
+      "value": "S11 > -10 dB over ~17.4-19.9, peak -8.5 @ 18.2",
+      "source": "Fig. 1b (text: 'deteriorates after 17 GHz')"
+    },
+    "initial_44_bump_dB": {
+      "value": -8.8,
+      "source": "Fig. 1b at 4.35 GHz",
+      "uncertainty_dB": 0.7
+    },
+    "stub_resonances_GHz": {
+      "value": [
+        3.35,
+        6.15,
+        11.5,
+        14.2,
+        16.7,
+        19.2
+      ],
+      "source": "Fig. 2b",
+      "uncertainty_GHz": 0.12
+    },
+    "stub_44_bump_dB": {
+      "value": -8.7,
+      "source": "Fig. 2b at 4.35 GHz",
+      "uncertainty_dB": 0.7
+    },
+    "stub_18p2_dB": {
+      "value": -13.0,
+      "source": "Fig. 2b at 18.2 GHz (17-20 GHz repaired)",
+      "uncertainty_dB": 1.0
+    }
+  },
+  "h2_sweep_figure_reads": {
+    "f_dip1_GHz": {
+      "value": {
+        "h2_10p7": 3.35,
+        "final_11p2": 3.5,
+        "h2_11p7": 3.75
+      },
+      "source": "Fig. 4 (text: 'shifts from 3.2 to 3.8 GHz')",
+      "uncertainty_GHz": 0.12
+    },
+    "h2_10p7_midband_mismatch": {
+      "value": "S11 > -10 over ~8.3-9.8 (bump -9.3 @8.8) and ~4.6-5.2",
+      "source": "Fig. 4 black (text: 'match is lost around 5 GHz and 8-9 GHz')"
+    },
+    "h2_11p7_15GHz_mismatch": {
+      "value": "S11 ~ -10.1 over 14.9-15.6",
+      "source": "Fig. 4 blue (text: 'matching is lost around 15 GHz')"
+    }
+  },
+  "stub_sweep_figure_reads": {
+    "nostub_18p3_dB": {
+      "value": -8.0,
+      "source": "Fig. 6 red dashed peak at 18.3 GHz",
+      "uncertainty_dB": 0.7
+    },
+    "nostub_band_hi_GHz": {
+      "value": 17.05,
+      "source": "Fig. 6 red dashed -10 up-crossing (text: 'up to 17 GHz')",
+      "uncertainty_GHz": 0.2
+    },
+    "withstub_deep_dip": {
+      "value": [
+        14.35,
+        -38.3
+      ],
+      "source": "Fig. 6 blue solid (text: 'another resonance point around 15 GHz')",
+      "uncertainty": "0.1 GHz / 2 dB"
+    }
+  }
+}

@@ -1,0 +1,317 @@
+{
+  "scoring_contract": {
+    "schema_version": 1,
+    "task_id": "09",
+    "total_points": 100,
+    "dependency_semantics": "Requirements apply to individual cases and available observations, not full-score blocks. Primary-case credit is equal across eight; pair credit across two; halfstep credit across four. Missing-case accounting can be correct even when cases failed.",
+    "evidence_groups": {
+      "plan": [],
+      "fixed_state_model": [
+        "plan"
+      ],
+      "primary_frames": [
+        "fixed_state_model"
+      ],
+      "reversed_frames": [
+        "fixed_state_model"
+      ],
+      "halfstep_frames": [
+        "fixed_state_model"
+      ],
+      "available_primary_labels": [
+        "primary_frames"
+      ]
+    },
+    "blocks": [
+      {
+        "id": "09.1",
+        "title": "Fixed-state/native electronic-model identity",
+        "points": 10,
+        "checks": [
+          {
+            "id": "09.1a",
+            "points": 4,
+            "requires": [
+              "fixed_state_model"
+            ],
+            "criterion": "Numeric identity of supplied coordinates, velocities, units and masses, including correct reversed state; no RNG-string scoring.",
+            "dimension": "A"
+          },
+          {
+            "id": "09.1b",
+            "points": 6,
+            "requires": [
+              "fixed_state_model"
+            ],
+            "criterion": "Native GPU4PySCF RKS/DFT/dispersion/integral settings and electronic-state evidence match the frozen model.",
+            "dimension": "A"
+          }
+        ]
+      },
+      {
+        "id": "09.2",
+        "title": "Eight complete, valid primary propagations",
+        "points": 20,
+        "checks": [
+          {
+            "id": "09.2a",
+            "points": 6,
+            "requires": [
+              "primary_frames"
+            ],
+            "criterion": "All required primary energies, analytic-gradient arrays and raw states are numerically consistent with native records and the frozen model, independently verified per trajectory.",
+            "dimension": "C"
+          },
+          {
+            "id": "09.2b",
+            "points": 8,
+            "requires": [
+              "primary_frames"
+            ],
+            "criterion": "Independent VV, time, gradient-norm and full-step-velocity recomputation passes; model/initial-state identity is preserved.",
+            "dimension": "C"
+          },
+          {
+            "id": "09.2c",
+            "points": 6,
+            "dimension": "B",
+            "requires": [
+              "primary_frames"
+            ],
+            "criterion": "Verify pinned GPU4PySCF/VV setup and actual fresh primary propagation through every required time, retaining native SCF/gradient records for each distinct geometry. Check completeness per trajectory; an asserted success is insufficient."
+          }
+        ]
+      },
+      {
+        "id": "09.3",
+        "title": "Coordinate-derived primary labels and boundary margins",
+        "points": 8,
+        "checks": [
+          {
+            "id": "09.3a",
+            "points": 5,
+            "requires": [
+              "available_primary_labels"
+            ],
+            "criterion": "Final distances and ordered classifier are recomputed correctly from complete native-backed primary states.",
+            "dimension": "C"
+          },
+          {
+            "id": "09.3b",
+            "points": 3,
+            "requires": [
+              "available_primary_labels"
+            ],
+            "criterion": "Active-boundary margins and numerical ambiguity are explicitly evaluated without changing the prescribed inequalities.",
+            "dimension": "C"
+          }
+        ]
+      },
+      {
+        "id": "09.4",
+        "title": "Initial geometry versus subsequent-motion decomposition",
+        "points": 12,
+        "checks": [
+          {
+            "id": "09.4a",
+            "points": 8,
+            "requires": [
+              "primary_frames"
+            ],
+            "criterion": "Correct two-component q, per-trajectory changes and condition means at every fixed time, retaining all three product directions.",
+            "dimension": "C"
+          },
+          {
+            "id": "09.4b",
+            "points": 4,
+            "requires": [
+              "primary_frames"
+            ],
+            "criterion": "Absolute TSre/TSsi contrast is quantitatively decomposed into initial geometry and subsequent motion with correct signs/units.",
+            "dimension": "C"
+          }
+        ]
+      },
+      {
+        "id": "09.5",
+        "title": "Two paired momentum interventions and measured effects",
+        "points": 14,
+        "checks": [
+          {
+            "id": "09.5a",
+            "points": 6,
+            "requires": [
+              "reversed_frames"
+            ],
+            "criterion": "Recompute the two complete counterfactuals and verify native state/energy/gradient consistency, identical starting geometry and kinetic energy, unchanged reactive kick and only reversed thermal momentum.",
+            "dimension": "C"
+          },
+          {
+            "id": "09.5b",
+            "points": 6,
+            "requires": [
+              "primary_frames",
+              "reversed_frames"
+            ],
+            "criterion": "Correct matched pair q differences at 10/20 fs, no favorable endpoint/seed selection and no claim of ensemble product statistics.",
+            "dimension": "C"
+          },
+          {
+            "id": "09.5c",
+            "points": 2,
+            "dimension": "B",
+            "requires": [
+              "reversed_frames"
+            ],
+            "criterion": "Verify actual GPU4PySCF propagation of both predeclared counterfactuals through 20 fs from the designated initial states, with correct solver settings and native per-geometry receipts; not renamed primary outputs."
+          }
+        ]
+      },
+      {
+        "id": "09.6",
+        "title": "Four timestep controls and numerical resolvability analysis",
+        "points": 12,
+        "checks": [
+          {
+            "id": "09.6a",
+            "points": 6,
+            "requires": [
+              "halfstep_frames"
+            ],
+            "criterion": "All four halfstep trajectories have numerically consistent native-backed energies/gradients and correct VV full-step states through 20 fs at the same fixed initial conditions.",
+            "dimension": "C"
+          },
+          {
+            "id": "09.6b",
+            "points": 4,
+            "requires": [
+              "primary_frames",
+              "reversed_frames",
+              "halfstep_frames"
+            ],
+            "criterion": "Quantified two-sided pair sensitivity, certified-envelope comparison and justified resolved/unresolved effect semantics, without extending control coverage to 40/500 fs.",
+            "dimension": "C"
+          },
+          {
+            "id": "09.6c",
+            "points": 2,
+            "dimension": "B",
+            "requires": [
+              "halfstep_frames"
+            ],
+            "criterion": "Verify actual execution of all four distinct 0.5 fs controls through 20 fs, with their native solver configuration and receipts; shared identical initial-state evaluations must be explicitly identified."
+          }
+        ]
+      },
+      {
+        "id": "09.7",
+        "title": "NVE/SCF diagnostics from consistent frames",
+        "points": 8,
+        "checks": [
+          {
+            "id": "09.7a",
+            "points": 5,
+            "requires": [
+              "primary_frames"
+            ],
+            "criterion": "Correct kinetic/total energy and drift from matched full-step frames and native electronic energies, not potential-energy-only conservation.",
+            "dimension": "C"
+          },
+          {
+            "id": "09.7b",
+            "points": 3,
+            "requires": [
+              "reversed_frames",
+              "halfstep_frames"
+            ],
+            "criterion": "Control energy/SCF evidence distinguishes timestep sensitivity from electronic failures and discloses unresolved drift.",
+            "dimension": "C"
+          }
+        ]
+      },
+      {
+        "id": "09.8",
+        "title": "Complete denominators, intervals and missing-case bounds",
+        "points": 8,
+        "checks": [
+          {
+            "id": "09.8a",
+            "points": 5,
+            "requires": [
+              "available_primary_labels"
+            ],
+            "criterion": "Correct all-six-label counts, completed-only fractions and Wilson intervals including zero counts, excluding controls.",
+            "dimension": "C"
+          },
+          {
+            "id": "09.8b",
+            "points": 3,
+            "requires": [
+              "plan"
+            ],
+            "criterion": "Truthful completed/failed accounting and full-four missing-case bounds; no missing values converted into favorable outcomes.",
+            "dimension": "C"
+          }
+        ]
+      },
+      {
+        "id": "09.9",
+        "title": "Paper-faithful conclusions tied to the computed experiment",
+        "points": 8,
+        "checks": [
+          {
+            "id": "09.9a",
+            "points": 4,
+            "requires": [
+              "primary_frames",
+              "reversed_frames",
+              "halfstep_frames"
+            ],
+            "criterion": "Mechanistic interpretation follows measured paired effects and controls rather than assuming the article's expected labels.",
+            "dimension": "C"
+          },
+          {
+            "id": "09.9b",
+            "points": 4,
+            "requires": [
+              "plan"
+            ],
+            "criterion": "Distinguishes finite deterministic intervention, geometry diagnostics, original QCT preparation, orbital mechanisms and terminal population claims, with explicit remaining limitations.",
+            "dimension": "C"
+          }
+        ]
+      }
+    ],
+    "scoring_dimensions": [
+      {
+        "id": "A",
+        "title": "Structural Modeling",
+        "points": 10
+      },
+      {
+        "id": "B",
+        "title": "Solver Config & Run Evidence Audit",
+        "points": 10
+      },
+      {
+        "id": "C",
+        "title": "Result Analysis",
+        "points": 80
+      }
+    ],
+    "scoring_semantics": "A=Structural Modeling 10%; B=Solver Config & Run Evidence Audit 10%; C=Result Analysis 80%. Research blocks are a reporting crosswalk, not an extra weighting level. Judging method is a separate axis.",
+    "scheme": "abc-10-10-80"
+  },
+  "runtime": {
+    "task_id": "09",
+    "harbor_scoring_enabled": true,
+    "scoring_dimensions": {
+      "A": 10,
+      "B": 10,
+      "C": 80
+    },
+    "native_timeout_sec": 21600,
+    "host_replay": "public_native_verifier",
+    "verifier_backend": "host_native_replay"
+  }
+}

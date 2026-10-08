@@ -1,0 +1,258 @@
+{
+  "id": "95091904-0000-4000-8000-000000000000",
+  "requirements": "Science and provenance, not layout, format or target-score distribution. Binary independent leaves; no hidden global gate.",
+  "sub_tasks": [
+    {
+      "id": "A",
+      "title": "Structural Modeling",
+      "weight": 10,
+      "sub_tasks": [
+        {
+          "id": "95091904-0000-4000-8000-000000000001",
+          "weight": 100.0,
+          "requirements": "Executed anisotropic tensor, director origin, helix, no/ne/p and glass boundaries match the fixed model at D/p=5,10,20,40. All four thicknesses are mandatory; an absent 20p/40p case is not exempted or passed.",
+          "title": "Fixed tensor and four thicknesses",
+          "task_category": "Modeling",
+          "evidence_inputs": [
+            {
+              "path": "submission/src/",
+              "kind": "source_complete",
+              "role": "executed model and derivation"
+            },
+            {
+              "path": "submission/results/",
+              "kind": "data",
+              "recursive": true,
+              "role": "native raw arrays, solver logs and independent controls for this requirement"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "B",
+      "title": "Solver Config & Run Evidence Audit",
+      "weight": 10,
+      "sub_tasks": [
+        {
+          "id": "95091904-0000-4000-8000-000000000002",
+          "weight": 50.0,
+          "requirements": "For all four required thicknesses and the 10p negative-helix control, actual Meep Ex/Ey/Hx/Hy, references, flux and both circular plus independent linear source runs; preserve raw and normalized arrays separately with correct phasor/gauge and traceable raw-to-normalized conversion. Assess concrete acquisition/representation defects here; do not substitute failures of separately scored superposition, closure, theory agreement or convergence for an evidence defect.",
+          "title": "Native complex evidence",
+          "task_category": "Execution",
+          "evidence_inputs": [
+            {
+              "path": "submission/src/",
+              "kind": "source_complete",
+              "role": "executed model and derivation"
+            },
+            {
+              "path": "submission/results/",
+              "kind": "data",
+              "recursive": true,
+              "role": "native raw arrays, solver logs and independent controls for this requirement"
+            }
+          ]
+        },
+        {
+          "id": "361686a7-6705-5407-8ef8-1b19cf8d3ea2",
+          "title": "Independent refinement and stopping runs retained",
+          "weight": 25.0,
+          "task_category": "Execution",
+          "requirements": "Verify independent >=1.5x-grid and >=1.5x-time native reference/device runs for the 5p, 10p and 40p cases were actually executed and retained with raw arrays, logs and provenance from clean replay, and that valid stopping evidence exists for each required solve. A same-record truncation, a resolution label or a reused coarse run does not pass. Scores only production of the refinement and stopping evidence, not the channel-change thresholds.",
+          "evidence_inputs": [
+            {
+              "path": "submission/src/",
+              "kind": "source_complete",
+              "role": "executed model and derivation"
+            },
+            {
+              "path": "submission/results/",
+              "kind": "data",
+              "recursive": true,
+              "role": "native raw arrays, solver logs and independent controls for this requirement"
+            }
+          ],
+          "sub_tasks": []
+        },
+        {
+          "id": "95091904-0000-4000-8000-000000000009",
+          "weight": 25.0,
+          "requirements": "The 5p, 10p and 40p cases need independent >=1.5x-grid and >=1.5x-time native reference/device comparisons, max channel changes<=.02, complete traces and valid stopping evidence. Change grid and time separately; a same-record truncation is not an independent time solve. Each of the four required spectra needs half-step new native observations (spacing<=.0025um), followed by adaptive refinement if unresolved; retain initial failed sampling comparisons and require the final successive new-point comparison throughout the full band to have maximum channel-power change<=.02. Early coarse comparisons do not pass merely because later refinement succeeds; only the resolved final spectrum establishes convergence. Use comparison_kind=matched for grid/time and comparison_kind=spectral for sampling, preserving axes. Report center-edge, minimum and outside-integral changes. Shared-point agreement cannot pass sampling convergence. Further control refinement is required if its discretization remains unresolved. Require separate 20p sampling evidence and either independent spatial/time refinement or an explicit conservative discretization justification. Copying another thickness setting is not justification. Resolve thick-slab narrow peaks and retain any failed comparisons.",
+          "metric_operation": "compare",
+          "title": "Convergence and stopping",
+          "task_category": "Validation",
+          "evidence_inputs": [
+            {
+              "path": "submission/src/",
+              "kind": "source_complete",
+              "role": "executed model and derivation"
+            },
+            {
+              "path": "submission/results/",
+              "kind": "data",
+              "recursive": true,
+              "role": "native raw arrays, solver logs and independent controls for this requirement"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "C",
+      "title": "Result Analysis",
+      "weight": 80,
+      "sub_tasks": [
+        {
+          "id": "95091904-0000-4000-8000-000000000003",
+          "weight": 20.0,
+          "requirements": "Fixed [+,-] Jones ordering and globally matching minus channel; independent linear output agrees <=.02 with Jones superposition, never half-channel approximation or rowwise relabeling. Audit the common complex-transmission propagation/deembedding convention. A missing full band is not by itself failure of a computable local superposition test; full coverage is separately assessed in005.",
+          "metric_operation": "clc_channels",
+          "title": "Fixed channels and superposition",
+          "task_category": "Validation",
+          "evidence_inputs": [
+            {
+              "path": "submission/src/",
+              "kind": "source_complete",
+              "role": "executed model and derivation"
+            },
+            {
+              "path": "submission/results/",
+              "kind": "data",
+              "recursive": true,
+              "role": "native raw arrays, solver logs and independent controls for this requirement"
+            }
+          ]
+        },
+        {
+          "id": "95091904-0000-4000-8000-000000000004",
+          "weight": 16.666666,
+          "requirements": "Full-spectrum channel closure<=.02 for all four required thicknesses and the 10p negative-helix control; audit raw flux and phase/power normalization to both reference inputs. Compare native reflected as well as transmitted flux with Jones powers, max absolute difference<=.02; independently remeasure incident polarization; internal Jones closure alone does not prove calibration.",
+          "metric_operation": "clc_channels",
+          "title": "Conservation and calibration",
+          "task_category": "Validation",
+          "evidence_inputs": [
+            {
+              "path": "submission/src/",
+              "kind": "source_complete",
+              "role": "executed model and derivation"
+            },
+            {
+              "path": "submission/results/",
+              "kind": "data",
+              "recursive": true,
+              "role": "native raw arrays, solver logs and independent controls for this requirement"
+            }
+          ]
+        },
+        {
+          "id": "95091904-0000-4000-8000-000000000005",
+          "weight": 20.0,
+          "requirements": "All four 5p/10p/20p/40p complete 1.15..2.5um spectra, spacing<=.005um, finite unique samples, identical-model independent Maxwell comparison max channel-power error<=.03 for both Jones-derived and independently normalized native powers; do not call theoretical arrays Meep. Evaluate the fixed reference at every actual submitted wavelength using clc_reference_compare; coarse271-point reference interpolation is not authoritative at narrow peaks. Also compare the negative-helix control with the identical reversed-tensor reference at its actual wavelengths. Check explicit coverage and maximum-gap fields independently of local operations.",
+          "metric_operation": "clc_channels",
+          "title": "Full spectral cross-check",
+          "task_category": "Validation",
+          "evidence_inputs": [
+            {
+              "path": "submission/src/",
+              "kind": "source_complete",
+              "role": "executed model and derivation"
+            },
+            {
+              "path": "submission/results/",
+              "kind": "data",
+              "recursive": true,
+              "role": "native raw arrays, solver logs and independent controls for this requirement"
+            }
+          ]
+        },
+        {
+          "id": "95091904-0000-4000-8000-000000000007",
+          "weight": 16.666666,
+          "requirements": "Material edges[1.5,1.8] distinct from connected measured T_minus<=.5 component containing1.65, correct linear crossings/absence/censoring from raw spectra. Insert1.65 by linear interpolation, or choose among all feasible components; nearest-sample anchoring is invalid. Report boundary sensitivity to sampling and unresolved uncertainty honestly.",
+          "metric_operation": "clc_channels",
+          "title": "Two edge definitions",
+          "task_category": "Validation",
+          "evidence_inputs": [
+            {
+              "path": "submission/src/",
+              "kind": "source_complete",
+              "role": "executed model and derivation"
+            },
+            {
+              "path": "submission/results/",
+              "kind": "data",
+              "recursive": true,
+              "role": "native raw arrays, solver logs and independent controls for this requirement"
+            }
+          ]
+        },
+        {
+          "id": "95091904-0000-4000-8000-000000000008",
+          "weight": 13.333334,
+          "requirements": "Recompute wavelength-integral weighted T_minus over[1.15,1.40] union[1.90,2.50], interpolate endpoints; no changed windows or sampling-weight bias.",
+          "metric_operation": "clc_channels",
+          "title": "Outside-band statistic",
+          "task_category": "Validation",
+          "evidence_inputs": [
+            {
+              "path": "submission/src/",
+              "kind": "source_complete",
+              "role": "executed model and derivation"
+            },
+            {
+              "path": "submission/results/",
+              "kind": "data",
+              "recursive": true,
+              "role": "native raw arrays, solver logs and independent controls for this requirement"
+            }
+          ]
+        },
+        {
+          "id": "dda2d2d1-536e-500e-acc5-6d2b69a26e42",
+          "title": "Negative-helix control run and source-only replay",
+          "weight": 6.666667,
+          "task_category": "Execution",
+          "requirements": "Verify the 10p helix-reversed control was actually run natively with both circular and independent linear inputs, and that a successful no-argument source-only replay completes within 19800 s at 8 CPUs / 32 GiB with static inputs outside the regenerated output paths. Declarations, cached outputs or pre-staged results do not pass. Scores only production and replay of the control evidence, not the channel-reversal conclusion.",
+          "evidence_inputs": [
+            {
+              "path": "submission/src/",
+              "kind": "source_complete",
+              "role": "executed model and derivation"
+            },
+            {
+              "path": "submission/results/",
+              "kind": "data",
+              "recursive": true,
+              "role": "native raw arrays, solver logs and independent controls for this requirement"
+            }
+          ],
+          "sub_tasks": []
+        },
+        {
+          "id": "95091904-0000-4000-8000-000000000010",
+          "weight": 6.666667,
+          "requirements": "Genuine 10p helix-reversed raw control with both circular and independent linear inputs reverses the fixed matching channel globally; full-spectrum T/R differences after one global input-channel exchange<=.02; successful no-arg source-only replay within 19800s at 8 CPUs/32 GiB with static inputs outside generated directories, scientific limitations stated. Generated reports under results/ are valid; no prescribed extra report filename is required. Static source documents must not be rewritten during replay.",
+          "title": "Helix control and replay",
+          "task_category": "Validation",
+          "evidence_inputs": [
+            {
+              "path": "submission/src/",
+              "kind": "source_complete",
+              "role": "executed model and derivation"
+            },
+            {
+              "path": "submission/results/",
+              "kind": "data",
+              "recursive": true,
+              "role": "native raw arrays, solver logs and independent controls for this requirement"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "scope_id": "clc-four-thickness",
+  "scope_note": "D/p=5,10,20,40 are all required. All thickness, native-control, calibration, independent-model and convergence requirements remain mandatory. Stage C has six proportionally weighted criteria and no minimum-transmission suppression threshold. The clean verification limit is 25200s, with at most 19800s for the complete calculation and 5400s reserved for setup, termination and review. Configured resources do not establish complete native feasibility.",
+  "title": "clc-1d-resonator-meep"
+}

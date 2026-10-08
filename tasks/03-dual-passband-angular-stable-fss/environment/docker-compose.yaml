@@ -1,0 +1,33 @@
+services:
+  main:
+    build:
+      context: ${CONTEXT_DIR}
+      args:
+        HFSS_BASE_IMAGE: ${HFSS_BASE_IMAGE:?Set your authorized HFSS base image}
+        PIP_INDEX_URL: ${PBX_PIP_INDEX_URL:-https://pypi.org/simple}
+        PBX_DOWNLOAD_TIMEOUT: ${PBX_DOWNLOAD_TIMEOUT:-30}
+        PBX_DOWNLOAD_RETRIES: ${PBX_DOWNLOAD_RETRIES:-5}
+        npm_config_registry: ${PBX_NPM_REGISTRY:-https://registry.npmjs.org}
+    network_mode: ${NETWORK_MODE:-bridge}
+    command: ["sh", "-ec", "pbx-init-workspace pbsolver; chmod a+rX /logs/agent /logs/verifier 2>/dev/null || true; chmod -R a+rX /logs/agent/sessions 2>/dev/null || true; (while sleep 1; do chmod a+rX /logs/agent /logs/verifier 2>/dev/null || true; chmod -R a+rX /logs/agent/sessions 2>/dev/null || true; done) & exec sleep infinity"]
+    shm_size: "8gb"
+    environment:
+      - TEST_DIR=${TEST_DIR}
+      - CONTAINER_MEMORY=${MEMORY}
+      - CONTAINER_CPUS=${CPUS}
+      - ANSYS_LOCK=DISABLE
+      - ANSYSLMD_LICENSE_FILE=${ANSYSLMD_LICENSE_FILE:?Set your own HFSS license server}
+      - ANTHROPIC_BASE_URL=${ANTHROPIC_BASE_URL:-}
+      - OPENAI_BASE_URL=${OPENAI_BASE_URL:-}
+      - OPENAI_API_BASE=${OPENAI_API_BASE:-}
+      - JUDGE_BASE_URL=${JUDGE_BASE_URL:-}
+      - JUDGE_API_BASE=${JUDGE_API_BASE:-}
+    volumes:
+      - ${HOST_VERIFIER_LOGS_PATH}:${ENV_VERIFIER_LOGS_PATH}
+      - ${HOST_AGENT_LOGS_PATH}:${ENV_AGENT_LOGS_PATH}
+      - ${HOST_AGENT_LOGS_PATH}/submission:/home/submission
+    deploy:
+      resources:
+        limits:
+          cpus: ${CPUS}
+          memory: ${MEMORY}

@@ -1,0 +1,279 @@
+{
+  "id": "28d1757a-3647-59bb-b656-25b264fcee11",
+  "weight": 100,
+  "task_category": null,
+  "finegrained_task_category": null,
+  "requirements": "Reproduce MapGPT online topological mapping, map-guided prompting, and adaptive planning. Scoring: mechanisms 25%, engineering 20%, scientific results 55%; NE/OSR/SR/SPL use paper Table 1 targets. Because the task uses a local 7B VLM rather than GPT-4V, the model dimension is a proxy; do not claim full model reproduction.",
+  "sub_tasks": [
+    {
+      "id": "2026542f-4b40-55ee-93a7-b616f9fc850f",
+      "weight": 25,
+      "task_category": null,
+      "finegrained_task_category": null,
+      "requirements": "§3.A Mechanism Implementation: genuinely implement online topological mapping, map-guided prompting, and adaptive path planning in source code and prompt_sample.txt, and feed them to the local navigation VLM. Deploy Qwen2.5-VL-7B locally and isolate it from the judge: loopback base_url, no remote API, no reused ANTHROPIC credentials. Enforce max_action_step, A. stop, max_image, and sampling parameters in code and record them truthfully in meta.json. Granular subtree scoring via child 0/1 leaves.",
+      "sub_tasks": [
+        {
+          "id": "6174542d-6f4d-550a-a70a-1f832568d110",
+          "weight": 28,
+          "task_category": "Modeling",
+          "finegrained_task_category": "Method Implementation",
+          "requirements": "submission/src/map.py (or an equivalent module) implements an online topological map: (a) number nodes by observation order; (b) classify explored / accessible / unexplored-inaccessible nodes; (c) maintain connectivity E_t, edges/adjacency; (d) verbalize the map for prompt injection, including a Trajectory list, Map connectivity such as 'Place X is connected with Places ...', and Supplementary Info for inaccessible nodes, using 'Nothing yet' when absent. Inspect both source logic and the actual Map block in submission/results/r2r_val_unseen_subset/prompt_sample.txt. An empty/placeholder map or only nearby candidates without global connectivity scores 0. [CRITICAL: the map distinguishes MapGPT from NavGPT; ablations show +4.6 SR points and +10 OSR points.]",
+          "evidence_inputs": [
+            {
+              "path": "submission/src/map.py",
+              "kind": "source"
+            },
+            {
+              "path": "submission/results/r2r_val_unseen_subset/prompt_sample.txt",
+              "kind": "text"
+            }
+          ],
+          "sub_tasks": []
+        },
+        {
+          "id": "319c083e-7da4-5adb-a45c-69c0e11c2eb0",
+          "weight": 22,
+          "task_category": "Modeling",
+          "finegrained_task_category": "Method Implementation",
+          "requirements": "submission/src/prompt_manager.py (or equivalent) implements a map-guided prompt manager with recognizable components in prompt_sample.txt: Task description (D), Instruction (I, the original instruction inserted without prior decomposition), History (H_t, such as 'step 0: ..., step 1: ...'), Observation (O_t, descriptions only of navigable viewpoints), Action space (A_t, N+1 including 'A. stop'), Map (M_t), and Previous Planning (P_{t-1}). Check source assembly logic and actual component labels in prompt_sample.txt. Missing any core component among Map, Action space, or Previous Planning scores 0.",
+          "evidence_inputs": [
+            {
+              "path": "submission/src/prompt_manager.py",
+              "kind": "source"
+            },
+            {
+              "path": "submission/results/r2r_val_unseen_subset/prompt_sample.txt",
+              "kind": "text"
+            }
+          ],
+          "sub_tasks": []
+        },
+        {
+          "id": "82558c1b-3d62-5506-aeda-c423a12c5be2",
+          "weight": 27,
+          "task_category": "Modeling",
+          "finegrained_task_category": "Method Implementation",
+          "requirements": "submission/src/agent.py (or equivalent) implements adaptive path planning: (a) every navigation LLM response includes Thought (T_t), New Planning (P_t), and Action, a single label such as 'Action: B.', correctly parsed; (b) carry P_t into the next prompt as P_{t-1}; (c) support backtracking to nonadjacent historical nodes using the map when a target is not directly reachable. Inspect parsing, state propagation, and prompt_sample.txt for all three output sections and linked planning across steps. Greedy neighbor-only choices without linked planning or backtracking score 0. [Adaptive-planning ablation: +3.7 SR points.]",
+          "evidence_inputs": [
+            {
+              "path": "submission/src/agent.py",
+              "kind": "source"
+            },
+            {
+              "path": "submission/results/r2r_val_unseen_subset/prompt_sample.txt",
+              "kind": "text"
+            }
+          ],
+          "sub_tasks": []
+        },
+        {
+          "id": "3e209ad7-fdf8-5219-869f-855302e7371c",
+          "weight": 13,
+          "task_category": "Modeling",
+          "finegrained_task_category": "Material & Source",
+          "requirements": "Local navigation VLM deployment and judge isolation: submission/src/llm_client.py (or equivalent) reads NAV_LLM_MODEL / NAV_LLM_BASE_URL / NAV_LLM_API_KEY from the environment, without hardcoded credentials or using verifier ANTHROPIC_API_KEY / ANTHROPIC_AUTH_TOKEN for navigation. A fallback such as `NAV_LLM_API_KEY or ANTHROPIC_*` scores 0. The navigation base_url must be local loopback, for example localhost, never a remote/cloud endpoint. Use local Qwen2.5-VL-7B, started through reproduce.sh with vLLM or equivalent in-process transformers/vllm inference; no remote navigation API. meta.json.nav_llm explicitly records model=Qwen2.5-VL-7B-Instruct, local base_url, deployment such as local_vllm, temperature, max_tokens, and response_format. Statically inspect environment reads, deployment logic, URL locality, and metadata completeness. A remote URL/API or fallback to judge credentials scores 0.",
+          "evidence_inputs": [
+            {
+              "path": "submission/src/llm_client.py",
+              "kind": "source"
+            },
+            {
+              "path": "submission/reproduce.sh",
+              "kind": "source"
+            },
+            {
+              "path": "submission/results/r2r_val_unseen_subset/meta.json",
+              "kind": "json"
+            }
+          ],
+          "sub_tasks": []
+        },
+        {
+          "id": "8bc801af-b22f-51dd-bf17-fdcc511fe55c",
+          "weight": 10,
+          "task_category": "Modeling",
+          "finegrained_task_category": "Method Implementation",
+          "requirements": "Code-detail constants must actually take effect in source, not merely appear in meta.json. Read submission/src/agent.py / prompt_manager.py / llm_client.py and cross-check metadata: (a) max_action_step / max_action_len / max_steps must genuinely bound the navigation loop, for example `for step in range(max_action_step)` or `while step < max_action_step`, ending the case at the budget. Recommend 15; accept 10–30. Metadata-only limits score 0. (b) Construct N+1 action options with 'A. stop' fixed first, and implement a parser mapping a single label such as 'B.' to its candidate viewpoint; locate the parsing function. Missing stop construction or mapping scores 0. (c) max_image must be positive and actually truncate/limit per-step image content sent to the VLM; locate the slice/length-limit logic. A metadata-only cap, max_image=0, or no visual input scores 0. (d) Pass temperature, max_tokens, and response_format in the client's actual chat/completions request and record them truthfully in meta.json.nav_llm. Effective code takes precedence over metadata. Any missing/ineffective constant or clear mismatch, such as claimed max_steps=15 with `range(3)` or max_image=6 without an image limit, scores 0. (e) The loop must not contain out-of-paper forced-stop / early-termination patches. MapGPT active stop must be entirely decided by the navigation LLM's 'A. stop'. Non-LLM stop decisions such as `visit_counts>=N`, repeated-viewpoint loop guards, forced breaks when circling, or heuristic early stops deviate from the zero-shot method and contaminate stopped/SR and §3.C diagnostics. Inspect the main agent.py loop; any such patch scores 0.",
+          "evidence_inputs": [
+            {
+              "path": "submission/src/agent.py",
+              "kind": "source"
+            },
+            {
+              "path": "submission/src/prompt_manager.py",
+              "kind": "source"
+            },
+            {
+              "path": "submission/src/llm_client.py",
+              "kind": "source"
+            },
+            {
+              "path": "submission/results/r2r_val_unseen_subset/meta.json",
+              "kind": "json"
+            }
+          ],
+          "sub_tasks": []
+        }
+      ]
+    },
+    {
+      "id": "d133b4fe-b0a4-5663-ae82-1d5bb8409c82",
+      "weight": 20,
+      "task_category": null,
+      "finegrained_task_category": null,
+      "requirements": "§3.B Engineering & Artifact Audit: self-contained independent reproduce.sh replay, compliant genuine trajectories and artifact schemas without placeholders, and complete runtime authenticity evidence, including zero-shot inference only and no training/fine-tuning. Granular subtree scoring via child 0/1 leaves.",
+      "sub_tasks": [
+        {
+          "id": "81361292-ab85-5bd2-a76a-abad51ef5e59",
+          "weight": 40,
+          "task_category": "Execution",
+          "finegrained_task_category": "Reproducibility",
+          "requirements": "submission/results/r2r_val_unseen_subset/trajectories.json exists, is valid JSON, and genuinely covers all 216 cases. Top-level instr_id keys correspond to the 216 IDs in MapGPT_72_scenes_processed.json; each value contains instr_id, scan, trajectory (viewpoint list including the start), and stopped. Viewpoints must be valid nodes in the scan's connectivity graph and consecutive viewpoints must be genuinely adjacent; no teleportation. Anti-placeholder rule: do not fill coverage with start-only length-one trajectories or broadly repeated placeholders. If the vast majority contain only the start/no genuine multistep navigation, treat coverage as fabricated and score 0. Require real per-case multistep trajectories with a reasonable step distribution consistent with run.log/per_case evidence. Check case count=216, annotation alignment, complete fields, legal reachable viewpoints, and nondegenerate trajectories. Missing cases fail, but schema must still be compliant. Keep R2R/DUET prediction-format compatibility.",
+          "evidence_inputs": [
+            {
+              "path": "submission/results/r2r_val_unseen_subset/trajectories.json",
+              "kind": "json"
+            },
+            {
+              "path": "submission/results/r2r_val_unseen_subset/per_case.csv",
+              "kind": "text"
+            }
+          ],
+          "sub_tasks": []
+        },
+        {
+          "id": "a815728a-4c08-5c48-a1c7-225ca1f9e68e",
+          "weight": 35,
+          "task_category": "Execution",
+          "finegrained_task_category": "Reproducibility",
+          "requirements": "submission/reproduce.sh is self-contained and independently runs from scratch in a fresh environment: configure navigation LLM environment and data paths, invoke src/ code for all 216 cases, and produce every artifact under results/r2r_val_unseen_subset/: trajectories.json, metrics.csv, per_case.csv, prompt_sample.txt, meta.json, and run.log. Check independence from temporary development state and artifact completeness. The verifier clears results/ before replay, so the script must regenerate all trajectories from scratch.",
+          "evidence_inputs": [
+            {
+              "path": "submission/reproduce.sh",
+              "kind": "source"
+            },
+            {
+              "path": "submission/results/r2r_val_unseen_subset/meta.json",
+              "kind": "json"
+            }
+          ],
+          "sub_tasks": []
+        },
+        {
+          "id": "f215f174-cb18-5ae2-b339-59ef67bdcecc",
+          "weight": 25,
+          "task_category": "Execution",
+          "finegrained_task_category": "Run Authenticity",
+          "requirements": "Complete runtime authenticity evidence, including zero-shot inference: submission/results/r2r_val_unseen_subset/run.log contains per-case progress such as 'case i/216', steps per case, and genuine local VLM calls, with request/response summaries or token counts proving nonzero Qwen2.5-VL-7B use; it is nonempty and not fabricated fixed output. prompt_sample.txt contains at least one complete case's stepwise prompts, including visual/image blocks, and raw VLM responses. meta.json contains n_cases=216, max_action_step or max_action_len, success_threshold_m=3.0, observation_source, map_components, and task-specific fields. Cross-check case counts/steps with trajectories.json and per_case.csv. A log showing only three real cases while trajectories supplies 216 start-only placeholders is fabrication and scores 0. Progress, steps, and calls must match trajectory scale. Vision must enter decisions: no zero-vision topological_only and VLM-call count > 0. No training/fine-tuning, backward passes, optimizers, or weight updates in logs or submission/src/, including loss.backward(), optimizer.step(), model.train() training loops, Trainer.fit, save_pretrained of modified weights, LoRA/PEFT fine-tuning, or gradient-update logs. Load read-only weights for forward inference only. Any training/weight-update evidence scores 0. Inspect consistency and authenticity across logs, prompt samples, metadata, and source. Zero calls, topological_only, fabricated logs, trajectory/log scale mismatch, or training evidence scores 0.",
+          "evidence_inputs": [
+            {
+              "path": "submission/results/r2r_val_unseen_subset/run.log",
+              "kind": "text"
+            },
+            {
+              "path": "submission/results/r2r_val_unseen_subset/prompt_sample.txt",
+              "kind": "text"
+            },
+            {
+              "path": "submission/results/r2r_val_unseen_subset/per_case.csv",
+              "kind": "text"
+            },
+            {
+              "path": "submission/src/agent.py",
+              "kind": "source"
+            },
+            {
+              "path": "submission/results/r2r_val_unseen_subset/meta.json",
+              "kind": "json"
+            }
+          ],
+          "sub_tasks": []
+        }
+      ]
+    },
+    {
+      "id": "38d29d74-5893-5a67-91b3-fe390a66e81d",
+      "weight": 55,
+      "task_category": null,
+      "finegrained_task_category": null,
+      "requirements": "§3.C Scientific Results (55%): paper metrics or explicitly labeled proxies use frozen continuous floor→target scoring. Coverage and behavior health contribute no reward. The final score is constrained by the coverage gate and science cap.",
+      "sub_tasks": [
+        {
+          "id": "1acb1fdd-cd07-55bc-8a42-9bafb96020d8",
+          "weight": 35,
+          "task_category": "Validation",
+          "finegrained_task_category": "Metric Match",
+          "requirements": "Paper Table 1 SR: 0% floor → 47.7% target, continuous scoring.",
+          "evidence_inputs": [
+            {
+              "path": "submission/results/r2r_val_unseen_subset/trajectories.json",
+              "kind": "json"
+            }
+          ],
+          "sub_tasks": []
+        },
+        {
+          "id": "46f26dcb-6459-587b-8201-94a43a61c662",
+          "weight": 30,
+          "task_category": "Validation",
+          "finegrained_task_category": "Metric Match",
+          "requirements": "Paper Table 1 SPL: 0% floor → 38.1% target, continuous scoring.",
+          "evidence_inputs": [
+            {
+              "path": "submission/results/r2r_val_unseen_subset/trajectories.json",
+              "kind": "json"
+            }
+          ],
+          "sub_tasks": []
+        },
+        {
+          "id": "44b66c5e-9f44-5e22-afbd-099f08357a21",
+          "weight": 20,
+          "task_category": "Validation",
+          "finegrained_task_category": "Metric Match",
+          "requirements": "Paper Table 1 OSR: 0% floor → 57.9% target, continuous scoring.",
+          "evidence_inputs": [
+            {
+              "path": "submission/results/r2r_val_unseen_subset/trajectories.json",
+              "kind": "json"
+            }
+          ],
+          "sub_tasks": []
+        },
+        {
+          "id": "c0238ba1-96e0-5bc9-baa5-b7dcc6699278",
+          "weight": 15,
+          "task_category": "Validation",
+          "finegrained_task_category": "Metric Match",
+          "requirements": "Paper Table 1 NE, lower is better: 10.03 m failure floor → 5.62 m target, continuous scoring.",
+          "evidence_inputs": [
+            {
+              "path": "submission/results/r2r_val_unseen_subset/trajectories.json",
+              "kind": "json"
+            }
+          ],
+          "sub_tasks": []
+        },
+        {
+          "id": "7c2f08ed-73db-503e-be71-55629e049abb",
+          "weight": 0,
+          "task_category": "Validation",
+          "finegrained_task_category": "Metric Match",
+          "requirements": "Stop-behavior diagnostics, no reward: report HIT_CAP_RATE, OSR-SR gap, and active stop rate to detect out-of-paper forced-stop patches.",
+          "evidence_inputs": [
+            {
+              "path": "submission/results/r2r_val_unseen_subset/trajectories.json",
+              "kind": "json"
+            },
+            {
+              "path": "submission/results/r2r_val_unseen_subset/meta.json",
+              "kind": "json"
+            }
+          ],
+          "sub_tasks": []
+        }
+      ]
+    }
+  ],
+  "title": "mapgpt-r2r"
+}

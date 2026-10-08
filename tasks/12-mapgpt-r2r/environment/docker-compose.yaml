@@ -1,0 +1,35 @@
+services:
+  main:
+    build:
+      context: ${CONTEXT_DIR}
+      args:
+        MAPGPT_BASE_IMAGE: ${MAPGPT_BASE_IMAGE:-suermars/paperbenchx-mapgpt-r2r-full@sha256:afbd6585f6580d1161a838f236c79130c5763dfd2697c4cab8b4bae81a80bb97}
+        PIP_INDEX_URL: ${PBX_PIP_INDEX_URL:-https://pypi.org/simple}
+        PBX_DOWNLOAD_TIMEOUT: ${PBX_DOWNLOAD_TIMEOUT:-30}
+        PBX_DOWNLOAD_RETRIES: ${PBX_DOWNLOAD_RETRIES:-5}
+        npm_config_registry: ${PBX_NPM_REGISTRY:-https://registry.npmjs.org}
+    cap_add:
+      - NET_ADMIN
+    command: ["sh", "-ec", "pbx-init-workspace pbsolver; exec sleep infinity"]
+    network_mode: ${NETWORK_MODE:-bridge}
+    environment:
+      - PBX_MAX_WORKERS=8
+      - TEST_DIR=${TEST_DIR}
+      - CONTAINER_MEMORY=${MEMORY}
+      - CONTAINER_CPUS=${CPUS}
+      - RGB_ROOT=/home/data/RGB_Observations
+      - NAV_LLM_MODEL_PATH=/home/models/Qwen2.5-VL-7B-Instruct
+    volumes:
+      - ${HOST_VERIFIER_LOGS_PATH}:${ENV_VERIFIER_LOGS_PATH}
+      - ${HOST_AGENT_LOGS_PATH}:${ENV_AGENT_LOGS_PATH}
+      - ${HOST_AGENT_LOGS_PATH}/submission:/home/submission
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              device_ids: ["${GPU_ID:?Set GPU_ID explicitly}"]
+              capabilities: [gpu]
+        limits:
+          cpus: ${CPUS}
+          memory: ${MEMORY}

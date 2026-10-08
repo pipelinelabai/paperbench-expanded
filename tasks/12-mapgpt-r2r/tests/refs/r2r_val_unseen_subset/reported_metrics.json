@@ -1,0 +1,50 @@
+{
+  "scoring": {
+    "SR": {
+      "floor": 0.0,
+      "target": 47.7,
+      "direction": "higher",
+      "target_source": "MapGPT Table 1, GPT-4V, 72-scene R2R subset",
+      "paper_alignment": "benchmark_direct_model_proxy"
+    },
+    "SPL": {
+      "floor": 0.0,
+      "target": 38.1,
+      "direction": "higher",
+      "target_source": "MapGPT Table 1, GPT-4V, 72-scene R2R subset",
+      "paper_alignment": "benchmark_direct_model_proxy"
+    },
+    "OSR": {
+      "floor": 0.0,
+      "target": 57.9,
+      "direction": "higher",
+      "target_source": "MapGPT Table 1, GPT-4V, 72-scene R2R subset",
+      "paper_alignment": "benchmark_direct_model_proxy"
+    },
+    "NE": {
+      "floor": 10.03,
+      "target": 5.62,
+      "direction": "lower",
+      "target_source": "MapGPT Table 1, GPT-4V, 72-scene R2R subset",
+      "paper_alignment": "benchmark_direct_model_proxy"
+    }
+  },
+  "source": "MapGPT Table 1, GPT-4V, 72-scene R2R subset; local Qwen2.5-VL-7B is a model proxy",
+  "split": "r2r_val_unseen_subset",
+  "subset_scenes": 72,
+  "subset_cases": 216,
+  "success_threshold_m": 3.0,
+  "behavior_thresholds": {
+    "cap_hit_rate_max": 40.0,
+    "osr_sr_gap_max": 25.0
+  },
+  "scored_metrics": [
+    "SR",
+    "SPL",
+    "OSR",
+    "NE"
+  ],
+  "report_only_metrics": [
+    "behavior"
+  ]
+}

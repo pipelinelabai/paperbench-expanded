@@ -1,0 +1,505 @@
+{
+  "artifact_review_policy": {
+    "schema_version": 1,
+    "version": "artifact-review-v1",
+    "leaf_policy_selector": {
+      "scoring_method": "llm_binary",
+      "evidence_qualification": "verifier_owned_replay_receipt"
+    },
+    "max_rounds": 16,
+    "max_tool_calls": 24,
+    "max_evidence_characters": 900000,
+    "max_tool_result_characters": 100000,
+    "max_artifact_bytes": 67108864
+  },
+  "evidence_policy": {
+    "schema_version": 2,
+    "contract_version": "hfss-evidence",
+    "task_id": "02-anisotropic-coding-diffusion-metasurface",
+    "source_rubric_sha256": "d624aca1ca0b06c02c6cca6f39ceec3d9fd8bdf35327909f96380020eed33670",
+    "variants": [
+      "unit_normal",
+      "unit_tm15",
+      "unit_tm30",
+      "unit_tm45",
+      "array_ms",
+      "array_pec"
+    ],
+    "primary_result_files": [
+      "phase_diff.csv",
+      "rcs_normal.csv",
+      "rcs_reduction.csv",
+      "reflection.csv"
+    ],
+    "allowed_identical": {},
+    "allowed_shared_solve_groups": [
+      [
+        "unit_normal",
+        "unit_tm15",
+        "unit_tm30",
+        "unit_tm45",
+        "array_ms",
+        "array_pec"
+      ]
+    ],
+    "leaf_policies": {
+      "A1": {
+        "rubric_section": "A",
+        "scoring_method": "llm_binary",
+        "evidence_qualification": "verifier_owned_replay_receipt"
+      },
+      "A2": {
+        "rubric_section": "A",
+        "scoring_method": "llm_binary",
+        "evidence_qualification": "verifier_owned_replay_receipt"
+      },
+      "A3": {
+        "rubric_section": "A",
+        "scoring_method": "llm_binary",
+        "evidence_qualification": "verifier_owned_replay_receipt"
+      },
+      "A4": {
+        "rubric_section": "A",
+        "scoring_method": "llm_binary",
+        "evidence_qualification": "verifier_owned_replay_receipt"
+      },
+      "A5": {
+        "rubric_section": "A",
+        "scoring_method": "llm_binary",
+        "evidence_qualification": "verifier_owned_replay_receipt"
+      },
+      "A6": {
+        "rubric_section": "A",
+        "scoring_method": "llm_binary",
+        "evidence_qualification": "verifier_owned_replay_receipt"
+      },
+      "A7": {
+        "rubric_section": "A",
+        "scoring_method": "llm_binary",
+        "evidence_qualification": "verifier_owned_replay_receipt"
+      },
+      "A8": {
+        "rubric_section": "A",
+        "scoring_method": "llm_binary",
+        "evidence_qualification": "verifier_owned_replay_receipt"
+      },
+      "A9": {
+        "rubric_section": "A",
+        "scoring_method": "llm_binary",
+        "evidence_qualification": "safe_artifact"
+      },
+      "B1_1": {
+        "rubric_section": "B",
+        "scoring_method": "llm_binary",
+        "evidence_qualification": "verifier_owned_replay_receipt"
+      },
+      "B1_2": {
+        "rubric_section": "B",
+        "scoring_method": "llm_binary",
+        "evidence_qualification": "verifier_owned_replay_receipt"
+      },
+      "B1_3": {
+        "rubric_section": "B",
+        "scoring_method": "llm_binary",
+        "evidence_qualification": "verifier_owned_replay_receipt"
+      },
+      "B1_4": {
+        "rubric_section": "B",
+        "scoring_method": "llm_binary",
+        "evidence_qualification": "verifier_owned_replay_receipt"
+      },
+      "B1_5": {
+        "rubric_section": "B",
+        "scoring_method": "llm_binary",
+        "evidence_qualification": "verifier_owned_replay_receipt"
+      },
+      "B1_5b": {
+        "rubric_section": "B",
+        "scoring_method": "llm_binary",
+        "evidence_qualification": "verifier_owned_replay_receipt"
+      },
+      "B2_1": {
+        "rubric_section": "B",
+        "scoring_method": "llm_binary",
+        "evidence_qualification": "verifier_owned_replay_receipt"
+      },
+      "B2_2": {
+        "rubric_section": "B",
+        "scoring_method": "llm_binary",
+        "evidence_qualification": "verifier_owned_replay_receipt"
+      },
+      "B2_3": {
+        "rubric_section": "B",
+        "scoring_method": "llm_binary",
+        "evidence_qualification": "verifier_owned_replay_receipt"
+      },
+      "B2_4": {
+        "rubric_section": "B",
+        "scoring_method": "llm_binary",
+        "evidence_qualification": "verifier_owned_replay_receipt"
+      },
+      "B2_5": {
+        "rubric_section": "B",
+        "scoring_method": "llm_binary",
+        "evidence_qualification": "verifier_owned_replay_receipt"
+      },
+      "B2_6": {
+        "rubric_section": "B",
+        "scoring_method": "llm_binary",
+        "evidence_qualification": "verifier_owned_replay_receipt"
+      },
+      "C1_1": {
+        "rubric_section": "C",
+        "scoring_method": "code_numeric",
+        "evidence_qualification": "verifier_owned_replay_receipt"
+      },
+      "C1_2": {
+        "rubric_section": "C",
+        "scoring_method": "llm_binary",
+        "evidence_qualification": "verifier_owned_replay_receipt"
+      },
+      "C1_3": {
+        "rubric_section": "C",
+        "scoring_method": "code_numeric",
+        "evidence_qualification": "verifier_owned_replay_receipt"
+      },
+      "C1_4_peak": {
+        "rubric_section": "C",
+        "scoring_method": "code_numeric",
+        "evidence_qualification": "verifier_owned_replay_receipt"
+      },
+      "C1_4_frequency": {
+        "rubric_section": "C",
+        "scoring_method": "code_numeric",
+        "evidence_qualification": "verifier_owned_replay_receipt"
+      },
+      "C1_4_band": {
+        "rubric_section": "C",
+        "scoring_method": "code_numeric",
+        "evidence_qualification": "verifier_owned_replay_receipt"
+      },
+      "C2_1_magnitude": {
+        "rubric_section": "C",
+        "scoring_method": "code_numeric",
+        "evidence_qualification": "verifier_owned_replay_receipt"
+      },
+      "C2_1_frequency": {
+        "rubric_section": "C",
+        "scoring_method": "code_numeric",
+        "evidence_qualification": "verifier_owned_replay_receipt"
+      },
+      "C2_2_magnitude": {
+        "rubric_section": "C",
+        "scoring_method": "code_numeric",
+        "evidence_qualification": "verifier_owned_replay_receipt"
+      },
+      "C2_2_frequency": {
+        "rubric_section": "C",
+        "scoring_method": "code_numeric",
+        "evidence_qualification": "verifier_owned_replay_receipt"
+      },
+      "C2_3_magnitude": {
+        "rubric_section": "C",
+        "scoring_method": "code_numeric",
+        "evidence_qualification": "verifier_owned_replay_receipt"
+      },
+      "C2_3_frequency": {
+        "rubric_section": "C",
+        "scoring_method": "code_numeric",
+        "evidence_qualification": "verifier_owned_replay_receipt"
+      },
+      "C2_4": {
+        "rubric_section": "C",
+        "scoring_method": "code_numeric",
+        "evidence_qualification": "verifier_owned_replay_receipt"
+      },
+      "C3_1": {
+        "rubric_section": "C",
+        "scoring_method": "code_numeric",
+        "evidence_qualification": "safe_artifact"
+      },
+      "C3_2": {
+        "rubric_section": "C",
+        "scoring_method": "code_numeric",
+        "evidence_qualification": "safe_artifact"
+      },
+      "C3_3": {
+        "rubric_section": "C",
+        "scoring_method": "llm_binary",
+        "evidence_qualification": "safe_artifact"
+      },
+      "C4_1": {
+        "rubric_section": "C",
+        "scoring_method": "code_numeric",
+        "evidence_qualification": "verifier_owned_replay_receipt"
+      },
+      "C4_2": {
+        "rubric_section": "C",
+        "scoring_method": "code_numeric",
+        "evidence_qualification": "verifier_owned_replay_receipt"
+      },
+      "C4_3": {
+        "rubric_section": "C",
+        "scoring_method": "code_numeric",
+        "evidence_qualification": "verifier_owned_replay_receipt"
+      },
+      "C4_4": {
+        "rubric_section": "C",
+        "scoring_method": "code_numeric",
+        "evidence_qualification": "verifier_owned_replay_receipt"
+      },
+      "C4_5_envelope": {
+        "rubric_section": "C",
+        "scoring_method": "code_numeric",
+        "evidence_qualification": "verifier_owned_replay_receipt"
+      },
+      "C4_5_coverage": {
+        "rubric_section": "C",
+        "scoring_method": "code_numeric",
+        "evidence_qualification": "verifier_owned_replay_receipt"
+      },
+      "C4_6": {
+        "rubric_section": "C",
+        "scoring_method": "code_numeric",
+        "evidence_qualification": "verifier_owned_replay_receipt"
+      },
+      "C4_7": {
+        "rubric_section": "C",
+        "scoring_method": "llm_binary",
+        "evidence_qualification": "verifier_owned_replay_receipt"
+      },
+      "C4_8": {
+        "rubric_section": "C",
+        "scoring_method": "llm_binary",
+        "evidence_qualification": "verifier_owned_replay_receipt"
+      },
+      "C_INV_1": {
+        "rubric_section": "C",
+        "scoring_method": "llm_binary",
+        "evidence_qualification": "verifier_owned_replay_receipt"
+      },
+      "C_INV_2": {
+        "rubric_section": "C",
+        "scoring_method": "llm_binary",
+        "evidence_qualification": "verifier_owned_replay_receipt"
+      },
+      "C_INV_3": {
+        "rubric_section": "C",
+        "scoring_method": "llm_binary",
+        "evidence_qualification": "verifier_owned_replay_receipt"
+      },
+      "C_INV_4": {
+        "rubric_section": "C",
+        "scoring_method": "llm_binary",
+        "evidence_qualification": "verifier_owned_replay_receipt"
+      }
+    },
+    "gate_policy": {
+      "mode": "leaf_local",
+      "leaf_ids": [
+        "B1_1",
+        "B2_1",
+        "B2_2"
+      ],
+      "zero_leaf_ids": []
+    },
+    "shared_log_scope": "A shared native session log only; actual geometry/angle/orientation solutions remain distinct and must be traceable.",
+    "b2_native_variants": [
+      "unit_normal",
+      "unit_tm15",
+      "unit_tm30",
+      "unit_tm45",
+      "array_ms",
+      "array_pec"
+    ],
+    "csv_path_contracts": [
+      {
+        "path_regex": "results/unit_normal/reflection\\.csv",
+        "columns": [
+          "frequency_GHz",
+          "mag_x",
+          "phase_x_deg",
+          "mag_y",
+          "phase_y_deg",
+          "phase_diff_deg"
+        ],
+        "grid": {
+          "type": "linear",
+          "column": "frequency_GHz",
+          "start": 4,
+          "stop": 8,
+          "step": 0.05,
+          "tolerance": 1e-08
+        }
+      },
+      {
+        "path_regex": "results/unit_tm15/phase_diff\\.csv",
+        "columns": [
+          "frequency_GHz",
+          "phase_element1_deg",
+          "phase_element0_deg",
+          "phase_diff_deg"
+        ],
+        "grid": {
+          "type": "linear",
+          "column": "frequency_GHz",
+          "start": 4,
+          "stop": 8,
+          "step": 0.05,
+          "tolerance": 1e-08
+        }
+      },
+      {
+        "path_regex": "results/unit_tm30/phase_diff\\.csv",
+        "columns": [
+          "frequency_GHz",
+          "phase_element1_deg",
+          "phase_element0_deg",
+          "phase_diff_deg"
+        ],
+        "grid": {
+          "type": "linear",
+          "column": "frequency_GHz",
+          "start": 4,
+          "stop": 8,
+          "step": 0.05,
+          "tolerance": 1e-08
+        }
+      },
+      {
+        "path_regex": "results/unit_tm45/phase_diff\\.csv",
+        "columns": [
+          "frequency_GHz",
+          "phase_element1_deg",
+          "phase_element0_deg",
+          "phase_diff_deg"
+        ],
+        "grid": {
+          "type": "linear",
+          "column": "frequency_GHz",
+          "start": 4,
+          "stop": 8,
+          "step": 0.05,
+          "tolerance": 1e-08
+        }
+      },
+      {
+        "path_regex": "results/array_ms/rcs_normal\\.csv",
+        "columns": [
+          "frequency_GHz",
+          "rcs_x_dBsm",
+          "rcs_y_dBsm"
+        ],
+        "grid": {
+          "type": "linear",
+          "column": "frequency_GHz",
+          "start": 4,
+          "stop": 8,
+          "step": 0.05,
+          "tolerance": 1e-08
+        }
+      },
+      {
+        "path_regex": "results/array_ms/rcs_reduction\\.csv",
+        "columns": [
+          "frequency_GHz",
+          "reduction_x_dB",
+          "reduction_y_dB"
+        ],
+        "grid": {
+          "type": "linear",
+          "column": "frequency_GHz",
+          "start": 4,
+          "stop": 8,
+          "step": 0.05,
+          "tolerance": 1e-08
+        }
+      },
+      {
+        "path_regex": "results/array_pec/rcs_normal\\.csv",
+        "columns": [
+          "frequency_GHz",
+          "rcs_dBsm"
+        ],
+        "grid": {
+          "type": "linear",
+          "column": "frequency_GHz",
+          "start": 4,
+          "stop": 8,
+          "step": 0.05,
+          "tolerance": 1e-08
+        }
+      }
+    ],
+    "numerical_variants": [
+      "af_patterns"
+    ],
+    "editorial_original_rubric_sha256": "3b70ac32213113b3a23030079bc695fd7562bea28140df87ec0dbf8310ae0652"
+  },
+  "run_evidence_config": {
+    "task_id": "13",
+    "hfss_variants": [
+      "unit_normal",
+      "unit_tm15",
+      "unit_tm30",
+      "unit_tm45",
+      "array_ms",
+      "array_pec"
+    ],
+    "b2_1_sampled_variants": [
+      "unit_normal",
+      "unit_tm30",
+      "array_ms",
+      "array_pec"
+    ],
+    "must_differ_groups": [
+      {
+        "variants": [
+          "unit_tm15",
+          "unit_tm30",
+          "unit_tm45"
+        ],
+        "files": [
+          "phase_diff.csv"
+        ]
+      },
+      {
+        "variants": [
+          "array_ms",
+          "array_pec"
+        ],
+        "files": [
+          "rcs_normal.csv"
+        ]
+      }
+    ],
+    "scored_csvs": {
+      "default": [],
+      "unit_normal": [
+        "reflection.csv"
+      ],
+      "unit_tm15": [
+        "phase_diff.csv"
+      ],
+      "unit_tm30": [
+        "phase_diff.csv"
+      ],
+      "unit_tm45": [
+        "phase_diff.csv"
+      ],
+      "array_ms": [
+        "rcs_normal.csv",
+        "rcs_reduction.csv"
+      ],
+      "array_pec": [
+        "rcs_normal.csv"
+      ]
+    },
+    "convergence_target_max_delta_s": 0.02,
+    "leaf_ids": {
+      "b2_1": "B2_1",
+      "b2_2": "B2_2",
+      "b1_5": "B1_5"
+    }
+  }
+}

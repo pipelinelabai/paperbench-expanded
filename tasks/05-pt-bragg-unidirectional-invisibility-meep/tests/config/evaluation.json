@@ -1,0 +1,343 @@
+{
+  "scoring_contract": {
+    "schema_version": 1,
+    "task_id": "05",
+    "total_points": 100,
+    "dependency_semantics": "Evidence dependencies apply per observation/case, never as all-or-nothing score-block unlocks. Split case credit equally within a check unless the public scoring contract specifies a finer allocation.",
+    "evidence_groups": {
+      "source": [],
+      "paper_model": [
+        "source"
+      ],
+      "paper_fields": [
+        "paper_model"
+      ],
+      "coupled_mode": [
+        "source"
+      ],
+      "causal_model": [
+        "source"
+      ],
+      "causal_fields": [
+        "causal_model"
+      ],
+      "independent_reference": [
+        "causal_model"
+      ],
+      "native_controls": [
+        "causal_model"
+      ],
+      "nonlinear_profiles": [
+        "source"
+      ]
+    },
+    "blocks": [
+      {
+        "id": "05.1",
+        "title": "Model identity and causal material calibration",
+        "points": 10,
+        "checks": [
+          {
+            "id": "05.1a",
+            "points": 4,
+            "requires": [
+              "paper_model",
+              "causal_model"
+            ],
+            "criterion": "Correct fixed geometry, origin, parameter scaling and separation of P/C/D; verify native/static inputs, not declarations alone.",
+            "dimension": "A"
+          },
+          {
+            "id": "05.1b",
+            "points": 6,
+            "requires": [
+              "causal_model"
+            ],
+            "criterion": "Actually registered Meep epsilon across a period at all three frequencies, correct branch and calibrated errors.",
+            "dimension": "A"
+          }
+        ]
+      },
+      {
+        "id": "05.2",
+        "title": "Nondispersive complex scattering and independent approximation comparison",
+        "points": 15,
+        "checks": [
+          {
+            "id": "05.2a",
+            "points": 9,
+            "requires": [
+              "paper_fields"
+            ],
+            "criterion": "Native recomputed complex left/right amplitudes for both paper cases on the fixed detuning axis, with valid boundary normalization.",
+            "dimension": "C"
+          },
+          {
+            "id": "05.2b",
+            "points": 6,
+            "requires": [
+              "paper_fields",
+              "coupled_mode"
+            ],
+            "criterion": "Independent CMT evaluation, singular limits and quantified same-parameter approximation discrepancy.",
+            "dimension": "C"
+          }
+        ]
+      },
+      {
+        "id": "05.3",
+        "title": "Phase gauge, delay and derivative validation",
+        "points": 10,
+        "checks": [
+          {
+            "id": "05.3a",
+            "points": 4,
+            "requires": [
+              "paper_fields"
+            ],
+            "criterion": "Recomputable reference-normalized phase with correct fixed anchor and singularity handling.",
+            "dimension": "C"
+          },
+          {
+            "id": "05.3b",
+            "points": 6,
+            "requires": [
+              "paper_fields",
+              "coupled_mode"
+            ],
+            "criterion": "Correct derivative sign/units and independently refined delay, separating approximation from differentiation error.",
+            "dimension": "C"
+          }
+        ]
+      },
+      {
+        "id": "05.4",
+        "title": "Native causal scattering and independent same-model reference",
+        "points": 15,
+        "checks": [
+          {
+            "id": "05.4a",
+            "points": 5,
+            "requires": [
+              "causal_fields"
+            ],
+            "criterion": "Correct independently recomputed complex/intensity amplitudes on the complete workband, with valid left/right/reference normalization and scientific consistency.",
+            "dimension": "C"
+          },
+          {
+            "id": "05.4b",
+            "points": 4,
+            "requires": [
+              "causal_fields",
+              "independent_reference"
+            ],
+            "criterion": "Quantitative same-Lorentz reference comparison and its independently retained numerical convergence, with correct uncertainty-aware interpretation.",
+            "dimension": "C"
+          },
+          {
+            "id": "05.4c",
+            "points": 4,
+            "dimension": "B",
+            "requires": [
+              "causal_fields"
+            ],
+            "criterion": "Verify actual Meep solver setup and fresh left/right/background execution with correctly identified sources, monitors, native logs and raw amplitude records. Existence of files or an exit code alone is insufficient."
+          },
+          {
+            "id": "05.4d",
+            "points": 2,
+            "dimension": "B",
+            "requires": [
+              "causal_fields",
+              "independent_reference"
+            ],
+            "criterion": "Verify that the same-model reference actually ran from source using a numerical method distinct from Meep; retained settings/logs establish independence rather than a relabelled cached array."
+          }
+        ]
+      },
+      {
+        "id": "05.5",
+        "title": "Unique band extraction and three-way error separation",
+        "points": 10,
+        "checks": [
+          {
+            "id": "05.5a",
+            "points": 4,
+            "requires": [
+              "causal_fields"
+            ],
+            "criterion": "Correct fixed-axis intersection/component calculation, null-center and censored-endpoint semantics.",
+            "dimension": "C"
+          },
+          {
+            "id": "05.5b",
+            "points": 6,
+            "requires": [
+              "paper_fields",
+              "coupled_mode",
+              "causal_fields",
+              "independent_reference"
+            ],
+            "criterion": "Quantitative separation of approximation, dispersion and native discretization differences without double attribution.",
+            "dimension": "C"
+          }
+        ]
+      },
+      {
+        "id": "05.6",
+        "title": "Numerical/time controls and physical reversal",
+        "points": 15,
+        "checks": [
+          {
+            "id": "05.6a",
+            "points": 4,
+            "requires": [
+              "causal_fields",
+              "native_controls"
+            ],
+            "criterion": "Recompute duration/spatial changes and verify the specified convergence accuracy on retained native axes.",
+            "dimension": "C"
+          },
+          {
+            "id": "05.6b",
+            "points": 5,
+            "requires": [
+              "native_controls"
+            ],
+            "criterion": "Complete time traces, defensible arrival/window, uncertainty/regrowth handling and qualified stationary-scattering claim.",
+            "dimension": "C"
+          },
+          {
+            "id": "05.6c",
+            "points": 3,
+            "requires": [
+              "causal_fields",
+              "native_controls"
+            ],
+            "criterion": "Quantitatively evaluate the measured incidence-reversal relation against the actual baseline, with correct signs and reference conventions.",
+            "dimension": "C"
+          },
+          {
+            "id": "05.6d",
+            "points": 2,
+            "dimension": "B",
+            "requires": [
+              "causal_fields",
+              "native_controls"
+            ],
+            "criterion": "Verify separately executed duration and spatial controls with the declared >=1.5x increases, unchanged physical model and their own native run records."
+          },
+          {
+            "id": "05.6e",
+            "points": 1,
+            "dimension": "B",
+            "requires": [
+              "causal_fields",
+              "native_controls"
+            ],
+            "criterion": "Verify a freshly executed material-reversal control using b -> -b with unchanged origin; renaming baseline arrays is not a control."
+          }
+        ]
+      },
+      {
+        "id": "05.7",
+        "title": "Complete bounded nonlinear branch set and invariants",
+        "points": 20,
+        "checks": [
+          {
+            "id": "05.7a",
+            "points": 9,
+            "requires": [
+              "nonlinear_profiles"
+            ],
+            "criterion": "Complete physical root sets in the declared rectangle and at four fixed input sections for all six cases, with independently validated numerical coverage under public clarification r1.1. Inspect whole-domain interval accounting, validated analytic exclusions, stationary/tangency-sensitive searches, separate integration/branch refinements, independent root and connectivity agreement, and unresolved cells. A missing interval, actual mismatch or unresolved suspected fold/contact fails that case. A generic statement that finite numerical evidence is not a rigorous global theorem is not itself a failing observation; no global uniqueness theorem is required for this potentially multivalued problem.",
+            "dimension": "C"
+          },
+          {
+            "id": "05.7b",
+            "points": 6,
+            "requires": [
+              "nonlinear_profiles"
+            ],
+            "criterion": "Refined turning-point/boundary brackets, branch connectivity and zero-input limit with no silently discarded branch.",
+            "dimension": "C"
+          },
+          {
+            "id": "05.7c",
+            "points": 4,
+            "requires": [
+              "nonlinear_profiles"
+            ],
+            "criterion": "Recomputed Stokes identity/conserved quantities and separate integration/branch-resolution residuals.",
+            "dimension": "C"
+          },
+          {
+            "id": "05.7d",
+            "points": 1,
+            "dimension": "B",
+            "requires": [
+              "nonlinear_profiles"
+            ],
+            "criterion": "Verify actual execution of the nonlinear boundary-value study for all six cases with the specified boundary conditions, parameters and retained profile-generation records; this does not certify branch completeness."
+          }
+        ]
+      },
+      {
+        "id": "05.8",
+        "title": "Paper-faithful synthesis and limits of phase/stability claims",
+        "points": 5,
+        "checks": [
+          {
+            "id": "05.8a",
+            "points": 2,
+            "requires": [
+              "source"
+            ],
+            "criterion": "Correctly distinguishes diagnostic normalization and unidentifiable common phase from quantitatively recovered author Fig.4 data.",
+            "dimension": "C"
+          },
+          {
+            "id": "05.8b",
+            "points": 3,
+            "requires": [
+              "source"
+            ],
+            "criterion": "Conclusions cite actual available measurements, distinguish reflectionlessness/invisibility and stationary multiplicity/dynamical stability, and identify missing evidence without fabricating completion.",
+            "dimension": "C"
+          }
+        ]
+      }
+    ],
+    "scoring_dimensions": [
+      {
+        "id": "A",
+        "title": "Structural Modeling",
+        "points": 10
+      },
+      {
+        "id": "B",
+        "title": "Solver Config & Run Evidence Audit",
+        "points": 10
+      },
+      {
+        "id": "C",
+        "title": "Result Analysis",
+        "points": 80
+      }
+    ],
+    "scoring_semantics": "A=Structural Modeling 10%; B=Solver Config & Run Evidence Audit 10%; C=Result Analysis 80%. Research blocks are a reporting crosswalk, not an extra weighting level. Judging method is a separate axis.",
+    "scheme": "abc-10-10-80"
+  },
+  "runtime": {
+    "task_id": "05",
+    "harbor_scoring_enabled": true,
+    "scoring_dimensions": {
+      "A": 10,
+      "B": 10,
+      "C": 80
+    },
+    "native_timeout_sec": 14400,
+    "host_replay": "public_native_verifier",
+    "verifier_backend": "host_native_replay"
+  }
+}

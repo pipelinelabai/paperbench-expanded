@@ -1,0 +1,544 @@
+{
+  "artifact_review_policy": {
+    "schema_version": 1,
+    "version": "artifact-review-v1",
+    "leaf_policy_selector": {
+      "scoring_method": "llm_binary",
+      "evidence_qualification": "verifier_owned_replay_receipt"
+    },
+    "max_rounds": 16,
+    "max_tool_calls": 24,
+    "max_evidence_characters": 900000,
+    "max_tool_result_characters": 100000,
+    "max_artifact_bytes": 67108864
+  },
+  "evidence_policy": {
+    "schema_version": 2,
+    "contract_version": "hfss-evidence",
+    "task_id": "01-cpw-quad-port-uwb-mimo",
+    "source_rubric_sha256": "a644132c3d08908e1fe1e09db16062e12976c03f1f976c1ea4dcabca0aabaf46",
+    "variants": [
+      "mimo_final",
+      "single_initial",
+      "single_stub",
+      "h2_10p7",
+      "h2_11p7",
+      "mimo_nostub"
+    ],
+    "primary_result_files": [
+      "efficiency.csv",
+      "gain.csv",
+      "mimo_metrics.csv",
+      "patterns.csv",
+      "sparams.csv"
+    ],
+    "allowed_identical": {},
+    "allowed_shared_solve_groups": [
+      [
+        "mimo_final",
+        "single_initial",
+        "single_stub",
+        "h2_10p7",
+        "h2_11p7",
+        "mimo_nostub"
+      ]
+    ],
+    "leaf_policies": {
+      "A1": {
+        "rubric_section": "A",
+        "scoring_method": "llm_binary",
+        "evidence_qualification": "verifier_owned_replay_receipt"
+      },
+      "A2": {
+        "rubric_section": "A",
+        "scoring_method": "llm_binary",
+        "evidence_qualification": "verifier_owned_replay_receipt"
+      },
+      "A3": {
+        "rubric_section": "A",
+        "scoring_method": "llm_binary",
+        "evidence_qualification": "verifier_owned_replay_receipt"
+      },
+      "A4": {
+        "rubric_section": "A",
+        "scoring_method": "llm_binary",
+        "evidence_qualification": "verifier_owned_replay_receipt"
+      },
+      "A5": {
+        "rubric_section": "A",
+        "scoring_method": "llm_binary",
+        "evidence_qualification": "verifier_owned_replay_receipt"
+      },
+      "A6": {
+        "rubric_section": "A",
+        "scoring_method": "llm_binary",
+        "evidence_qualification": "verifier_owned_replay_receipt"
+      },
+      "A7": {
+        "rubric_section": "A",
+        "scoring_method": "llm_binary",
+        "evidence_qualification": "verifier_owned_replay_receipt"
+      },
+      "A8": {
+        "rubric_section": "A",
+        "scoring_method": "llm_binary",
+        "evidence_qualification": "verifier_owned_replay_receipt"
+      },
+      "A9": {
+        "rubric_section": "A",
+        "scoring_method": "llm_binary",
+        "evidence_qualification": "safe_artifact"
+      },
+      "B1_1": {
+        "rubric_section": "B",
+        "scoring_method": "llm_binary",
+        "evidence_qualification": "verifier_owned_replay_receipt"
+      },
+      "B1_2": {
+        "rubric_section": "B",
+        "scoring_method": "llm_binary",
+        "evidence_qualification": "verifier_owned_replay_receipt"
+      },
+      "B1_3": {
+        "rubric_section": "B",
+        "scoring_method": "llm_binary",
+        "evidence_qualification": "verifier_owned_replay_receipt"
+      },
+      "B1_4": {
+        "rubric_section": "B",
+        "scoring_method": "llm_binary",
+        "evidence_qualification": "verifier_owned_replay_receipt"
+      },
+      "B1_5": {
+        "rubric_section": "B",
+        "scoring_method": "llm_binary",
+        "evidence_qualification": "verifier_owned_replay_receipt"
+      },
+      "B1_5b": {
+        "rubric_section": "B",
+        "scoring_method": "llm_binary",
+        "evidence_qualification": "verifier_owned_replay_receipt"
+      },
+      "B1_6": {
+        "rubric_section": "B",
+        "scoring_method": "llm_binary",
+        "evidence_qualification": "verifier_owned_replay_receipt"
+      },
+      "B2_1": {
+        "rubric_section": "B",
+        "scoring_method": "llm_binary",
+        "evidence_qualification": "verifier_owned_replay_receipt"
+      },
+      "B2_2": {
+        "rubric_section": "B",
+        "scoring_method": "llm_binary",
+        "evidence_qualification": "verifier_owned_replay_receipt"
+      },
+      "B2_3": {
+        "rubric_section": "B",
+        "scoring_method": "llm_binary",
+        "evidence_qualification": "verifier_owned_replay_receipt"
+      },
+      "B2_4": {
+        "rubric_section": "B",
+        "scoring_method": "llm_binary",
+        "evidence_qualification": "verifier_owned_replay_receipt"
+      },
+      "B2_5": {
+        "rubric_section": "B",
+        "scoring_method": "llm_binary",
+        "evidence_qualification": "verifier_owned_replay_receipt"
+      },
+      "B2_6": {
+        "rubric_section": "B",
+        "scoring_method": "llm_binary",
+        "evidence_qualification": "verifier_owned_replay_receipt"
+      },
+      "C1_1": {
+        "rubric_section": "C",
+        "scoring_method": "code_numeric",
+        "evidence_qualification": "verifier_owned_replay_receipt"
+      },
+      "C1_2": {
+        "rubric_section": "C",
+        "scoring_method": "code_numeric",
+        "evidence_qualification": "verifier_owned_replay_receipt"
+      },
+      "C1_3": {
+        "rubric_section": "C",
+        "scoring_method": "code_numeric",
+        "evidence_qualification": "verifier_owned_replay_receipt"
+      },
+      "C2_1": {
+        "rubric_section": "C",
+        "scoring_method": "code_numeric",
+        "evidence_qualification": "verifier_owned_replay_receipt"
+      },
+      "C2_2": {
+        "rubric_section": "C",
+        "scoring_method": "code_numeric",
+        "evidence_qualification": "verifier_owned_replay_receipt"
+      },
+      "C2_3": {
+        "rubric_section": "C",
+        "scoring_method": "code_numeric",
+        "evidence_qualification": "verifier_owned_replay_receipt"
+      },
+      "C3_1": {
+        "rubric_section": "C",
+        "scoring_method": "code_numeric",
+        "evidence_qualification": "verifier_owned_replay_receipt"
+      },
+      "C3_2": {
+        "rubric_section": "C",
+        "scoring_method": "code_numeric",
+        "evidence_qualification": "verifier_owned_replay_receipt"
+      },
+      "C4_1": {
+        "rubric_section": "C",
+        "scoring_method": "code_numeric",
+        "evidence_qualification": "verifier_owned_replay_receipt"
+      },
+      "C4_2": {
+        "rubric_section": "C",
+        "scoring_method": "code_numeric",
+        "evidence_qualification": "verifier_owned_replay_receipt"
+      },
+      "C5_1": {
+        "rubric_section": "C",
+        "scoring_method": "code_numeric",
+        "evidence_qualification": "verifier_owned_replay_receipt"
+      },
+      "C5_2": {
+        "rubric_section": "C",
+        "scoring_method": "code_numeric",
+        "evidence_qualification": "verifier_owned_replay_receipt"
+      },
+      "C6_1_levels": {
+        "rubric_section": "C",
+        "scoring_method": "code_numeric",
+        "evidence_qualification": "verifier_owned_replay_receipt"
+      },
+      "C6_1_rise": {
+        "rubric_section": "C",
+        "scoring_method": "code_numeric",
+        "evidence_qualification": "verifier_owned_replay_receipt"
+      },
+      "C6_1_order": {
+        "rubric_section": "C",
+        "scoring_method": "code_numeric",
+        "evidence_qualification": "verifier_owned_replay_receipt"
+      },
+      "C6_2": {
+        "rubric_section": "C",
+        "scoring_method": "code_numeric",
+        "evidence_qualification": "verifier_owned_replay_receipt"
+      },
+      "C6_3": {
+        "rubric_section": "C",
+        "scoring_method": "code_numeric",
+        "evidence_qualification": "verifier_owned_replay_receipt"
+      },
+      "C7_1": {
+        "rubric_section": "C",
+        "scoring_method": "llm_binary",
+        "evidence_qualification": "verifier_owned_replay_receipt"
+      },
+      "C8_1": {
+        "rubric_section": "C",
+        "scoring_method": "llm_binary",
+        "evidence_qualification": "verifier_owned_replay_receipt"
+      },
+      "C9_1": {
+        "rubric_section": "C",
+        "scoring_method": "code_numeric",
+        "evidence_qualification": "verifier_owned_replay_receipt"
+      },
+      "C9_2": {
+        "rubric_section": "C",
+        "scoring_method": "code_numeric",
+        "evidence_qualification": "verifier_owned_replay_receipt"
+      },
+      "C9_3": {
+        "rubric_section": "C",
+        "scoring_method": "code_numeric",
+        "evidence_qualification": "verifier_owned_replay_receipt"
+      },
+      "C_INV_1": {
+        "rubric_section": "C",
+        "scoring_method": "llm_binary",
+        "evidence_qualification": "verifier_owned_replay_receipt"
+      },
+      "C_INV_2": {
+        "rubric_section": "C",
+        "scoring_method": "code_numeric",
+        "evidence_qualification": "verifier_owned_replay_receipt"
+      },
+      "C_INV_3": {
+        "rubric_section": "C",
+        "scoring_method": "llm_binary",
+        "evidence_qualification": "verifier_owned_replay_receipt"
+      },
+      "C_INV_4": {
+        "rubric_section": "C",
+        "scoring_method": "llm_binary",
+        "evidence_qualification": "verifier_owned_replay_receipt"
+      }
+    },
+    "gate_policy": {
+      "mode": "leaf_local",
+      "leaf_ids": [
+        "B1_1",
+        "B2_1",
+        "B2_2"
+      ],
+      "zero_leaf_ids": []
+    },
+    "shared_log_scope": "A shared native session log only; actual geometry/angle/orientation solutions remain distinct and must be traceable.",
+    "b2_native_variants": [
+      "mimo_final",
+      "single_initial",
+      "single_stub",
+      "h2_10p7",
+      "h2_11p7",
+      "mimo_nostub"
+    ],
+    "csv_path_contracts": [
+      {
+        "path_regex": "results/mimo_final/sparams\\.csv",
+        "columns": [
+          "frequency_GHz",
+          "S11_dB",
+          "S12_dB",
+          "S13_dB",
+          "S14_dB"
+        ],
+        "grid": {
+          "type": "linear",
+          "column": "frequency_GHz",
+          "start": 3,
+          "stop": 20,
+          "step": 0.02,
+          "tolerance": 1e-08
+        }
+      },
+      {
+        "path_regex": "results/single_initial/sparams\\.csv",
+        "columns": [
+          "frequency_GHz",
+          "S11_dB"
+        ],
+        "grid": {
+          "type": "linear",
+          "column": "frequency_GHz",
+          "start": 2,
+          "stop": 20,
+          "step": 0.02,
+          "tolerance": 1e-08
+        }
+      },
+      {
+        "path_regex": "results/single_stub/sparams\\.csv",
+        "columns": [
+          "frequency_GHz",
+          "S11_dB"
+        ],
+        "grid": {
+          "type": "linear",
+          "column": "frequency_GHz",
+          "start": 2,
+          "stop": 20,
+          "step": 0.02,
+          "tolerance": 1e-08
+        }
+      },
+      {
+        "path_regex": "results/h2_10p7/sparams\\.csv",
+        "columns": [
+          "frequency_GHz",
+          "S11_dB",
+          "S12_dB",
+          "S13_dB",
+          "S14_dB"
+        ],
+        "grid": {
+          "type": "linear",
+          "column": "frequency_GHz",
+          "start": 3,
+          "stop": 20,
+          "step": 0.02,
+          "tolerance": 1e-08
+        }
+      },
+      {
+        "path_regex": "results/h2_11p7/sparams\\.csv",
+        "columns": [
+          "frequency_GHz",
+          "S11_dB",
+          "S12_dB",
+          "S13_dB",
+          "S14_dB"
+        ],
+        "grid": {
+          "type": "linear",
+          "column": "frequency_GHz",
+          "start": 3,
+          "stop": 20,
+          "step": 0.02,
+          "tolerance": 1e-08
+        }
+      },
+      {
+        "path_regex": "results/mimo_nostub/sparams\\.csv",
+        "columns": [
+          "frequency_GHz",
+          "S11_dB",
+          "S12_dB",
+          "S13_dB",
+          "S14_dB"
+        ],
+        "grid": {
+          "type": "linear",
+          "column": "frequency_GHz",
+          "start": 3,
+          "stop": 20,
+          "step": 0.02,
+          "tolerance": 1e-08
+        }
+      },
+      {
+        "path_regex": "results/mimo_final/efficiency\\.csv",
+        "columns": [
+          "frequency_GHz",
+          "radiation_efficiency"
+        ],
+        "grid": {
+          "type": "linear",
+          "column": "frequency_GHz",
+          "start": 3,
+          "stop": 20,
+          "step": 0.25,
+          "tolerance": 1e-08
+        }
+      },
+      {
+        "path_regex": "results/mimo_final/gain\\.csv",
+        "columns": [
+          "frequency_GHz",
+          "peak_gain_dBi"
+        ],
+        "grid": {
+          "type": "linear",
+          "column": "frequency_GHz",
+          "start": 3,
+          "stop": 20,
+          "step": 0.25,
+          "tolerance": 1e-08
+        }
+      },
+      {
+        "path_regex": "results/mimo_final/mimo_metrics\\.csv",
+        "columns": [
+          "frequency_GHz",
+          "ECC12",
+          "ECC13",
+          "ECC14",
+          "DG_dB",
+          "mux_eff_dB"
+        ],
+        "grid": {
+          "type": "linear",
+          "column": "frequency_GHz",
+          "start": 3,
+          "stop": 20,
+          "step": 0.25,
+          "tolerance": 1e-08
+        }
+      },
+      {
+        "path_regex": "results/mimo_final/patterns\\.csv",
+        "columns": [
+          "plane",
+          "frequency_GHz",
+          "angle_deg",
+          "gain_norm_dB"
+        ],
+        "grid": {
+          "type": "cartesian_values",
+          "axes": [
+            {
+              "column": "plane",
+              "values": [
+                "xy",
+                "xz",
+                "yz"
+              ]
+            },
+            {
+              "column": "frequency_GHz",
+              "values": [
+                3.5,
+                6.5,
+                14
+              ]
+            },
+            {
+              "column": "angle_deg",
+              "start": 0,
+              "stop": 355,
+              "step": 5
+            }
+          ]
+        }
+      }
+    ],
+    "editorial_original_rubric_sha256": "6863d818c2d3374146836971192e80298e8bd5598a3b3c5f04c1608c4fc7372e"
+  },
+  "run_evidence_config": {
+    "task_id": "09",
+    "hfss_variants": [
+      "mimo_final",
+      "single_initial",
+      "single_stub",
+      "h2_10p7",
+      "h2_11p7",
+      "mimo_nostub"
+    ],
+    "b2_1_sampled_variants": [
+      "mimo_final",
+      "single_initial",
+      "h2_11p7",
+      "mimo_nostub"
+    ],
+    "must_differ_groups": [
+      [
+        "mimo_final",
+        "h2_10p7",
+        "h2_11p7",
+        "mimo_nostub"
+      ],
+      [
+        "single_initial",
+        "single_stub"
+      ]
+    ],
+    "scored_csvs": {
+      "default": [
+        "sparams.csv"
+      ],
+      "mimo_final": [
+        "sparams.csv",
+        "efficiency.csv",
+        "gain.csv",
+        "mimo_metrics.csv",
+        "patterns.csv"
+      ]
+    },
+    "convergence_target_max_delta_s": 0.02,
+    "leaf_ids": {
+      "b2_1": "B2_1",
+      "b2_2": "B2_2",
+      "b1_5": "B1_5"
+    }
+  }
+}

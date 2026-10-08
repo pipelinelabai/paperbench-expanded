@@ -1,0 +1,21 @@
+{
+  "units": {
+    "q": "1",
+    "reflection_amplitude": "1",
+    "gaussian/sinc": "prescribed angular field amplitude with one arbitrary global normalization"
+  },
+  "operator_coefficient": 0.9960101500917828,
+  "maximum_reflectance_within_support": 0.013350080940547277,
+  "gaussian": {
+    "fixed_operator_relative_l2_error": 0.042910500147951364,
+    "reflected_power_fraction": 0.00031162039833145
+  },
+  "sinc": {
+    "fixed_operator_relative_l2_error": 0.09872290555708114,
+    "reflected_power_fraction": 0.0027514396102177032
+  },
+  "status": "independent_mathematical_reference_not_FDTD",
+  "sha256": "e4dd7daabc63206b8efe121612b071c1e10f05a6b5b1cfb2ab8a363752a60591",
+  "file": "independent_reference.npz",
+  "quadrature_rule": "Exact input support with inward-only Sinc endpoint cells; no outside ramp."
+}

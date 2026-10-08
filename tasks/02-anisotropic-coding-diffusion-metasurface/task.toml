@@ -1,0 +1,40 @@
+schema_version = "1.1"
+
+[task]
+name = "paperbench-expanded/02-anisotropic-coding-diffusion-metasurface"
+
+[metadata]
+author_name = "pipelinelab"
+difficulty = "hard"
+category = "scientific-simulation"
+tags = ["ansys-hfss", "pyaedt", "electromagnetics", "replication"]
+
+[verifier]
+user = "root"
+timeout_sec = 262800.0
+
+[verifier.env]
+ANTHROPIC_API_KEY = "${ANTHROPIC_API_KEY}"
+ANTHROPIC_BASE_URL = "${ANTHROPIC_BASE_URL}"
+OPENAI_API_KEY = "${OPENAI_API_KEY}"
+OPENAI_BASE_URL = "${OPENAI_BASE_URL}"
+JUDGE_API_KEY = "${JUDGE_API_KEY}"
+JUDGE_API_BASE = "${JUDGE_API_BASE}"
+JUDGE_BASE_URL = "${JUDGE_BASE_URL}"
+JUDGE_MODEL = "gpt-5.6-sol"
+JUDGE_TIMEOUT_SEC = "300"
+MAX_JUDGE_CONTEXT_CHARS = "131072"
+PBX_SAFE_REPLAY_TIMEOUT_SEC = "172800"
+PBX_LLM_TRANSPORT = "auto"
+PBX_LLM_MAX_TOOL_ROUNDS = "16"
+PBX_LLM_RETRIES = "4"
+
+[agent]
+user = "pbsolver"
+timeout_sec = 259200.0
+
+[environment]
+build_timeout_sec = 86400.0
+cpus = 32
+memory_mb = 131072
+storage_mb = 204800

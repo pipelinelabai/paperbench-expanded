@@ -1,0 +1,30 @@
+{
+  "same_model": {
+    "complex_amplitude_normalized": 0.001,
+    "phase_absolute_rad": 0.001,
+    "delay_normalized": 0.001,
+    "nonlinear_observable_normalized": 0.001,
+    "turn_input_absolute": 0.001,
+    "near_zero_power_absolute": 0.000001
+  },
+  "definitions": {
+    "complex_amplitude_normalization": "max(1, abs(reference))",
+    "delay_and_nonlinear_normalization": "1 + abs(reference)",
+    "power_comparison": "abs(actual-reference) <= max(0.05*abs(reference), 1e-6)",
+    "turn_output_coordinate_and_bracket": "0.001*(1+abs(reference_output_power))",
+    "root_matching": "One-to-one roots in the same physical branch; counts and multiplicity cannot be replaced by residual agreement",
+    "model_scope": "P versus independent P, C versus independent C, D versus independent D. Cross-model discrepancies are measured, not required to vanish."
+  },
+  "origin": "Benchmark numerical criteria. The paper supplies equations, observables and plotted parameters, but does not quote these solver-error bounds or specify the full Fig. 4 normalization.",
+  "independent_validation": {
+    "linear_method": "Adaptive Helmholtz cell IVP versus separately implemented midpoint-layer transfer at 4096 and 8192 layers; all 201 reporting points and both paper cases",
+    "linear_max_scaled_amplitude_difference": 4.5e-8,
+    "linear_max_phase_difference_rad": 4.8e-8,
+    "linear_max_normalized_delay_difference": 5.9e-6,
+    "nonlinear_method": "Independent four-component RK45 Stokes integration versus DOP853 Stokes/variational flow for all six cases; independent scalar root solves at all four fixed input sections",
+    "nonlinear_max_normalized_profile_observable_difference": 6.5e-11,
+    "nonlinear_max_normalized_root_T_R_difference": 3.2e-11,
+    "branch_resolution": "1025/2049-node local searches followed by 2049/4097-node reference CLI checks; unresolved coarse stationary candidates remain diagnostics until refinement resolves them",
+    "limitations": "Numerical sensitivity and cross-method agreement, not rigorous error bounds, author Fig. 4 normalization recovery, full native scattering validation or a global uniqueness theorem. No tested submission was used to select these tolerances."
+  }
+}

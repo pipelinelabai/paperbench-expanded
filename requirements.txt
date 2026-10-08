@@ -1,0 +1,7 @@
+harbor==0.21.0
+PyYAML==6.0.3
+python-dotenv==1.2.3
+pydantic==2.13.4
+numpy==2.4.2
+scipy==1.16.3
+h5py==3.16.0

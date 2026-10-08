@@ -1,0 +1,201 @@
+{
+  "schema_version": 1,
+  "source": "../addendum.md: Required data products / Output Schemas",
+  "variants": [
+    "unit_normal",
+    "unit_tm15",
+    "unit_tm30",
+    "unit_tm45",
+    "array_ms",
+    "array_pec",
+    "af_patterns"
+  ],
+  "hfss_variants": [
+    "unit_normal",
+    "unit_tm15",
+    "unit_tm30",
+    "unit_tm45",
+    "array_ms",
+    "array_pec"
+  ],
+  "required_paths": [
+    "PAPER_AUDIT.md",
+    "README.md",
+    "hfss/",
+    "reproduce.sh",
+    "results/af_patterns/af_pattern_initial.png",
+    "results/af_patterns/af_pattern_optimal.png",
+    "results/af_patterns/af_pattern_uniform.png",
+    "results/af_patterns/af_samples.npz",
+    "results/af_patterns/af_summary.json",
+    "results/af_patterns/coding_matrices.json",
+    "results/af_patterns/meta.json",
+    "results/array_ms/current_fig6.png",
+    "results/array_ms/farfield3d_fig6.png",
+    "results/array_ms/meta.json",
+    "results/array_ms/raw/",
+    "results/array_ms/raw/MANIFEST.json",
+    "results/array_ms/rcs_normal.csv",
+    "results/array_ms/rcs_reduction.csv",
+    "results/array_ms/run.log",
+    "results/array_ms/structure.json",
+    "results/array_ms/summary.json",
+    "results/array_pec/current_fig6.png",
+    "results/array_pec/farfield3d_fig6.png",
+    "results/array_pec/meta.json",
+    "results/array_pec/raw/",
+    "results/array_pec/raw/MANIFEST.json",
+    "results/array_pec/rcs_normal.csv",
+    "results/array_pec/run.log",
+    "results/array_pec/structure.json",
+    "results/array_pec/summary.json",
+    "results/run_summary.json",
+    "results/unit_normal/meta.json",
+    "results/unit_normal/raw/",
+    "results/unit_normal/raw/MANIFEST.json",
+    "results/unit_normal/reflection.csv",
+    "results/unit_normal/run.log",
+    "results/unit_normal/structure.json",
+    "results/unit_normal/summary.json",
+    "results/unit_tm15/meta.json",
+    "results/unit_tm15/phase_diff.csv",
+    "results/unit_tm15/raw/",
+    "results/unit_tm15/raw/MANIFEST.json",
+    "results/unit_tm15/run.log",
+    "results/unit_tm15/structure.json",
+    "results/unit_tm15/summary.json",
+    "results/unit_tm30/meta.json",
+    "results/unit_tm30/phase_diff.csv",
+    "results/unit_tm30/raw/",
+    "results/unit_tm30/raw/MANIFEST.json",
+    "results/unit_tm30/run.log",
+    "results/unit_tm30/structure.json",
+    "results/unit_tm30/summary.json",
+    "results/unit_tm45/meta.json",
+    "results/unit_tm45/phase_diff.csv",
+    "results/unit_tm45/raw/",
+    "results/unit_tm45/raw/MANIFEST.json",
+    "results/unit_tm45/run.log",
+    "results/unit_tm45/structure.json",
+    "results/unit_tm45/summary.json",
+    "src/",
+    "src/derive.py",
+    "src/run_all.py",
+    "views/array_ms/top.png",
+    "views/array_pec/perspective.png",
+    "views/unit_cell/perspective.png",
+    "views/unit_cell/top.png"
+  ],
+  "csv_contracts": {
+    "results/unit_normal/reflection.csv": {
+      "columns": [
+        "frequency_GHz",
+        "mag_x",
+        "phase_x_deg",
+        "mag_y",
+        "phase_y_deg",
+        "phase_diff_deg"
+      ],
+      "grid": {
+        "type": "linear",
+        "column": "frequency_GHz",
+        "start": 4,
+        "stop": 8,
+        "step": 0.05,
+        "tolerance": 1e-08
+      }
+    },
+    "results/unit_tm15/phase_diff.csv": {
+      "columns": [
+        "frequency_GHz",
+        "phase_element1_deg",
+        "phase_element0_deg",
+        "phase_diff_deg"
+      ],
+      "grid": {
+        "type": "linear",
+        "column": "frequency_GHz",
+        "start": 4,
+        "stop": 8,
+        "step": 0.05,
+        "tolerance": 1e-08
+      }
+    },
+    "results/unit_tm30/phase_diff.csv": {
+      "columns": [
+        "frequency_GHz",
+        "phase_element1_deg",
+        "phase_element0_deg",
+        "phase_diff_deg"
+      ],
+      "grid": {
+        "type": "linear",
+        "column": "frequency_GHz",
+        "start": 4,
+        "stop": 8,
+        "step": 0.05,
+        "tolerance": 1e-08
+      }
+    },
+    "results/unit_tm45/phase_diff.csv": {
+      "columns": [
+        "frequency_GHz",
+        "phase_element1_deg",
+        "phase_element0_deg",
+        "phase_diff_deg"
+      ],
+      "grid": {
+        "type": "linear",
+        "column": "frequency_GHz",
+        "start": 4,
+        "stop": 8,
+        "step": 0.05,
+        "tolerance": 1e-08
+      }
+    },
+    "results/array_ms/rcs_normal.csv": {
+      "columns": [
+        "frequency_GHz",
+        "rcs_x_dBsm",
+        "rcs_y_dBsm"
+      ],
+      "grid": {
+        "type": "linear",
+        "column": "frequency_GHz",
+        "start": 4,
+        "stop": 8,
+        "step": 0.05,
+        "tolerance": 1e-08
+      }
+    },
+    "results/array_ms/rcs_reduction.csv": {
+      "columns": [
+        "frequency_GHz",
+        "reduction_x_dB",
+        "reduction_y_dB"
+      ],
+      "grid": {
+        "type": "linear",
+        "column": "frequency_GHz",
+        "start": 4,
+        "stop": 8,
+        "step": 0.05,
+        "tolerance": 1e-08
+      }
+    },
+    "results/array_pec/rcs_normal.csv": {
+      "columns": [
+        "frequency_GHz",
+        "rcs_dBsm"
+      ],
+      "grid": {
+        "type": "linear",
+        "column": "frequency_GHz",
+        "start": 4,
+        "stop": 8,
+        "step": 0.05,
+        "tolerance": 1e-08
+      }
+    }
+  }
+}

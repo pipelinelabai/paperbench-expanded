@@ -1,0 +1,527 @@
+{
+  "id": "root",
+  "title": "horlbeck-2018-genetic-interactions",
+  "description": "PaperBench scoring tree for Horlbeck et al., Cell 174(4):953–967.e22 (2018): Mapping the Genetic Landscape of Human Cells.",
+  "weight": 100,
+  "sub_tasks": [
+    {
+      "id": "A",
+      "title": "Method Reconstruction and Scope",
+      "weight": 10,
+      "sub_tasks": [
+        {
+          "id": "A1",
+          "title": "Paper-derived count-to-GI method",
+          "description": "Recover and explain the count-to-GI method from the paper, consistently with the executed source.",
+          "weight": 40.0,
+          "evidence_inputs": [
+            {
+              "path": "submission/results/horlbeck_gi_reproduction/analysis_manifest.json",
+              "kind": "json"
+            },
+            {
+              "path": "submission/results/horlbeck_gi_reproduction/report.md",
+              "kind": "text"
+            },
+            {
+              "path": "submission/results/horlbeck_gi_reproduction/methods.md",
+              "kind": "text"
+            },
+            {
+              "path": "submission/",
+              "kind": "source"
+            }
+          ],
+          "task_category": "Modeling"
+        },
+        {
+          "id": "A2",
+          "title": "Independent replicates and figure semantics",
+          "description": "Distinguish independently reconstructed replicates, combined measurements, and the Figure 2D/2E quantities.",
+          "weight": 30.0,
+          "evidence_inputs": [
+            {
+              "path": "submission/results/horlbeck_gi_reproduction/analysis_manifest.json",
+              "kind": "json"
+            },
+            {
+              "path": "submission/results/horlbeck_gi_reproduction/report.md",
+              "kind": "text"
+            },
+            {
+              "path": "submission/results/horlbeck_gi_reproduction/methods.md",
+              "kind": "text"
+            },
+            {
+              "path": "submission/",
+              "kind": "source"
+            }
+          ],
+          "task_category": "Modeling"
+        },
+        {
+          "id": "A3",
+          "title": "Scientific scope and validation provenance",
+          "description": "Respect the supplied input and scientific scope; identify benchmark-defined interventions without unsupported author/module/GO/Jurkat claims.",
+          "weight": 30.0,
+          "evidence_inputs": [
+            {
+              "path": "submission/results/horlbeck_gi_reproduction/analysis_manifest.json",
+              "kind": "json"
+            },
+            {
+              "path": "submission/results/horlbeck_gi_reproduction/report.md",
+              "kind": "text"
+            },
+            {
+              "path": "submission/results/horlbeck_gi_reproduction/methods.md",
+              "kind": "text"
+            },
+            {
+              "path": "submission/",
+              "kind": "source"
+            }
+          ],
+          "task_category": "Modeling"
+        }
+      ]
+    },
+    {
+      "id": "B",
+      "title": "Authentic Execution and Evidence",
+      "weight": 10,
+      "sub_tasks": [
+        {
+          "id": "B1",
+          "title": "Authentic clean offline replay",
+          "description": "Successfully replay the public entrypoint offline from immutable source into initially empty results, within the unchanged resource ceiling.",
+          "weight": 40.0,
+          "evidence_inputs": [
+            {
+              "path": "submission/results/horlbeck_gi_reproduction/analysis_manifest.json",
+              "kind": "json"
+            },
+            {
+              "path": "submission/reproduce.sh",
+              "kind": "source"
+            }
+          ],
+          "task_category": "Execution"
+        },
+        {
+          "id": "B2",
+          "title": "Input, source and resource binding",
+          "description": "Bind results to actual input and source bytes, with valid measured completion and resource records.",
+          "weight": 30.0,
+          "evidence_inputs": [
+            {
+              "path": "submission/results/horlbeck_gi_reproduction/analysis_manifest.json",
+              "kind": "json"
+            }
+          ],
+          "task_category": "Execution"
+        },
+        {
+          "id": "B3",
+          "title": "Machine-readable evidence and lineage",
+          "description": "Expose machine-readable identities, intermediate evidence, filtering decisions and intervention lineage; no hidden required intermediate filenames.",
+          "weight": 30.0,
+          "evidence_inputs": [
+            {
+              "path": "submission/results/horlbeck_gi_reproduction/analysis_manifest.json",
+              "kind": "json"
+            }
+          ],
+          "task_category": "Execution"
+        }
+      ]
+    },
+    {
+      "id": "C",
+      "title": "Scientific Results and Analysis",
+      "weight": 80,
+      "sub_tasks": [
+        {
+          "id": "C1",
+          "title": "Combined Study Reconstruction",
+          "weight": 37.5,
+          "sub_tasks": [
+            {
+              "id": "C1a",
+              "title": "Combined guide-level measurements",
+              "description": "Reconstruct combined count-derived guide measurements on the complete paper-eligible universe.",
+              "weight": 26.666666666666668,
+              "evidence_inputs": [
+                {
+                  "path": "submission/results/horlbeck_gi_reproduction/analysis_manifest.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/horlbeck_gi_reproduction/gene_pair_gi.csv",
+                  "kind": "csv"
+                },
+                {
+                  "path": "submission/results/horlbeck_gi_reproduction/gi_profiles.npz",
+                  "kind": "npz"
+                }
+              ],
+              "task_category": "Validation"
+            },
+            {
+              "id": "C1b",
+              "title": "Expected phenotypes and residual scaling",
+              "description": "Recover the query-specific fixed-intercept quadratic and control-residual standardization with checkable fit evidence.",
+              "weight": 26.666666666666668,
+              "evidence_inputs": [
+                {
+                  "path": "submission/results/horlbeck_gi_reproduction/analysis_manifest.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/horlbeck_gi_reproduction/gene_pair_gi.csv",
+                  "kind": "csv"
+                },
+                {
+                  "path": "submission/results/horlbeck_gi_reproduction/gi_profiles.npz",
+                  "kind": "npz"
+                }
+              ],
+              "task_category": "Validation"
+            },
+            {
+              "id": "C1c",
+              "title": "Combined gene-pair evidence",
+              "description": "Supply correctly aligned combined unordered non-self pair observed, expected, GI and descriptive uncertainty values.",
+              "weight": 26.666666666666668,
+              "evidence_inputs": [
+                {
+                  "path": "submission/results/horlbeck_gi_reproduction/analysis_manifest.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/horlbeck_gi_reproduction/gene_pair_gi.csv",
+                  "kind": "csv"
+                },
+                {
+                  "path": "submission/results/horlbeck_gi_reproduction/gi_profiles.npz",
+                  "kind": "npz"
+                }
+              ],
+              "task_category": "Validation"
+            },
+            {
+              "id": "C1d",
+              "title": "Continuous gene profiles",
+              "description": "Provide complete continuous gene/partner profiles with explicit axes, consistent with the combined pair evidence.",
+              "weight": 10.0,
+              "evidence_inputs": [
+                {
+                  "path": "submission/results/horlbeck_gi_reproduction/analysis_manifest.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/horlbeck_gi_reproduction/gene_pair_gi.csv",
+                  "kind": "csv"
+                },
+                {
+                  "path": "submission/results/horlbeck_gi_reproduction/gi_profiles.npz",
+                  "kind": "npz"
+                }
+              ],
+              "task_category": "Validation"
+            },
+            {
+              "id": "C1e",
+              "title": "Figure 2F and 2G evidence and interpretation",
+              "description": "Provide numerical figure support and separately explain the overall Figure 2F correlation distribution and Figure 2G numeric matrix; author labels are not required.",
+              "weight": 10.0,
+              "evidence_inputs": [
+                {
+                  "path": "submission/results/horlbeck_gi_reproduction/analysis_manifest.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/horlbeck_gi_reproduction/report.md",
+                  "kind": "text"
+                },
+                {
+                  "path": "submission/results/horlbeck_gi_reproduction/methods.md",
+                  "kind": "text"
+                },
+                {
+                  "path": "submission/",
+                  "kind": "source"
+                }
+              ],
+              "task_category": "Validation"
+            }
+          ]
+        },
+        {
+          "id": "C2",
+          "title": "Independent Biological Replication",
+          "weight": 25,
+          "sub_tasks": [
+            {
+              "id": "C2a",
+              "title": "Independent replicate reconstructions",
+              "description": "Reconstruct each replicate from its own counts and fits, with correct pair tables and profiles, not copies of the combined map.",
+              "weight": 40.0,
+              "evidence_inputs": [
+                {
+                  "path": "submission/results/horlbeck_gi_reproduction/analysis_manifest.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/horlbeck_gi_reproduction/replicate_comparisons.csv",
+                  "kind": "csv"
+                }
+              ],
+              "task_category": "Validation"
+            },
+            {
+              "id": "C2b",
+              "title": "Figure 2D gene-pair agreement",
+              "description": "Correctly align and quantify Figure 2D gene-pair GI agreement, scale discrepancy and coverage.",
+              "weight": 20.0,
+              "evidence_inputs": [
+                {
+                  "path": "submission/results/horlbeck_gi_reproduction/analysis_manifest.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/horlbeck_gi_reproduction/replicate_comparisons.csv",
+                  "kind": "csv"
+                }
+              ],
+              "task_category": "Validation"
+            },
+            {
+              "id": "C2c",
+              "title": "Figure 2E correlation-value agreement",
+              "description": "Correctly align and quantify Figure 2E agreement of profile-correlation values, scale discrepancy and coverage.",
+              "weight": 20.0,
+              "evidence_inputs": [
+                {
+                  "path": "submission/results/horlbeck_gi_reproduction/analysis_manifest.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/horlbeck_gi_reproduction/replicate_comparisons.csv",
+                  "kind": "csv"
+                }
+              ],
+              "task_category": "Validation"
+            },
+            {
+              "id": "C2d",
+              "title": "Focal-gene cross-replicate agreement",
+              "description": "Quantify every common gene's cross-replicate partner-profile agreement using the declared self exclusion and coverage.",
+              "weight": 20.0,
+              "evidence_inputs": [
+                {
+                  "path": "submission/results/horlbeck_gi_reproduction/analysis_manifest.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/horlbeck_gi_reproduction/replicate_comparisons.csv",
+                  "kind": "csv"
+                }
+              ],
+              "task_category": "Validation"
+            }
+          ]
+        },
+        {
+          "id": "C3",
+          "title": "Systematic Local Guide Sensitivity",
+          "weight": 18.75,
+          "sub_tasks": [
+            {
+              "id": "C3a",
+              "title": "Complete guide-omission inventory",
+              "description": "Enumerate and attempt every guide omission eligible under the two independently reconstructed baselines, without selective omission.",
+              "weight": 20.0,
+              "evidence_inputs": [
+                {
+                  "path": "submission/results/horlbeck_gi_reproduction/analysis_manifest.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/horlbeck_gi_reproduction/omissions/",
+                  "kind": "directory"
+                }
+              ],
+              "task_category": "Validation"
+            },
+            {
+              "id": "C3b",
+              "title": "Raw-input omission recomputation",
+              "description": "Recompute all affected replicate and combined measurements and fits from guide-omitted raw input; preserve actual failure states.",
+              "weight": 46.666666666666664,
+              "evidence_inputs": [
+                {
+                  "path": "submission/results/horlbeck_gi_reproduction/analysis_manifest.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/horlbeck_gi_reproduction/omissions/",
+                  "kind": "directory"
+                }
+              ],
+              "task_category": "Validation"
+            },
+            {
+              "id": "C3c",
+              "title": "Local sensitivity and coverage",
+              "description": "Retain and correctly summarize focal-gene partner values, correlation, absolute/relative change, signs and coverage for every intervention.",
+              "weight": 33.333333333333336,
+              "evidence_inputs": [
+                {
+                  "path": "submission/results/horlbeck_gi_reproduction/analysis_manifest.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/horlbeck_gi_reproduction/omissions/",
+                  "kind": "directory"
+                }
+              ],
+              "task_category": "Validation"
+            }
+          ]
+        },
+        {
+          "id": "C4",
+          "title": "Identity-Matching Null",
+          "weight": 12.5,
+          "sub_tasks": [
+            {
+              "id": "C4a",
+              "title": "Valid identity-matching permutations",
+              "description": "Record at least 199 valid cross-replicate focal-identity permutations with the declared seed, unchanged partner identities and correct self exclusions.",
+              "weight": 40.0,
+              "evidence_inputs": [
+                {
+                  "path": "submission/results/horlbeck_gi_reproduction/analysis_manifest.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/horlbeck_gi_reproduction/identity_null/mappings.csv",
+                  "kind": "csv"
+                },
+                {
+                  "path": "submission/results/horlbeck_gi_reproduction/identity_null/statistics.csv",
+                  "kind": "csv"
+                }
+              ],
+              "task_category": "Validation"
+            },
+            {
+              "id": "C4b",
+              "title": "Empirical null statistics and uncertainty",
+              "description": "Reconstruct observed and every randomized median-finite-profile statistic, counts, empirical distribution, tail calculation and uncertainty.",
+              "weight": 40.0,
+              "evidence_inputs": [
+                {
+                  "path": "submission/results/horlbeck_gi_reproduction/analysis_manifest.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/horlbeck_gi_reproduction/identity_null/mappings.csv",
+                  "kind": "csv"
+                },
+                {
+                  "path": "submission/results/horlbeck_gi_reproduction/identity_null/statistics.csv",
+                  "kind": "csv"
+                }
+              ],
+              "task_category": "Validation"
+            },
+            {
+              "id": "C4c",
+              "title": "Study-level null interpretation",
+              "description": "Interpret the matching null at study level without treating permutations as biological replicates or requiring significance.",
+              "weight": 20.0,
+              "evidence_inputs": [
+                {
+                  "path": "submission/results/horlbeck_gi_reproduction/analysis_manifest.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/horlbeck_gi_reproduction/report.md",
+                  "kind": "text"
+                },
+                {
+                  "path": "submission/results/horlbeck_gi_reproduction/methods.md",
+                  "kind": "text"
+                },
+                {
+                  "path": "submission/",
+                  "kind": "source"
+                }
+              ],
+              "task_category": "Validation"
+            }
+          ]
+        },
+        {
+          "id": "C5",
+          "title": "Conclusions and Limitations",
+          "weight": 6.25,
+          "sub_tasks": [
+            {
+              "id": "C5a",
+              "title": "Evidence-supported conclusions",
+              "description": "Tie replication and sensitivity conclusions to regenerated evidence, not global correlation alone or selectively favorable interventions.",
+              "weight": 60.0,
+              "evidence_inputs": [
+                {
+                  "path": "submission/results/horlbeck_gi_reproduction/analysis_manifest.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/horlbeck_gi_reproduction/report.md",
+                  "kind": "text"
+                },
+                {
+                  "path": "submission/results/horlbeck_gi_reproduction/methods.md",
+                  "kind": "text"
+                },
+                {
+                  "path": "submission/",
+                  "kind": "source"
+                }
+              ],
+              "task_category": "Validation"
+            },
+            {
+              "id": "C5b",
+              "title": "Limitations and uncertainty",
+              "description": "Explain limited biological replication, descriptive uncertainty, missing/undefined findings and scope without unsupported causal claims.",
+              "weight": 40.0,
+              "evidence_inputs": [
+                {
+                  "path": "submission/results/horlbeck_gi_reproduction/analysis_manifest.json",
+                  "kind": "json"
+                },
+                {
+                  "path": "submission/results/horlbeck_gi_reproduction/report.md",
+                  "kind": "text"
+                },
+                {
+                  "path": "submission/results/horlbeck_gi_reproduction/methods.md",
+                  "kind": "text"
+                },
+                {
+                  "path": "submission/",
+                  "kind": "source"
+                }
+              ],
+              "task_category": "Validation"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

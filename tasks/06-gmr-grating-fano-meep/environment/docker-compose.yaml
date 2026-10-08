@@ -1,0 +1,22 @@
+services:
+  main:
+    build:
+      context: ${CONTEXT_DIR}
+      args:
+        PIP_INDEX_URL: ${PBX_PIP_INDEX_URL:-https://pypi.org/simple}
+        PBX_APT_MIRROR: ${PBX_APT_MIRROR:-}
+        PBX_DOWNLOAD_TIMEOUT: ${PBX_DOWNLOAD_TIMEOUT:-30}
+        PBX_DOWNLOAD_RETRIES: ${PBX_DOWNLOAD_RETRIES:-5}
+        npm_config_registry: ${PBX_NPM_REGISTRY:-https://registry.npmjs.org}
+    command: ["sh", "-ec", "pbx-init-workspace pbsolver; exec sleep infinity"]
+    cap_add: [NET_ADMIN]
+    network_mode: ${NETWORK_MODE:-bridge}
+    volumes:
+      - ${HOST_VERIFIER_LOGS_PATH}:${ENV_VERIFIER_LOGS_PATH}
+      - ${HOST_AGENT_LOGS_PATH}:${ENV_AGENT_LOGS_PATH}
+      - ${HOST_AGENT_LOGS_PATH}/submission:/home/submission
+    deploy:
+      resources:
+        limits:
+          cpus: ${CPUS}
+          memory: ${MEMORY}

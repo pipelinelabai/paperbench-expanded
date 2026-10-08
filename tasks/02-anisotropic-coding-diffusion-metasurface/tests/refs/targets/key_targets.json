@@ -1,0 +1,202 @@
+{
+  "_windows_authority": "Only rubric.json leaf descriptions and checks define acceptance windows. This reference file records paper readings, exact reported statements and extraction uncertainty, not additional acceptance conditions.",
+  "paper": "Zhao et al., Sci. Rep. 6:23896 (2016), doi:10.1038/srep23896; original solver ANSYS HFSS",
+  "text_exact": {
+    "band10dB_x_GHz": [
+      5.2,
+      6.86
+    ],
+    "band10dB_y_GHz": [
+      5.44,
+      6.9
+    ],
+    "amplitude_floor_both_pol": 0.99,
+    "unit_cell_mm": {
+      "a": 10,
+      "px": 9.5,
+      "py": 7.4,
+      "h": 3
+    },
+    "substrate": {
+      "eps_r": 2.65,
+      "tan_delta": 0.001,
+      "name": "F4B"
+    },
+    "copper_thickness_mm": 0.036,
+    "lattice": "4x4 elements per lattice, d=40mm, M=N=6, overall 240x240x3 mm",
+    "field_map_frequency_GHz": 5.86,
+    "oblique_angles_deg_TM_xoz": [
+      15,
+      30,
+      45
+    ],
+    "sa_params_not_graded": {
+      "T": 100,
+      "alpha": 0.9,
+      "Tf": 0,
+      "I": 1000
+    }
+  },
+  "figure_read": {
+    "fig1b": {
+      "min_mag_x": 0.9957,
+      "min_mag_y": 0.9944
+    },
+    "fig1c": {
+      "f_zero_phase_x_GHz": 4.553,
+      "f_zero_phase_y_GHz": 6.93,
+      "phase_diff_peak_deg": 205.2,
+      "f_phase_diff_peak_GHz_range": [
+        5.45,
+        5.8
+      ],
+      "phase_diff_150deg_band_GHz": [
+        4.691,
+        6.853
+      ],
+      "phase_x_at_4GHz_deg": 82.1,
+      "phase_y_at_4GHz_deg": 139.5
+    },
+    "fig7a": {
+      "tm15_peak_deg": 182.8,
+      "tm15_f_peak_GHz": 5.99,
+      "tm30_peak_deg": 175.7,
+      "tm30_f_peak_GHz": 6.13,
+      "tm45_peak_deg": 157.6,
+      "tm45_f_peak_GHz": 6.32
+    },
+    "fig5": {
+      "rcs_x_min_dBsm": -5.11,
+      "f_rcs_x_min_GHz": 5.83,
+      "reduction_x_min_dB": -17.31,
+      "f_reduction_x_min_GHz": 5.85,
+      "band10dB_x_crossings_GHz": [
+        5.185,
+        6.129,
+        6.265,
+        6.854
+      ],
+      "rcs_y_min_dBsm": -1.85,
+      "f_rcs_y_min_GHz": 5.94,
+      "reduction_y_min_dB": -14.18,
+      "f_reduction_y_min_GHz": 5.96,
+      "band10dB_y_crossings_GHz": [
+        5.423,
+        6.914
+      ],
+      "x_local_max_6p2_dBsm": 3.0,
+      "x_second_dip_dBsm": 0.31,
+      "pec_at_4GHz_dBsm": 8.81,
+      "pec_at_5p85GHz_dBsm": 12.2,
+      "pec_at_8GHz_dBsm": 14.96
+    },
+    "fig10a_sim_eyeball_crosscheck": {
+      "reduction_x_dip_dB": -17.3,
+      "reduction_y_dip_dB": -14.0,
+      "x_local_rise_at_6p2_dB": -9.8,
+      "x_second_dip_dB": -13.5,
+      "note": "cross-checks the Fig.5-derived reduction refs; consistent within 0.8 dB"
+    }
+  },
+  "coding_matrix_optimal_rows_along_plus_x": [
+    [
+      1,
+      1,
+      1,
+      0,
+      0,
+      0
+    ],
+    [
+      1,
+      0,
+      0,
+      1,
+      1,
+      0
+    ],
+    [
+      0,
+      0,
+      1,
+      0,
+      0,
+      0
+    ],
+    [
+      1,
+      0,
+      1,
+      1,
+      0,
+      1
+    ],
+    [
+      1,
+      0,
+      1,
+      0,
+      1,
+      0
+    ],
+    [
+      0,
+      1,
+      0,
+      1,
+      1,
+      1
+    ]
+  ],
+  "coding_matrix_initial": [
+    [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ]
+  ],
+  "matrix_provenance": "printed digits in Fig.3c AND gray/white layout of Fig.4, verified cell-by-cell (36/36 agree); 18 ones / 18 zeros"
+}
